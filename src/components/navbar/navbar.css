@@ -9,6 +9,7 @@
     padding-bottom: .5rem;
 
     border-bottom: 1px solid lightgrey;
+    background-color: white;
 }
 
 /* Container with left and right padding, left & right content */
@@ -84,10 +85,9 @@ h3 {
     justify-content: center;
     width: 200px;
     height: 40px;
-    background-color: transparent;
+    background-color: dodgerblue;
     border-radius: 25px;
-    border-width: 2px;
-    border-color: blue;
+    border-style: none;
 }
 
 /* Button text and image style */
@@ -104,4 +104,5 @@ h3 {
     padding-left: 2.25em;
     font-weight: 600;
     font-size: 12pt;
+    color: white;
 }

@@ -12,7 +12,7 @@ const navbar = () => {
           <ul className='menu'>
             <li className='menu__item'>
               <h3>Product</h3>
-              <span class="material-symbols-outlined">expand_more</span>
+              <span className="material-symbols-outlined">expand_more</span>
             </li>
             <li className='menu__item'>
               <h3>Blog</h3>

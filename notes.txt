@@ -1,6 +1,10 @@
 Notes:
 
-1. Robots.txt may be importan for optimizing SEO in the future.
+1. Robots.txt may be important for optimizing SEO in the future.
 
 To-dos:
 
+1. Add color behavior to button on hover
+2. Add link to Chrome Store reviews in Testimonials container
+3. Add *unique* hover to buttons (increase center by largest, 2 middle by smallest, outer not at all)
+4. Universalize headers? they're all in separate CSS files. maybe move to index.css

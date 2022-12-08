@@ -2,8 +2,8 @@
 .header {
     margin-left: 8rem;
     margin-right: 8rem;
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
 }
 
 /* Container with left content and right content */
@@ -15,9 +15,9 @@
 /* Header 1 is the hook text */
 h1 {
     font-family: var(--font-family);
-    font-size: 36pt;
-    line-height: 1.5;
-    margin-bottom: 1rem;
+    font-size: 42pt;
+    line-height: 1.25;
+    margin-bottom: 2rem;
 }
 
 /* Paragraph is the sub text below the hook */
@@ -25,7 +25,7 @@ p {
     font-family: var(--font-family);
     font-size: 12pt;
     line-height: 1.5;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 /* Left-most content flex so both columns are the same width */
@@ -63,12 +63,11 @@ p {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 250px;
-    height: 50px;
-    background-color: transparent;
-    border-radius: 25px;
-    border-width: 2px;
-    border-color: blue;
+    width: 300px;
+    height: 60px;
+    background-color: dodgerblue;
+    border-radius: 50px;
+    border-style: none;
 }
 
 /* Button text and image style */
@@ -85,4 +84,5 @@ p {
     padding-left: 2.25em;
     font-weight: 600;
     font-size: 14pt;
+    color: white;
 }

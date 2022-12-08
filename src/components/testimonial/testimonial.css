@@ -1,0 +1,83 @@
+/* Entire individual testimonial container */
+.testimonial {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 20rem;
+    flex: 1 1 0px;
+    border: 1px solid lightgray;
+    border-radius: 15px;
+    background-color: white;
+
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+    min-width: 350px;
+}
+
+/* For user profile photo, name, and title */
+.biographical {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* For user profile photos */
+.profile__picture {
+    width: 4em;
+    height: auto;
+}
+
+/* Image on left side of testimonial */
+.biographical__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+/* User name (bolded) */
+h5 {
+    font-family: var(--font-family);
+    font-size: 12pt;
+    margin-bottom: .5rem;
+}
+
+/* Text on right side of testimonial */
+.biographical__text {
+    min-width: 180px;
+}
+
+/* Removing margin from paragraph: role name */
+.title__text {
+    margin: 0;
+}
+
+/* Attributes for paragraph: review */
+.review__text {
+    margin-top: 2rem;
+    line-height: 1.5;
+}
+
+/* Setting color of stars */
+.rating {
+    color: gold;
+}
+
+/* Filling stars */
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+}
+
+/* Flexbox of rating stars */
+.rating {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}

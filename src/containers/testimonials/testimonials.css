@@ -1,0 +1,27 @@
+/* Testimonials header */
+.testimonials {
+    margin-bottom: 6rem;
+}
+
+/* Header text for testimonials */
+h4 {
+    margin-bottom: .5rem;
+    font-size: 36pt;
+    font-family: var(--font-family);
+    font-weight: 700;
+}
+
+/* Header and subheader of testimonial */
+.testimonials__header {
+    text-align: center;
+    padding-top: 2rem;
+}
+
+/* Container with all three testimonials */
+.testimonial__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding-top: 3rem;
+    padding-bottom: 6rem;
+}
