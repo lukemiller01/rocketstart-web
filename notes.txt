@@ -1,0 +1,6 @@
+Notes:
+
+1. Robots.txt may be importan for optimizing SEO in the future.
+
+To-dos:
+

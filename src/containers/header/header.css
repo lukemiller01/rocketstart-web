@@ -1,0 +1,88 @@
+/* Adding margin around the outer header container */
+.header {
+    margin-left: 8rem;
+    margin-right: 8rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+/* Container with left content and right content */
+.header__content-container {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Header 1 is the hook text */
+h1 {
+    font-family: var(--font-family);
+    font-size: 36pt;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+/* Paragraph is the sub text below the hook */
+p {
+    font-family: var(--font-family);
+    font-size: 12pt;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+/* Left-most content flex so both columns are the same width */
+.left__content {
+    flex: 1 1 0px;
+}
+
+/* Adds margin between the header content columns without needing to add right or left margin to either class */
+.middle__gutter {
+    width: 8rem;
+}
+
+/* Right-most content flex so both columns are the same width */
+.right__content {
+    display: flex;
+    flex: 1 1 0px;
+    align-items: center;
+}
+
+/* Gif aspect ratio */
+.rocketstart__gif {
+    width: 100%;
+    height: auto;
+}
+
+/* Aligning text and Chrome SVG within button */
+.button__container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Button style: */
+.button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 25px;
+    border-width: 2px;
+    border-color: blue;
+}
+
+/* Button text and image style */
+.button__text {
+    /* Manipulating button: */
+    line-height: 1.5;
+    margin: 0;
+    white-space: nowrap;
+    background-image: url('../../assets/chrome.svg');
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+
+    /* Manipulating text within button: */
+    padding-left: 2.25em;
+    font-weight: 600;
+    font-size: 14pt;
+}
