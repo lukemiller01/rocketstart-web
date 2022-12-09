@@ -17,7 +17,7 @@ const header = () => {
         </div>
         <div className="middle__gutter"/>
         <div className='right__content'>
-          <img src={rocketstartGif} alt='rocketstart demonstration gif' className='rocketstart__gif'/>
+          <img src={rocketstartGif} alt='rocketstart demonstration gif' className='rocketstart__demo'/>
         </div>
       </div>
     </div>

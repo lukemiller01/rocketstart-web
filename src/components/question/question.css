@@ -1,0 +1,30 @@
+/* Container for entire question  */
+.question__container {
+    border: 1px solid lightgray;
+    margin-bottom: 1rem;
+    width: 600px;
+    border-radius: 15px;
+}
+
+/* Question & + / - icon */
+.question__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+}
+
+/* Removing margin from text */
+.question__text {
+    margin: 0;
+}
+
+/* Hide div when the question is not active */
+.hidden {
+    display: none;
+}

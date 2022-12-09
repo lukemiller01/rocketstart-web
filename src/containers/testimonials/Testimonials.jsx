@@ -28,7 +28,7 @@ const Testimonials = () => {
     <div className='testimonials'>
         <div className='testimonials__header'>
             <h4 >Professionals ❤️ Rocketstart.</h4>
-            <p>Check out all of our reviews on the Google Chrome Store.</p>
+            <p>Check out our reviews on the Google Chrome Store.</p>
         </div>
         <div className='testimonial__container'>
             {testimonalData.map((item, index) => (

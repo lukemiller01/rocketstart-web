@@ -2,26 +2,35 @@
 .process {
     margin-left: 8rem;
     margin-right: 8rem;
-    background-color: #f3f2ef;
-    border-radius: 10px;
+    margin-bottom: 6rem;
 }
 
 /* Header text: "How It Works" */
 h4 {
     font-family: var(--font-family);
-    font-size: 32pt;
     font-weight: 700;
+}
+
+.step {
+    font-size: 28pt;
+    color: rgb(30, 144, 255);
+    margin-bottom: 1rem;
 }
 
 /* Aligning process header text */
 .process__header {
     text-align: center;
+    margin: 0;
 }
 
 /* Container with left content and right content */
 .process__steps-container {
     display: flex;
     flex-direction: row;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
 }
 
 /* Left-most content flex so both columns are the same width */

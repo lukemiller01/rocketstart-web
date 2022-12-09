@@ -1,10 +1,50 @@
 Notes:
 
 1. Robots.txt may be important for optimizing SEO in the future.
+2. There's a potential to refactor the steps into components. Not at moment, because requires two different React components.
 
 To-dos:
 
 1. Add color behavior to button on hover
 2. Add link to Chrome Store reviews in Testimonials container
 3. Add *unique* hover to buttons (increase center by largest, 2 middle by smallest, outer not at all)
-4. Universalize headers? they're all in separate CSS files. maybe move to index.css
+4. Universalize CSS classes:
+    a. Headers.
+    b. rocketstart__demo
+5. Make icons circular
+6. Add border radius to every gif
+7. Link contact us in FAQ
+8. On FAQ click, change + to -
+9. Can I copyright a website just by typing it out?
+
+
+Process Steps:
+
+1. Send a LinkedIn invitation
+    a. Remember to add a note!
+
+2. Click the Rocketstart icon
+    a. Rocketstart will adjust to your window.
+
+3. Type your message
+    a. Rocketstart will analyze your text.
+
+4. Review your insights
+    a. Use Rocketstart to design the perfect note.
+
+Footer:
+
+Rocketstart
+    Features
+    Blog
+    About
+
+Resources
+    Terms & Conditions
+    Privacy Policy
+
+Support
+    FAQ
+    Contact us
+
+Include: Youtube & LinkedIn icons

@@ -1,0 +1,23 @@
+/* Style for entire container */
+.questions {
+    margin-left: 6rem;
+    margin-right: 6rem;
+    margin-bottom: 6rem;
+}
+
+/* Header and subheader of testimonial */
+.question__header {
+    text-align: center;
+}
+
+/* Add margin after the header */
+.question__paragraph {
+    margin-bottom: 3rem;
+}
+
+/* Center each individual question, and display in 1 column */
+.question__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

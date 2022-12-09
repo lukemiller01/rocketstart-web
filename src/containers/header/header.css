@@ -46,9 +46,10 @@ p {
 }
 
 /* Gif aspect ratio */
-.rocketstart__gif {
+.rocketstart__demo {
     width: 100%;
     height: auto;
+    border-radius: 15px;
 }
 
 /* Aligning text and Chrome SVG within button */

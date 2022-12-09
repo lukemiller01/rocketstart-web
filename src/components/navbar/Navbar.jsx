@@ -18,7 +18,11 @@ const navbar = () => {
               <h3>Blog</h3>
             </li>
             <li className='menu__item'>
+              <h3>FAQ</h3>
+            </li>
+            <li className='menu__item'>
               <h3>About</h3>
+              <span className="material-symbols-outlined">expand_more</span>
             </li>
           </ul>
           <div className='button__container'>

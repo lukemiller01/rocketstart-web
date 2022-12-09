@@ -1,0 +1,68 @@
+/* Style of the three-column menu */
+.footer__menu {
+    display: flex;
+    flex-direction: row;
+    padding-left: 6rem;
+    padding-right: 6rem;
+    padding-top: 3rem;
+    justify-content: center;
+}
+
+/* Replacing margin-bottom for text */
+p {
+    margin-bottom: 1rem;
+}
+
+/* Style of each menu heading text */
+.column__header {
+    font-weight: 700;
+    font-size: 14pt;
+}
+
+/* Adding padding to columns */
+.column__one, .column__two, .column__three, .column__four {
+    padding: 3rem;
+}
+
+/* "Add to Chrome" button */
+.column__four {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Adding margin to horizontal rule and the last footer div */
+hr, .footer__bar {
+    margin-left: 6rem;
+    margin-right: 6rem;
+}
+
+/* Last footer div styles (logo, copyright, socials) */
+.footer__bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+/* Removing margin from middle text */
+.footer__middle p {
+    margin: 0;
+}
+
+/* Styles for social flexbox*/
+.footer__social {
+    display: flex;
+    flex-direction: row;
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+/* Styles for LinkedIn & YouTube icons*/
+.footer__icon {
+    height: 20px;
+    width: auto;
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
