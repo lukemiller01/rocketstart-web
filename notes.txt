@@ -16,6 +16,7 @@ To-dos:
 7. Link contact us in FAQ
 8. On FAQ click, change + to -
 9. Can I copyright a website just by typing it out?
+10. Add LinkedIn Premium question to FAQ
 
 
 Process Steps:

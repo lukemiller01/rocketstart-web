@@ -2,6 +2,8 @@ import React from 'react';
 import './footer.css';
 import LinkedIn from '../../assets/linkedin.png';
 import YouTube from '../../assets/youtube.png';
+import RocketstartLogo from '../../assets/rocketstartLogo.svg';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -9,14 +11,14 @@ const Footer = () => {
         <div className='footer__menu'>
             <div className='column__one'>
                 <p className='column__header'>Rocketstart</p>
-                <p>Features</p>
-                <p>Blog</p>
-                <p>About</p>
+                <Link to='/product'><p>Product</p></Link>
+                <Link to='/blog'><p>Blog</p></Link>
+                <Link to='/about'><p>About</p></Link>
             </div>
             <div className='column__two'>
                 <p className='column__header'>Resources</p>
                 <p>Terms & Conditions</p>
-                <p>Privacy Policy</p>
+                <Link to='/privacy'><p>Privacy Policy</p></Link>
             </div>
             <div className='column__three'>
                 <p className='column__header'>Support</p>
@@ -33,6 +35,7 @@ const Footer = () => {
         <hr></hr>
         <div className='footer__bar'>
             <div className='navbar__logo'>
+                <img src={RocketstartLogo} alt="logo" className='image__logo'></img>
                 <h2>Rocketstart</h2>
             </div>
             <div className='footer__middle'>

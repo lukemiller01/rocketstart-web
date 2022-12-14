@@ -1,21 +1,22 @@
 import React from 'react';
-import { Header, Process, Questions, Testimonials, Footer } from './containers';
+import { Home, Blog, Privacy, About, Product } from './pages';
 import { Navbar } from './components';
-import './app.css'
+import { Routes, Route } from 'react-router-dom';
+import ScrollToTop from './Miscellaneous/ScrollToTop';
+import './app.css';
 
 const App = () => {
   return (
     <div>
+        <ScrollToTop />
         <Navbar/>
-        <Header/>
-        <div className="grey__bg">
-          <Testimonials/>
-        </div>
-        <Process/>
-        <Questions/>
-        <div className="grey__bg">
-          <Footer/>
-        </div>
+        <Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='/product' element={<Product/>}/>
+          <Route path='/blog' element={<Blog/>} />
+          <Route path='/about' element={<About/>}/>
+          <Route path='/privacy' element={<Privacy/>}/>
+        </Routes>
     </div>
   )
 }
