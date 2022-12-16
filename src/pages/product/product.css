@@ -1,0 +1,144 @@
+.product {
+    margin-left: 8rem;
+    margin-right: 8rem;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+    display: flex;
+}
+
+.left__column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Insight information */
+.insights {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Individual insight structure (not including slider */
+.insight {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.insight__container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    background-color: white;
+    border-style: solid;
+    border-color: lightgray;
+
+    margin-bottom: 1.5rem;
+    transition: all .33s ease-out;
+
+    cursor: pointer;
+}
+
+/* If the item is being hovered over, or is clicked, scale */
+.insight__container:hover, .active__rs {
+    transform: scale(1.05);
+    box-shadow: 5px 5px 10px gray;
+}
+
+/* Individual insight title structure */
+.insight__title {
+    padding: .5rem;
+    max-width: 200px;
+}
+
+.insight__metrics {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Check marks */
+.insight__icon {
+    padding: 0rem .5rem;
+
+    color: rgba(100, 185, 35, 1);
+}
+
+/* Wording warning mark */
+.insight__warning {
+    padding: 0rem .5rem;
+
+    color: rgba(247, 152, 36, 1);
+}
+
+/* Individual insight number structure */
+.insight__number {
+    min-width: 30px;
+    max-width: 50px;
+
+    text-align: center;
+    padding: .5rem;
+    border-left:solid lightgray
+}
+
+/* Slider area (used as a blank div) */
+.insight__slider {
+    display: flex;
+    width: calc(100% - 5px);
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    height: 8px;
+}
+
+/* Slider indicator rectangle */
+.slider__rectangle {
+    display: flex;
+    position: relative;
+    z-index: 1;
+    width: 5px;
+    margin-top: -3px;
+    /* margin-bottom: -1.5px; */
+    background: black;
+
+    transition: all 1s ease-out;
+}
+
+/* Slider color gradient structure */
+.slider__gradient {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    margin-top: -8px;
+    height: 8px;
+}
+
+/* Slider color gradients */
+.paragraph__gradient {
+    background:linear-gradient(90deg, rgba(220, 50, 20, 1) 0%, rgba(220, 50, 20, 1) 20%, rgba(255, 225, 35, 1) 40%, rgba(100, 185, 35, 1) 59%, rgba(255, 225, 35, 1) 80%, rgba(220, 50, 20, 1) 100%);
+}
+.question__gradient {
+    background:linear-gradient(90deg, rgba(220, 50, 20, 1) 0%, rgba(255, 225, 35, 1) 12.5%, rgba(100, 185, 35, 1) 25%, rgba(100, 185, 35, 1) 50%, rgba(255, 225, 35, 1) 62.5%, rgba(220, 50, 20, 1) 80%, rgba(220, 50, 20, 1) 100%);
+}
+.grade__gradient {
+    background:linear-gradient(90deg, rgba(100, 185, 35, 1) 0%, rgba(100, 185, 35, 1) 25%, rgba(255, 225, 35, 1) 50%, rgba(255, 225, 35, 1) 65%, rgba(220, 50, 20, 1) 85%, rgba(220, 50, 20, 1) 100%);
+}
+.word__gradient {
+    background:linear-gradient(90deg, rgba(100, 185, 35, 1) 0%, rgba(100, 185, 35, 1) 12.5%, rgba(255, 225, 35, 1) 25%, rgba(220, 50, 20, 1) 50%, rgba(220, 50, 20, 1) 100%);
+}
+
+textarea {
+    min-height: 10rem;
+    border: 1px solid grey;
+    border-radius: 5px;
+    text-align: left;
+    padding: 1rem;
+    resize: vertical;
+}
