@@ -20,13 +20,18 @@ const navbar = () => {
               <h3><Link to="/blog">Blog</Link></h3>
             </li>
             <li className='menu__item'>
+              <h3><Link to="/pricing">Pricing</Link></h3>
+            </li>
+            <li className='menu__item'>
               <h3><Link to="/about">About</Link></h3>
             </li>
           </ul>
           <div className='button__container'>
+          <Link to='/message'>
             <button className='navbar__button'>
-              <p className='navbar__button-text'>Add to Chrome</p>
+                <p className='navbar__button-text'>Dashboard</p>
             </button>
+          </Link>
           </div>
         </nav>
       </div>

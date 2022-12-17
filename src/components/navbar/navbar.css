@@ -79,26 +79,21 @@ h3 {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 200px;
+    width: 150px;
     height: 40px;
     background-color: dodgerblue;
     border-radius: 25px;
     border-style: none;
+
+    cursor: pointer;
 }
 
 /* Button text and image style */
 .navbar__button-text {
-    /* Manipulating button: */
-    line-height: 1.5;
-    margin: 0;
-    white-space: nowrap;
-    background-image: url('../../assets/chrome.svg');
-    background-size: auto 100%;
-    background-repeat: no-repeat;
 
     /* Manipulating text within button: */
-    padding-left: 2.25em;
     font-weight: 600;
     font-size: 12pt;
     color: white;
+    margin: 0;
 }

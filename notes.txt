@@ -47,5 +47,3 @@ Resources
 Support
     FAQ
     Contact us
-
-Include: Youtube & LinkedIn icons

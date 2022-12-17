@@ -1,0 +1,13 @@
+.active__menu {
+    padding-bottom: 22px;
+    border-bottom: 2px solid dodgerblue;
+    color: dodgerblue;
+}
+
+.inner__navbar2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 6.5rem;
+    margin-right: 6.5rem;
+}
