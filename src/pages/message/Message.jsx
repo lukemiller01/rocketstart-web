@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import Navbar2 from '../../components/navbar2/Navbar2';
+import Footer from '../../containers/footer/Footer'
 import './message.css';
 
 const Message = () => {
 
-    // TODO: add an onFocus event to the textarea. When the text area is focused and if there's text, update the insights.
-
     const [message, setMessage] = useState('');
 
     useEffect(() => {
-        console.log("On change triggered");
-        const delayFunction = setTimeout(() => {
 
-            // TODO: triggered on change. Need to handle ONLY when text changes.
+        const delayFunction = setTimeout(() => {
 
             var info = messageAnalysis(message);
 
@@ -227,9 +224,7 @@ const Message = () => {
                 var numWords = text.split(/\S*[a-z]\S*/).length - 1
 
                 // # of sentences, includes periods, exclamation, questions
-                // TODO change '!' to /\!{1,}/ (compiled, but with warnings)
-                // TODO change '.' to /\.{1,}/ (compiled, but with warnings)
-                var numSentences = text.split('.').length + text.split('!').length + questions - 2
+                var numSentences = text.split(/[.]{1,}/).length + text.split(/!{1,}/).length + questions - 2;
                 // If the string ends with a word, there's no punctuation.
                 if(text.split(/[A-Za-z]$/).length - 1) {
                     numSentences = numSentences + 1;
@@ -238,6 +233,7 @@ const Message = () => {
                 if(numSentences === 0) {
                     numSentences = 1;
                 }
+                
 
                 // # of syllables
                 var numSyllables = 0;
@@ -263,10 +259,10 @@ const Message = () => {
                     }
                 }
 
-                console.clear()
-                console.log("Words:", numWords)
-                console.log("Sentences:", numSentences)
-                console.log("Syllables:", numSyllables)
+                // console.clear()
+                // console.log("Words:", numWords)
+                // console.log("Sentences:", numSentences)
+                // console.log("Syllables:", numSyllables)
 
                 // Flesch-Kincaid
                 // Grade level
@@ -330,6 +326,67 @@ const Message = () => {
         return () => clearTimeout(delayFunction)
     }, [message])
 
+    // Handling insight clicks
+    const handleExplanation = (one, two, three, four) => {
+        let paragraph__explanation = document.getElementById("paragraph__explanation");
+        let question__explanation = document.getElementById("question__explanation");
+        let grade__explanation = document.getElementById("grade__explanation");
+        let wording__explanation = document.getElementById("wording__explanation");
+        if(one) {
+            paragraph__explanation.style.display = `block`;
+            question__explanation.style.display = `none`;
+            grade__explanation.style.display = `none`;
+            wording__explanation.style.display = `none`;
+            // Scale
+            document.getElementById("paragraph__container").classList.add("active__rs");
+            document.getElementById("question__container").classList.remove("active__rs");
+            document.getElementById("grade__container").classList.remove("active__rs");
+            document.getElementById("wording__container").classList.remove("active__rs");
+        }
+        else if(two) {
+            paragraph__explanation.style.display = `none`;
+            question__explanation.style.display = `block`;
+            grade__explanation.style.display = `none`;
+            wording__explanation.style.display = `none`;
+            // Scale
+            document.getElementById("paragraph__container").classList.remove("active__rs");
+            document.getElementById("question__container").classList.add("active__rs");
+            document.getElementById("grade__container").classList.remove("active__rs");
+            document.getElementById("wording__container").classList.remove("active__rs");
+        }
+        else if(three) {
+            paragraph__explanation.style.display = `none`;
+            question__explanation.style.display = `none`;
+            grade__explanation.style.display = `block`;
+            wording__explanation.style.display = `none`;
+            // Scale
+            document.getElementById("paragraph__container").classList.remove("active__rs");
+            document.getElementById("question__container").classList.remove("active__rs");
+            document.getElementById("grade__container").classList.add("active__rs");
+            document.getElementById("wording__container").classList.remove("active__rs");
+        }
+        else if(four) {
+            paragraph__explanation.style.display = `none`;
+            question__explanation.style.display = `none`;
+            grade__explanation.style.display = `none`;
+            wording__explanation.style.display = `block`;
+            // Scale
+            document.getElementById("paragraph__container").classList.remove("active__rs");
+            document.getElementById("question__container").classList.remove("active__rs");
+            document.getElementById("grade__container").classList.remove("active__rs");
+            document.getElementById("wording__container").classList.add("active__rs");
+        }
+    };
+
+    // Copied to clipboard animation
+    const handleCopy = () => {
+        navigator.clipboard.writeText(message);
+        document.getElementById("copiedContainer").classList.add("fade__in");
+        setTimeout(function () {
+            document.getElementById("copiedContainer").classList.remove("fade__in");
+          }, 3000);
+    }
+
   return (
     <div>
         <Navbar2/>
@@ -337,7 +394,7 @@ const Message = () => {
             <div className='columns'>
                 <div className='left__column'>
                 <div className="insights">
-                    <div className="insight__container" id="paragraph__container">
+                    <div className="insight__container active__rs" id="paragraph__container" onClick={() => handleExplanation(true, false, false, false)}>
                     <div className="insight">
                         <h3 className="insight__title">Paragraphs</h3>
                         <div className="insight__metrics">
@@ -352,7 +409,7 @@ const Message = () => {
                     </div>
                     <div className="slider__gradient paragraph__gradient"></div>
                     </div>
-                    <div className="insight__container" id="question__container">
+                    <div className="insight__container" id="question__container" onClick={() => handleExplanation(false, true, false, false)}>
                     <div className="insight">
                         <h3 className="insight__title">Questions</h3>
                         <div className="insight__metrics">
@@ -367,7 +424,7 @@ const Message = () => {
                     </div>
                     <div className="slider__gradient question__gradient"></div>
                     </div>
-                    <div className="insight__container" id="grade__container">
+                    <div className="insight__container" id="grade__container" onClick={() => handleExplanation(false, false, true, false)}>
                     <div className="insight">
                         <h3 className="insight__title">Grade Level</h3>
                         <div className="insight__metrics">
@@ -386,15 +443,19 @@ const Message = () => {
             </div>
                     <textarea placeholder='Type your invitation note here' maxLength="300" id='textBox' value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
                     <div className='left__column-three'>
-                        <p className='character__counter'>300 / 300</p>
-                        <button className='navbar__button copy__button'>
+                        <p className='character__counter'>{300 - message.length} / 300</p>
+                        <div className='copied__container' id='copiedContainer'>
+                            <p className='copied__text'>Copied to clipboard</p>
+                            <span className="material-icons copied__check">done</span>
+                        </div>
+                        <button className='navbar__button copy__button' onClick={() => handleCopy()}>
                             <p className='navbar__button-text'>Copy</p>
                         </button>
                     </div>
                 </div>
             <div className='right__column'>
                 <div className='insights'>
-                    <div className="insight__container" id="wording__container">
+                    <div className="insight__container" id="wording__container" onClick={() => handleExplanation(false, false, false, true)}>
                         <div className="insight">
                             <h3 className="insight__title">Wording</h3>
                             <div className="insight__metrics">
@@ -412,52 +473,53 @@ const Message = () => {
                     </div>
                 </div>
                 <div className="insights__explanation">
-                    <div className="explanation__container" id="paragraph__explanation">
-                        <h2 className="insight__title">Paragraphs</h2>
+                    <div className="explanation__container" id="paragraph__explanation" style={{display: "block"}}>
+                        <h3 className="insight__title">Paragraphs</h3>
                         <p className='explanation__text'>
                         Break your message into three components: a greeting, message body, and a farewell.
                         The brain likes to be presented with three choices.
                         Anything higher leads to confusion.
                         </p>
-                        <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers">Learn more</a></p>
+                        <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
                     </div>
-                    <div className="explanation__container" id="question__explanation">
-                        <h2 className="insight__title">Question Count</h2>
+                    <div className="explanation__container" id="question__explanation" style={{display: "none"}}>
+                        <h3 className="insight__title">Question Count</h3>
                         <p className='explanation__text'>
                         Include a call to action in your message.
                         Messages with questions receive higher reply rates.
                         Your recipient should learn why you're interested in connecting with them.
                         </p>
-                        <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers">Learn more</a></p>
+                        <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
                     </div>
-                    <div className="explanation__container" id="grade__explanation">
-                        <h2 className="insight__title">Grade Level</h2>
+                    <div className="explanation__container" id="grade__explanation" style={{display: "none"}}>
+                        <h3 className="insight__title">Grade Level</h3>
                         <p className='explanation__text'>
                         Make your message easy to read.
                         Messages with short sentences and accessible words receive higher reply rates.
                         Understanding your intent should be effortless.
                         </p>
-                        <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers">Learn more</a></p>
+                        <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
                     </div>
-                    <div className="explanation__container" id="wording__explanation">
-                        <h2 className="insight__title">Wording</h2>
+                    <div className="explanation__container" id="wording__explanation" style={{display: "none"}}>
+                        <h3 className="insight__title">Wording</h3>
                         <p className='explanation__text'>
                         Avoid adverbs and weak verbs.
                         You'll save characters, which allows you to write more.
                         Any ineffective words will be detected and displayed below.
                         </p>
-                        <h3 className="insight__title" id="adverbsHeader">Please remove adverbs:</h3>
-                        <p className="red italicBold"id="flaggedAdverbs"></p>
-                        <h3 className="insight__title" id="verbsHeader">Please remove weak verbs:</h3>
-                        <p className="red italicBold"id="flaggedVerbs"></p>
-                        <h4 id="verbExamplesHeading">Example:</h4>
-                        <div id="verbExamples" className="verb__example"></div>
-                        <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers">Learn more</a></p>
+                        <h3 className="insight__title" id="adverbsHeader" style={{display: "none"}}>Please remove adverbs:</h3>
+                        <p className="red italicBold"id="flaggedAdverbs" style={{display: "none"}}></p>
+                        <h3 className="insight__title" id="verbsHeader" style={{display: "none"}}>Please remove weak verbs:</h3>
+                        <p className="red italicBold"id="flaggedVerbs" style={{display: "none"}}></p>
+                        <h3 className='verb__examples-heading' id="verbExamplesHeading" style={{display: "none"}}>Example:</h3>
+                        <div id="verbExamples" className="verb__example" style={{display: "none"}}></div>
+                        <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
                     </div>
                 </div>
             </div>
             </div>
         </div>
+        <Footer/>
     </div>
   )
 }

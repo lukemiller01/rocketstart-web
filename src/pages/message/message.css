@@ -1,3 +1,4 @@
+/* Message container */
 .message {
     padding-left: 6rem;
     padding-right: 6rem;
@@ -5,8 +6,10 @@
     padding-bottom: 3rem;
     display: flex;
     flex-direction: column;
+    min-width: 1000px;
 }
 
+/* Div for left and right columns */
 .columns {
     padding: 1rem;
     display: flex;
@@ -14,12 +17,14 @@
     gap: 1.5rem;
 }
 
+/* Div for left column */
 .left__column {
     display: flex;
     flex-direction: column;
     flex: 1;
 }
 
+/* Div for the right column */
 .right__column {
     display: flex;
     width: 23.5%;
@@ -43,6 +48,7 @@
     flex-direction: row;
 }
 
+/* Container for individual insight */
 .insight__container {
     flex: 1;
     display: flex;
@@ -70,9 +76,8 @@
 /* Individual insight title structure */
 .insight__title {
     padding: .5rem;
-    max-width: 200px;
     white-space: nowrap;
-    font-size: 10pt;
+    font-size: 16px;
 }
 
 .insight__metrics {
@@ -87,6 +92,8 @@
     padding: 0rem .5rem;
 
     color: rgba(100, 185, 35, 1);
+    
+    display: none;
 }
 
 /* Wording warning mark */
@@ -94,6 +101,8 @@
     padding: 0rem .5rem;
 
     color: rgba(247, 152, 36, 1);
+
+    display: none;
 }
 
 /* Individual insight number structure */
@@ -128,6 +137,8 @@
     transition: all 1s ease-out;
 
     z-index: 1;
+
+    left: 0%;
 }
 
 /* Slider color gradient structure */
@@ -154,18 +165,27 @@
     background:linear-gradient(90deg, rgba(100, 185, 35, 1) 0%, rgba(100, 185, 35, 1) 12.5%, rgba(255, 225, 35, 1) 25%, rgba(220, 50, 20, 1) 50%, rgba(220, 50, 20, 1) 100%);
 }
 
+/* Text input styles  */
 textarea {
     min-height: 10rem;
     border-radius: 5px;
     text-align: left;
     padding: 1rem;
     resize: vertical;
-    border-style: solid;
-    border-color: lightgray;
+    border: solid lightgrey;
     border-radius: 15px;
     box-shadow: 0 0.5em 1em -0.5em hsl(0deg 0% 5% / 10%), 0 0 0 1px hsl(0deg 0% 5% / 1%);
+    font-family: var(--font-family);
+    font-size: 14px;
 }
 
+/* When the text area is focused, theme the border */
+textarea:focus {
+    outline: none;
+    border: 2px solid dodgerblue;
+}
+
+/* Number of characters, copy popup, copy button  */
 .left__column-three {
     display: flex;
     flex-direction: row;
@@ -173,20 +193,50 @@ textarea {
     align-items: center;
 }
 
+/* Displays number of characters left  */
 .character__counter {
     color: grey;
     margin-top: 0;
     margin-bottom: 0;
     font-size: 10pt;
     margin-left: 1.5rem;
+    width: 100px;
 }
 
+/* Copy button  */
 .copy__button {
-    margin-left: auto;
     margin-right: 1.5rem;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     width: 100px;
+}
+
+/* Container with copied to clipboard text and icon  */
+.copied__container {
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transition: 1s;
+}
+
+/* Add class when the copy button is clicked  */
+.fade__in {
+    opacity: 1;
+    transition: 0s;
+}
+
+/* Text to display when the copy text is clicked  */
+.copied__text {
+    margin: 0;
+    font-family: var(--font-family);
+    font-size: 10pt;
+    color: grey;
+    margin-right: 1rem;
+}
+
+/* Check for copied text  */
+.copied__check {
+    color: rgba(100, 185, 35, 1);
 }
 
 .insights__explanation {
@@ -213,17 +263,28 @@ textarea {
     border-radius: 15px;
 
     box-shadow: 0 0.5em 1em -0.5em hsl(0deg 0% 5% / 10%), 0 0 0 1px hsl(0deg 0% 5% / 1%);
+
+    padding: .5rem;
 }
 
 .explanation__text {
     padding: 1rem;
-    font-size: 11pt;
+    font-size: 14px;
     line-height: 2;
+    margin: 0;
+}
+
+.verb__examples-heading {
+    padding: .5rem;
+}
+
+.example__heading {
+    font-size: 15px;
 }
 
 /* Contains both + and - verb examples */
 .verb__example {
-    padding: .5rem;
+    padding: 1rem;
 }
 
 .bad__example {
@@ -231,6 +292,7 @@ textarea {
     flex-direction: row;
     display: flex;
     padding-bottom: .5rem;
+    margin: 0;
 }
 
 .good__example {
@@ -238,16 +300,24 @@ textarea {
     flex-direction: row;
     display: flex;
     padding-bottom: .5rem;
+    margin: 0;
+}
+
+.badExample, .goodExample {
+    margin: 0;
+    font-size: 14px;
 }
 
 .explanation__cross {
     color: rgba(220, 50, 20, 1);
     font-size: 20px;
+    padding-right: .5rem;
 }
 
 .explanation__check {
     color: rgba(100, 185, 35, 1);
     font-size: 20px;
+    padding-right: .5rem;
 }
 
 /* Class for adding link to Rocketstart website */
@@ -256,6 +326,8 @@ textarea {
     font-weight: 500;
     text-align: center;
     font-size: 10pt;
+
+    text-decoration: underline;
 }
 
 /* Class for words that need to be removed as part of Wording Insight */
@@ -266,4 +338,7 @@ textarea {
 .italicBold {
     font-style: italic;
     font-weight: bolder;
+    font-size: 14px;
+    margin: 0;
+    padding: 1rem;
 }

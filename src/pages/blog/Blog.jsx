@@ -5,7 +5,15 @@ const Blog = () => {
   return (
     <div>
       <Navbar/>
-      Blog
+      <p>
+        Thanks for visiting!
+      </p>
+      <p>
+        Blog posts for each individual insight are currently under construction.
+      </p>
+      <p>
+        Please check back in later.
+      </p>
     </div>
   )
 }

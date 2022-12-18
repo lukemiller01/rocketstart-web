@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div>
       <Navbar/>
-      <Header/>
+      {/* <Header/>
         <div className="grey__bg">
           <Testimonials/>
         </div>
@@ -15,7 +15,7 @@ const Home = () => {
         <Questions/>
         <div className="grey__bg">
           <Footer/>
-        </div>
+        </div> */}
     </div>
   )
 }

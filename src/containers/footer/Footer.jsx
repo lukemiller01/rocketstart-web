@@ -25,12 +25,6 @@ const Footer = () => {
                 <p>FAQ</p>
                 <p>Contact Us</p>
             </div>
-            <div className='column__four'>
-                <p className='column__header'>Install Now</p>
-                <button className='navbar__button'>
-                    <p className='navbar__button-text'>Add to Chrome</p>
-                </button>
-            </div>
         </div>
         <hr></hr>
         <div className='footer__bar'>

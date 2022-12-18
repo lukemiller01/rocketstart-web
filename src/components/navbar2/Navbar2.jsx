@@ -23,7 +23,7 @@ const Navbar2 = () => {
           <li className='menu__item'>
             <h3><NavLink to='/find' className={({ isActive }) =>
                 isActive ? 'active__menu' : ''
-            }>Find</NavLink></h3>
+            }>Search</NavLink></h3>
           </li>
         </ul>
         <div className='button__container'>
