@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Process, Questions, Testimonials, Footer } from '../../containers';
+// import { Header, Process, Questions, Testimonials, Footer } from '../../containers';
 import Navbar from '../../components/navbar/Navbar'
 
 
