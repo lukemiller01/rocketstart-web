@@ -1,11 +1,14 @@
-import React from 'react'
-import Navbar2 from '../../components/navbar2/Navbar2'
+import React from 'react';
+import Navbar2 from '../../components/navbar2/Navbar2';
+import './find.css';
 
 const Find = () => {
   return (
     <div>
         <Navbar2/>
-        Find
+        <div className='find'>
+          Search
+        </div>
     </div>
   )
 }
