@@ -121,13 +121,13 @@
 .slider__rectangle {
     display: flex;
     position: relative;
-    z-index: 1;
     width: 5px;
     margin-top: -3px;
-    /* margin-bottom: -1.5px; */
     background: black;
 
     transition: all 1s ease-out;
+
+    z-index: 1;
 }
 
 /* Slider color gradient structure */

@@ -10,6 +10,8 @@
 
     border-bottom: 1px solid lightgrey;
     background-color: white;
+
+    z-index: 1000;
 }
 
 /* Container with left and right padding, left & right content */

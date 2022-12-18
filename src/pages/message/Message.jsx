@@ -9,9 +9,322 @@ const Message = () => {
     const [message, setMessage] = useState('');
 
     useEffect(() => {
+        console.log("On change triggered");
         const delayFunction = setTimeout(() => {
-        console.log(message)
-        // Send Axios request here
+
+            // TODO: triggered on change. Need to handle ONLY when text changes.
+
+            var info = messageAnalysis(message);
+
+            if(info.paragraphs !== 3) {
+                document.getElementById('check1').style.display = "none";
+            }
+            else {
+                document.getElementById('check1').style.display = "flex";
+            }
+            if(info.questions !== 1 && info.questions !== 2) {
+                document.getElementById('check2').style.display = "none";
+            }
+            else {
+                document.getElementById('check2').style.display = "flex";
+            }
+            if(info.grade > 0 && info.grade <= 7) {
+                document.getElementById('check3').style.display = "flex";
+            }
+            else {
+                document.getElementById('check3').style.display = "none";
+            }
+            // Wording
+            if(info.paragraphs === 0) { // No text
+                document.getElementById("adverbsHeader").style.display = "none";
+                document.getElementById("flaggedAdverbs").style.display = "none";
+                document.getElementById("verbsHeader").style.display = "none";
+                document.getElementById("flaggedVerbs").style.display = "none";
+                document.getElementById('verbExamples').style.display = "none";
+                document.getElementById("verbExamplesHeading").style.display = "none";
+                document.getElementById('check4').style.display = "none";
+                document.getElementById('warning').style.display = "none";
+            }
+            else if (info.adverbs.length > 0 || info.verbs.length > 0) { // Text and there's at least one flagged word
+                if (info.adverbs.length > 0){ // Flagged adverb
+                    document.getElementById("adverbsHeader").style.display = "block";
+                    document.getElementById("flaggedAdverbs").style.display = "block";
+                    document.getElementById('check4').style.display = "none";
+                    document.getElementById('warning').style.display = "block";
+                }
+                else {
+                    document.getElementById("adverbsHeader").style.display = "none";
+                    document.getElementById("flaggedAdverbs").style.display = "none";
+                }
+                if (info.verbs.length > 0){ // Flagged verb
+                    document.getElementById("verbsHeader").style.display = "block";
+                    document.getElementById("flaggedVerbs").style.display = "block";
+                    document.getElementById("verbExamplesHeading").style.display = "block";
+                    document.getElementById('verbExamples').style.display = "block";
+                    document.getElementById('check4').style.display = "none";
+                    document.getElementById('warning').style.display = "block";
+                    if(document.getElementById("rocketstart-examples-div")) {
+                    document.getElementById("rocketstart-examples-div").remove();
+                    }
+                }
+                else {
+                    document.getElementById("verbsHeader").style.display = "none";
+                    document.getElementById("flaggedVerbs").style.display = "none";
+                }
+            }
+            else { // Text & there's no flagged word
+                document.getElementById("adverbsHeader").style.display = "none";
+                document.getElementById("verbsHeader").style.display = "none";
+                document.getElementById('verbExamples').style.display = "none";
+                document.getElementById('check4').style.display = "flex";
+                document.getElementById('warning').style.display = "none";
+            }
+                
+            // 1) Update the paragraphs text
+            document.getElementById('paragraphs').textContent = info.paragraphs;
+            // 2) Update the paragraphs slider.
+            if (info.paragraphs > 5) {
+                info.paragraphs = 5;
+            }
+            document.getElementById('paragraph__slider').style.left = (info.paragraphs)*20 + "%";
+            
+            // 1) Update the questions text
+            document.getElementById('questions').textContent = info.questions;
+            // 2) Update the questions slider.
+            if (info.questions > 4) {
+                info.questions = 4;
+            }
+            document.getElementById('question__slider').style.left = (info.questions)*25 + "%";
+            
+            // 1) Update the Grade Level text
+            document.getElementById('grade').textContent = info.grade;
+            // 2) Update the Grade Level Slider.
+            if (info.grade < 2) {
+                info.grade = 2;
+            }
+            document.getElementById('grade__slider').style.left = (info.grade)*10-20 + "%";
+            
+            // 1) Update the Wording text
+            var totalFlagged = info.adverbs.length + info.verbs.length
+            if (totalFlagged > 4) {
+                totalFlagged = 4;
+            }
+            document.getElementById('words').textContent = totalFlagged;
+            // 2) Update the wording slider.
+            document.getElementById('word__slider').style.left = (totalFlagged)*25 + "%";
+            // 3) Update adverbs list
+            document.getElementById('flaggedAdverbs').textContent = info.adverbs.join(', ');
+            // 4) Update verbs list
+            document.getElementById('flaggedVerbs').textContent = info.verbs.join(', ');
+            
+            var numerousFlaggedVerbs = false;
+            for (var i = 0; i < info.verbs.length; i++) { // Verbs
+                if(i+1 !== info.verbs.length) {
+                    numerousFlaggedVerbs = true;
+                }
+                else {
+                    numerousFlaggedVerbs = false;
+                }
+                var example =  populateExamples(info.verbs[i], numerousFlaggedVerbs);
+                document.getElementById("verbExamples").appendChild(example);
+            }
+
+            function populateExamples(verb, horizontalRule) {
+                var exampleDiv = document.createElement('div');
+                exampleDiv.id = "rocketstart-examples-div";
+              
+                if(!horizontalRule) {
+                  exampleDiv.innerHTML = `
+                  <div class="good__example">
+                    <span class="material-icons explanation__cross">close</span>
+                    <p class="badExample"></p>
+                  </div>
+                  <div class="bad__example">
+                    <span class="material-icons explanation__check">done</span>
+                    <p class="goodExample"></p>
+                  </div>
+                `;
+                }
+                else {
+                  exampleDiv.innerHTML = `
+                  <div class="good__example">
+                    <span class="material-icons explanation__cross">close</span>
+                    <p class="badExample"></p>
+                  </div>
+                  <div class="bad__example">
+                    <span class="material-icons explanation__check">done</span>
+                    <p class="goodExample"></p>
+                  </div>
+                  <hr class="horizontal__rule">
+                  <div style="padding-bottom: .5rem;">
+                `;
+                }
+              
+                // Example phrases
+                if(verb === "to be") {
+                  exampleDiv.getElementsByClassName("badExample")[0].textContent = "I want to be a part of your team.";
+                  exampleDiv.getElementsByClassName("goodExample")[0].textContent = "I'd love to join your team.";
+                }
+                else if(verb === "to have") {
+                  exampleDiv.getElementsByClassName("badExample")[0].textContent = "I'd love to have a conversation with you.";
+                  exampleDiv.getElementsByClassName("goodExample")[0].textContent = "I'd love to chat with you.";
+                }
+                else if(verb === "there is" || verb === "there are") {
+                  exampleDiv.getElementsByClassName("badExample")[0].textContent = "There are plenty of strengths that make me stand out.";
+                  exampleDiv.getElementsByClassName("goodExample")[0].textContent = "I stand out because of these strengths.";
+                }
+                else if(verb === "was") {
+                  exampleDiv.getElementsByClassName("badExample")[0].textContent = "I was in the position for two years.";
+                  exampleDiv.getElementsByClassName("goodExample")[0].textContent = "I held the position for two years.";
+                }
+              
+                return exampleDiv;
+            }
+
+            // Counts the number of syllables per word
+            function syllable(word) {
+                word = word.toLowerCase();
+                // Removes anything that's not an english character (dashes, line breaks)
+                word = word.replace(/[^a-z]/, '')
+                // Special cases
+                    // TODO: Print 1000 of the top most used common words and check against a known program
+                        // Known words that are broken: something, somewhere, sometime, somehow
+                word = word.replace(/(?:[^laeiouy]es|[^laeiouy]e)$/, '');
+                word = word.replace(/^y/, '');
+                if (word && word.match(/[aeiouy]{1,2}/g)) { // TODO "Be" is broken here, so an "else" needs to be added to return 1.
+                    return word.match(/[aeiouy]{1,2}/g).length;
+                }
+                else {
+                    return 1; // Syllables can't be NaN
+                }
+            }
+
+            function messageAnalysis(text) {
+
+                // The following words should not be in the LinkedIn message:
+                var adverbs = ["abnormally", "absentmindedly", "accidentally", "acidly", "actually", "adventurously", "afterwards", "almost", "always", "angrily", "annually", "anxiously", "arrogantly", "awkwardly", "badly", "bashfully", "beautifully", "bitterly", "bleakly", "blindly", "blissfully", "boastfully", "boldly", "bravely", "briefly", "brightly", "briskly", "broadly", "busily", "calmly", "carefully", "carelessly", "cautiously", "certainly", "cheerfully", "clearly", "cleverly", "closely", "coaxingly", "colorfully", "commonly", "continually", "coolly", "correctly", "courageously", "crossly", "cruelly", "curiously", "daily", "daintily", "dearly", "deceivingly", "delightfully", "deeply", "defiantly", "deliberately", "delightfully", "diligently", "dimly", "doubtfully", "dreamily", "easily", "elegantly", "energetically", "enormously", "enthusiastically", "equally", "especially", "even", "evenly", "eventually", "exactly", "excitedly", "extremely", "fairly", "faithfully", "famously", "far", "fast", "fatally", "ferociously", "fervently", "fiercely", "fondly", "foolishly", "fortunately", "frankly", "frantically", "freely", "frenetically", "frightfully", "fully", "furiously", "generally", "generously", "gently", "gladly", "gleefully", "gracefully", "gratefully", "greatly", "greedily", "happily", "hastily", "healthily", "heavily", "helpfully", "helplessly", "highly", "honestly", "hopelessly", "hourly", "hungrily", "immediately", "innocently", "inquisitively", "instantly", "intensely", "intently", "interestingly", "inwardly", "irritably", "jaggedly", "jealously", "joshingly", "joyfully", "joyously", "jovially", "jubilantly", "judgmentally", "justly", "keenly", "kiddingly", "kindheartedly", "kindly", "knavishly", "knottily", "knowingly", "knowledgeably", "kookily", "lazily", "less", "lightly", "likely", "limply", "lively", "loftily", "longingly", "loosely", "lovingly", "loudly", "loyally", "madly", "majestically", "meaningfully", "mechanically", "merrily", "miserably", "mockingly", "monthly", "mortally", "mostly", "mysteriously", "naturally", "nearly", "neatly", "needily", "nervously", "never", "nicely", "noisily", "not", "obediently", "obnoxiously", "oddly", "offensively", "officially", "often", "only", "openly", "optimistically", "overconfidently", "owlishly", "painfully", "partially", "patiently", "perfectly", "physically", "playfully", "politely", "poorly", "positively", "potentially", "powerfully", "promptly", "properly", "punctually", "quaintly", "quarrelsomely", "queasily", "queerly", "questionably", "questioningly", "quicker", "quickly", "quietly", "quirkily", "quizzically", "rapidly", "rarely", "readily", "really", "reassuringly", "recklessly", "regularly", "reluctantly", "repeatedly", "reproachfully", "restfully", "righteously", "rightfully", "rigidly", "roughly", "rudely", "sadly", "safely", "scarcely", "scarily", "searchingly", "sedately", "seemingly", "seldom", "selfishly", "separately", "seriously", "shakily", "sharply", "sheepishly", "shrilly", "shyly", "silently", "sleepily", "slowly", "smoothly", "softly", "solemnly", "solidly", "sometimes", "soon", "speedily", "stealthily", "sternly", "strictly", "successfully", "suddenly", "surprisingly", "suspiciously", "sweetly", "swiftly", "sympathetically", "tenderly", "tensely", "terribly", "thankfully", "thoroughly", "thoughtfully", "tightly", "tomorrow", "too", "tremendously", "triumphantly", "truly", "truthfully", "ultimately", "unabashedly", "unaccountably", "unbearably", "unethically", "unexpectedly", "unfortunately", "unimpressively", "unnaturally", "unnecessarily", "utterly", "upbeat", "upliftingly", "upright", "upside-down", "upward", "upwardly", "urgently", "usefully", "uselessly", "usually", "utterly", "vacantly", "vaguely", "vainly", "valiantly", "vastly", "verbally", "very", "viciously", "victoriously", "violently", "vivaciously", "voluntarily", "warmly", "weakly", "wearily", "wetly", "wholly", "wildly", "willfully", "wisely", "woefully", "wonderfully", "worriedly", "wrongly", "yawningly", "yearly", "yearningly", "yesterday", "yieldingly", "youthfully", "zealously", "zestfully", "zestily"];
+                var verbs = ["to be", "to have", "there are", "there is", "was"];
+
+                // Paragraphs, where a double line break (or more) separated by nothing is one paragraph
+                var paragraphs = text.split(/\n\s*\n/).length;
+
+                // If there's a double return and no start to the second paragraph:
+                    // The text should be counted as 1 paragraph
+                var re = new RegExp(/\n\n$/);
+                if (re.test(text)) {
+                    paragraphs--;
+                }
+                else if(text === ""){
+                    paragraphs = 0;
+                }
+                
+                // Questions, where one or more question marks in a row means one question
+                var questions = text.split(/\?{1,}/).length - 1
+
+                // Grade Level, characterized by Flesch-Kincaid
+                // # of words
+                // numWords = text.split(" ").length + 1
+                var numWords = text.split(/\S*[a-z]\S*/).length - 1
+
+                // # of sentences, includes periods, exclamation, questions
+                // TODO change '!' to /\!{1,}/ (compiled, but with warnings)
+                // TODO change '.' to /\.{1,}/ (compiled, but with warnings)
+                var numSentences = text.split('.').length + text.split('!').length + questions - 2
+                // If the string ends with a word, there's no punctuation.
+                if(text.split(/[A-Za-z]$/).length - 1) {
+                    numSentences = numSentences + 1;
+                }
+                // The readingLevel function will break if numSentences = 0.
+                if(numSentences === 0) {
+                    numSentences = 1;
+                }
+
+                // # of syllables
+                var numSyllables = 0;
+                text = text.replaceAll('\'',''); // Removing apostrophes '
+                var wordList = text.split(/[^A-Za-z]/);
+                var wordCount = wordList.length;
+
+                // Working on verbs for wording:
+                var flaggedAdverbs = [];
+                var flaggedVerbs = [];
+                for (var i = 0; i < verbs.length; i++) { // Verbs
+                    if (text.toLowerCase().includes(verbs[i])) {
+                        flaggedVerbs.push(verbs[i]);
+                    }
+                }
+                // Working on syllable count for grade level & adverbs for wording:
+                for (i = 0; i < wordCount; i++) {
+                    if (wordList[i] !== '') { // If the word is not empty (some words like '-' have already been made '')
+                        numSyllables = numSyllables + syllable(wordList[i])
+                        if (adverbs.includes(wordList[i].toLowerCase())) { // Adverbs
+                            flaggedAdverbs.push(wordList[i]);
+                        }
+                    }
+                }
+
+                console.clear()
+                console.log("Words:", numWords)
+                console.log("Sentences:", numSentences)
+                console.log("Syllables:", numSyllables)
+
+                // Flesch-Kincaid
+                // Grade level
+                // gradeLevel = .39 * (numWords/numSentences) + 11.8 * (numSyllables / numWords) - 15.59
+                var grade = 0
+                if (text !== '') {
+                    var readingLevel = 206.835 - 1.015*(numWords/numSentences) - 84.6*(numSyllables / numWords);
+                    // console.log(readingLevel)
+                    switch(true) {
+                        case (readingLevel <= 50):
+                            grade = 12
+                            break;
+                        case (readingLevel > 50 && readingLevel <= 55):
+                            grade = 11
+                            break;
+                        case (readingLevel > 55 && readingLevel <= 60):
+                            grade = 10
+                            break;
+                        case (readingLevel > 60 && readingLevel <= 65):
+                            grade = 9
+                            break;
+                        case (readingLevel > 65 && readingLevel <= 70):
+                            grade = 8
+                            break;
+                        case (readingLevel > 70 && readingLevel <= 80):
+                            grade = 7;
+                            break;
+                        case (readingLevel > 80 && readingLevel <= 90):
+                            grade = 6;
+                            break;
+                        case (readingLevel > 90 && readingLevel <= 100):
+                            grade = 5;
+                            break;
+                        case (readingLevel > 100 && readingLevel <= 110):
+                            grade = 4;
+                            break;
+                        case (readingLevel > 110 && readingLevel <= 120):
+                            grade = 3;
+                            break;
+                        case (readingLevel > 120):
+                            grade = 2;
+                            break;
+                        default:
+                            grade = 2
+                    }
+                }
+
+                var pack = {
+                    paragraphs: paragraphs,
+                    questions: questions,
+                    grade: grade,
+                    adverbs: flaggedAdverbs,
+                    verbs: flaggedVerbs
+                };
+
+                return pack;
+            }
+
         }, 1500)
 
         return () => clearTimeout(delayFunction)
@@ -71,7 +384,7 @@ const Message = () => {
                     </div>
 
             </div>
-                    <textarea placeholder='Type your invitation note here' maxLength="300" id='textBox' value={message} onChange={(e) => setMessage(e.target.value)} ></textarea>
+                    <textarea placeholder='Type your invitation note here' maxLength="300" id='textBox' value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
                     <div className='left__column-three'>
                         <p className='character__counter'>300 / 300</p>
                         <button className='navbar__button copy__button'>
