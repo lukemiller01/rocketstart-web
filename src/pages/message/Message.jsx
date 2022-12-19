@@ -391,6 +391,9 @@ const Message = () => {
     <div>
         <Navbar2/>
         <div className='message grey__bg'>
+            <h4>LinkedIn Invitation Insights</h4>
+            <p>Maximize your LinkedIn invitation reply rates through text analysis.</p>
+            <div style={{margin: '1rem'}}></div>
             <div className='columns'>
                 <div className='left__column'>
                 <div className="insights">
@@ -505,7 +508,7 @@ const Message = () => {
                         <p className='explanation__text'>
                         Avoid adverbs and weak verbs.
                         You'll save characters, which allows you to write more.
-                        Any ineffective words will be detected and displayed below.
+                        Any ineffective words will be detected and displayed here.
                         </p>
                         <h3 className="insight__title" id="adverbsHeader" style={{display: "none"}}>Please remove adverbs:</h3>
                         <p className="red italicBold"id="flaggedAdverbs" style={{display: "none"}}></p>

@@ -341,3 +341,29 @@ textarea:focus {
     margin: 0;
     padding: 1rem;
 }
+
+@media screen and (max-width: 1050px) {
+    .message {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
+    .explanation__text {
+        font-size: 12px;
+    }
+
+    textarea {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .message {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .insight__title {
+        font-size: 13px;
+    }
+}

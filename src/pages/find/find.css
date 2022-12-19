@@ -1,8 +1,132 @@
 .find {
-    padding-left: 6rem;
-    padding-right: 6rem;
+    padding-left: 30rem;
+    padding-right: 30rem;
     padding-top: 3rem;
     padding-bottom: 3rem;
     display: flex;
     flex-direction: column;
 }
+
+.rows {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact__header {
+    font-size: 20px;
+    margin-bottom: 1rem;
+}
+
+.active__element-temp {
+    color: dodgerblue;
+    border-bottom: 2px solid dodgerblue;
+    padding-bottom: 0.5rem;
+}
+
+.row__two {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 2rem;
+    margin-bottom: 2rem;
+
+    border-bottom: 1px solid grey;
+}
+
+.row__three {
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+input {
+    display: flex;
+    border: 2px solid grey;
+    border-radius: 10px;
+    height: 40px;
+    flex: 1;
+
+    border-radius: 10px 0px 0px 10px;
+    font-family: var(--font-family);
+    font-size: 14px;
+    border: 2px solid grey;
+    padding: 0 1rem;
+}
+
+input:focus {
+    outline: none;
+    border-color: dodgerblue;
+}
+
+.find__button {
+    background-color: dodgerblue;
+    border-radius: 0px 10px 10px 0px;
+    color: #fff;
+    font-family: var(--font-family);
+    font-weight: bold;
+    font-size: 14px;
+    border: none;
+    width: 75px;
+    cursor: pointer;
+}
+
+.contact__name {
+    margin: 0;
+}
+
+.row__four {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid grey;
+    padding: .5rem;
+    border-radius: 10px;
+}
+
+.save__button {
+    width: 75px;
+}
+
+.match {
+    font-family: var(--font-family);
+    color: green;
+    font-weight: bold;
+}
+
+.match__container {
+    display: flex;
+    flex-direction: row;
+}
+
+.verified__icon {
+    color: green;
+    padding-left: .5rem;
+}
+
+.button--loading .button__text {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+.button--loading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 4px solid transparent;
+    border-top-color: white;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+    margin-left: -0.75rem;
+    margin-top: -0.75rem;
+  }
+
+@keyframes button-loading-spinner {
+    from {
+      transform: rotate(0turn);
+    }
+  
+    to {
+      transform: rotate(1turn);
+    }
+  }

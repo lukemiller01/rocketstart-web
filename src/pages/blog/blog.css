@@ -1,0 +1,9 @@
+.blog {
+    padding-left: 6rem;
+    padding-right: 6rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-family);
+}
