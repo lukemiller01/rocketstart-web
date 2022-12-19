@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Navbar2 from '../../components/navbar2/Navbar2';
-import Footer from '../../containers/footer/Footer'
+// import Footer from '../../containers/footer/Footer'
 import './message.css';
 
 const Message = () => {
@@ -524,7 +524,7 @@ const Message = () => {
             </div>
             </div>
         </div>
-        <Footer/>
+        {/* <Footer/> */}
     </div>
   )
 }
