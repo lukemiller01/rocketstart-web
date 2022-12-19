@@ -391,8 +391,10 @@ const Message = () => {
     <div>
         <Navbar2/>
         <div className='message grey__bg'>
-            <h4>LinkedIn Invitation Insights</h4>
-            <p>Maximize your LinkedIn invitation reply rates through text analysis.</p>
+            <div className='message__header'>
+                <h4>LinkedIn Invitation Insights</h4>
+                <p>Maximize your LinkedIn invitation reply rates through text analysis.</p>
+            </div>
             <div style={{margin: '1rem'}}></div>
             <div className='columns'>
                 <div className='left__column'>

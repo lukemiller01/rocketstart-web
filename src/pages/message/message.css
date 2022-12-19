@@ -8,6 +8,10 @@
     flex-direction: column;
 }
 
+.message__header {
+    padding: 1rem;
+}
+
 /* Div for left and right columns */
 .columns {
     padding: 1rem;
