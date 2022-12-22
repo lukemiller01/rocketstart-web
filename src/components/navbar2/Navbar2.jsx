@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Link, NavLink } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import "./navbar2.css";
 import RocketstartLogo from '../../assets/rocketstartLogo.svg';
 
@@ -11,8 +11,8 @@ const Navbar2 = () => {
     <div className='navbar__container'>
     <div className='inner__navbar2'>
       <div className='navbar__logo'>
-        {/* <Link to="/"><img src={RocketstartLogo} alt="logo" className='image__logo'></img></Link> */}
-        <img src={RocketstartLogo} alt="logo" className='image__logo'></img>
+        <Link to="/"><img src={RocketstartLogo} alt="logo" className='image__logo'></img></Link>
+        {/* <img src={RocketstartLogo} alt="logo" className='image__logo'></img> */}
         <h2>Rocketstart</h2>
       </div>
       <nav className='navbar__items'>

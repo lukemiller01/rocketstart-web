@@ -10,7 +10,7 @@
 }
 
 /* Replacing margin-bottom for text */
-p {
+.footer__paragraph {
     margin-bottom: 1rem;
 }
 

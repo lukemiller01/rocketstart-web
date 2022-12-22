@@ -14,16 +14,20 @@ const navbar = () => {
         <nav className='navbar__items'>
           <ul className='menu'>
             <li className='menu__item'>
-              <h3><Link to='/product'>Product</Link></h3>
+              {/* <h3><Link to='/product'>Product</Link></h3> */}
+              <h3>Product</h3>
             </li>
             <li className='menu__item'>
-              <h3><Link to="/blog">Blog</Link></h3>
+              {/* <h3><Link to="/blog">Blog</Link></h3> */}
+              <h3>Blog</h3>
             </li>
             <li className='menu__item'>
-              <h3><Link to="/pricing">Pricing</Link></h3>
+              {/* <h3><Link to="/pricing">Pricing</Link></h3> */}
+              <h3>Pricing</h3>
             </li>
             <li className='menu__item'>
-              <h3><Link to="/about">About</Link></h3>
+              {/* <h3><Link to="/about">About</Link></h3> */}
+              <h3>About</h3>
             </li>
           </ul>
           <div className='button__container'>

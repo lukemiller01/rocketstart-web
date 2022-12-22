@@ -49,7 +49,7 @@ p {
 .rocketstart__demo {
     width: 100%;
     height: auto;
-    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgb(0 0 0 / 35%)
 }
 
 /* Aligning text and Chrome SVG within button */
@@ -64,26 +64,19 @@ p {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 300px;
+    width: 250px;
     height: 60px;
     background-color: dodgerblue;
     border-radius: 50px;
     border-style: none;
+    cursor: pointer;
 }
 
 /* Button text and image style */
 .button__text {
-    /* Manipulating button: */
-    line-height: 1.5;
-    margin: 0;
-    white-space: nowrap;
-    background-image: url('../../assets/chrome.svg');
-    background-size: auto 100%;
-    background-repeat: no-repeat;
-
     /* Manipulating text within button: */
-    padding-left: 2.25em;
     font-weight: 600;
     font-size: 14pt;
     color: white;
+    margin: 0;
 }

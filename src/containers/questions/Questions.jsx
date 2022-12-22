@@ -8,16 +8,16 @@ const questionData = [
         answer: 'Yes.',
     },
     {
-        question: 'Does Rocketstart store my LinkedIn invitation notes?',
-        answer: 'No. Rocketstart does not store any LinkedIn profile data.',
+        question: 'How is Rocketstart data sourced?',
+        answer: 'Rocketstart\'s source data is publicly available and processed transparently. Please see our Privacy Policy for more.',
     },
     {
-        question: 'When will Rocketstart be supported on other browsers?',
-        answer: 'Currently, there is no plan to expand support past Google Chrome. If you\'d like to use Rocketstart on another browser, please contact us voicing your interest.',
+        question: 'Who should use Rocketstart?',
+        answer: 'Any job seeker or professional looking to expand their professional network can benefit from Rocketstart.',
     },
     {
-        question: 'Is Rocketstart available on mobile applications?',
-        answer: 'No. Mobile application extensions are not currently available on major operating systems.',
+        question: 'Is Rocketstart available as a Chrome Extension?',
+        answer: 'Rocketstart\'s message analysis tool cannot be packaged into a Chrome Extension due to LinkedIn\'s User Agreement.',
     },
 ]
 
