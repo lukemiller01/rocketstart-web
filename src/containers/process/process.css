@@ -1,8 +1,11 @@
 /* Container for entire process section */
 .process {
+    padding-top: 3rem;
+    margin-top: 3rem;
     margin-left: 8rem;
     margin-right: 8rem;
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
 }
 
 /* Header text: "How It Works" */
@@ -48,4 +51,9 @@ h4 {
     display: flex;
     flex: 1 1 0px;
     align-items: center;
+}
+
+.rocketstart__howto {
+    width: 100%;
+    height: auto;
 }
