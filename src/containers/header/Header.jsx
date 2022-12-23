@@ -11,7 +11,7 @@ const header = () => {
           <h1>Stand Out In Every Job Application.</h1>
           <p className='rs__description'>
             Rocketstart lets you find the recruiter for any job application in seconds
-            and gives you the tools to make a meaningful connection.
+            and helps you make a meaningful connection.
           </p>
           <div className='button__container'>
           <Link to='/message'>

@@ -1,6 +1,6 @@
 /* Container for entire question  */
 .question__container {
-    border: 1px solid lightgray;
+    border: 2px solid lightgray;
     margin-bottom: 1rem;
     width: 600px;
     border-radius: 15px;
@@ -12,19 +12,30 @@
     justify-content: space-between;
     align-items: center;
     vertical-align: middle;
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
 
 }
 
 /* Removing margin from text */
-.question__text {
+.question__text-q {
+    margin: 0;
+    font-weight: bold;
+}
+
+.question__text-a {
     margin: 0;
 }
 
 /* Hide div when the question is not active */
 .hidden {
     display: none;
+}
+
+.question__add:hover {
+    cursor: pointer;
+    /* Added because of weird behavior of icon being highlighted */
+    user-select: none;
 }

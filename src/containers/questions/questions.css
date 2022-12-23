@@ -2,7 +2,7 @@
 .questions {
     margin-left: 6rem;
     margin-right: 6rem;
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
 }
 
 /* Header and subheader of testimonial */
@@ -20,4 +20,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.mail__to {
+    color: dodgerblue;
+    font-weight: bold;
 }
