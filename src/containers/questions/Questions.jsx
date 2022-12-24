@@ -13,11 +13,11 @@ const questionData = [
     },
     {
         question: 'Who should use Rocketstart?',
-        answer: 'Any job seeker or professional looking to expand their professional network can benefit from Rocketstart.',
+        answer: 'Any job seeker or professional looking to expand their network can benefit from Rocketstart.',
     },
     {
         question: 'Is Rocketstart available as a Browser Extension?',
-        answer: 'Browser Extensions for Rocketstart\'s Contact Finder are coming soon. Rocketstart\'s Message Analysis can not be packaged into a Chrome Extension due to LinkedIn\'s User Agreement.',
+        answer: 'A Browser Extension for Rocketstart\'s Contact Finder is coming soon. Please sign up for alerts to be the first to know!',
     },
 ]
 

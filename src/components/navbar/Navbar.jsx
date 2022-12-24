@@ -18,8 +18,7 @@ const navbar = () => {
               <h3>Product</h3>
             </li>
             <li className='menu__item'>
-              {/* <h3><Link to="/blog">Blog</Link></h3> */}
-              <h3>Blog</h3>
+              <h3><Link to="/blog">Blog</Link></h3>
             </li>
             <li className='menu__item'>
               {/* <h3><Link to="/pricing">Pricing</Link></h3> */}

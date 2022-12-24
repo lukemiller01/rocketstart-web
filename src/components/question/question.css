@@ -4,19 +4,29 @@
     margin-bottom: 1rem;
     width: 600px;
     border-radius: 15px;
+    overflow: hidden;
 }
 
 /* Question & + / - icon */
-.question__content {
+.question__content-q, .question__content-a {
     display: flex;
     justify-content: space-between;
     align-items: center;
     vertical-align: middle;
+}
+
+.question__content-q {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
     padding-left: 1.25rem;
     padding-right: 1.25rem;
+    z-index: 1;
+}
 
+.question__content-a {
+    padding-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
 }
 
 /* Removing margin from text */
@@ -31,11 +41,25 @@
 
 /* Hide div when the question is not active */
 .hidden {
-    display: none;
+    opacity: 0;
+    height: 0px;
+    transition: opacity .2s ease, padding .33s ease, height .33s ease;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+}
+
+.visible {
+    opacity: 1;
+    height: 75px;
+    transition: opacity .2s ease, padding .33s ease, height .33s ease;
 }
 
 .question__add:hover {
     cursor: pointer;
     /* Added because of weird behavior of icon being highlighted */
     user-select: none;
+}
+
+.question__add {
+    z-index: 1;
 }
