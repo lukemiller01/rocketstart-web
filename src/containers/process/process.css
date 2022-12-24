@@ -1,11 +1,11 @@
 /* Container for entire process section */
 .process {
     padding-top: 3rem;
+    
     margin-top: 3rem;
     margin-left: 8rem;
     margin-right: 8rem;
     margin-bottom: 3rem;
-    padding-bottom: 3rem;
 }
 
 /* Header text: "How It Works" */
@@ -24,6 +24,8 @@ h4 {
 .process__header {
     text-align: center;
     margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Container with left content and right content */
@@ -51,9 +53,23 @@ h4 {
     display: flex;
     flex: 1 1 0px;
     align-items: center;
+
+    border-radius: 15px;
+    background-color: white;
+    padding: 1rem;
+
+    box-shadow: 0px 0px 20px rgb(0 0 0 / 35%)
 }
 
 .rocketstart__howto {
     width: 100%;
     height: auto;
+}
+
+.learn__more-process {
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 11pt;
+
+    text-decoration: underline;
 }

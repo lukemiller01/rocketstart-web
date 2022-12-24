@@ -63,3 +63,7 @@
 .question__add {
     z-index: 1;
 }
+
+.blue {
+    border-color: dodgerblue;
+}

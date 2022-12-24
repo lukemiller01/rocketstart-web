@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Questions, Footer, Process } from '../../containers';
+import { Header, Questions, Footer, Process, CallToAction } from '../../containers';
 import Navbar from '../../components/navbar/Navbar'
 
 
@@ -10,14 +10,13 @@ const Home = () => {
       <Header/>
         {/* <div className="grey__bg">
           <Testimonials/>
-        </div> */}
-        <div className="grey__bg">
-          <Process/>
-        </div>
-        <Questions/>
-        <div className="grey__bg">
-          <Footer/>
-        </div>
+      </div> */}
+      <Process/>
+      <CallToAction/>
+      <Questions/>
+      <div className="grey__bg">
+        <Footer/>
+      </div>
     </div>
   )
 }
