@@ -16,7 +16,7 @@ const header = () => {
           <div className='button__container'>
           <Link to='/message'>
             <button className='button'>
-              <p className='button__text'>Start Now</p>
+              Start Now
             </button>
           </Link>
           </div>

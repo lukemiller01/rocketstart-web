@@ -8,7 +8,6 @@ const Process = () => {
     <div className='process'>
         <div className='process__header'>
           <h4>How It Works:</h4>
-          <h2>Give yourself an unfair advantage.</h2>
         </div>
         <div className='process__steps-container'>
           <div className="text__content">

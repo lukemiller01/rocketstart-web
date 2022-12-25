@@ -67,16 +67,19 @@ p {
     width: 200px;
     height: 60px;
     background-color: dodgerblue;
+    border: 2px solid dodgerblue;
     border-radius: 50px;
-    border-style: none;
     cursor: pointer;
-}
 
-/* Button text and image style */
-.button__text {
-    /* Manipulating text within button: */
+    font-family: var(--font-family);
     font-weight: 600;
     font-size: 14pt;
     color: white;
     margin: 0;
+}
+
+.button:hover {
+    color: black;
+    background-color: white;
+    transition: all .33s ease;
 }

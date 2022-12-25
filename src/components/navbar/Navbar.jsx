@@ -32,7 +32,7 @@ const navbar = () => {
           <div className='button__container'>
           <Link to='/message'>
             <button className='navbar__button'>
-                <p className='navbar__button-text'>Dashboard</p>
+              Dashboard
             </button>
           </Link>
           </div>
