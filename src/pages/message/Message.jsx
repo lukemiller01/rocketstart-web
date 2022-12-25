@@ -454,7 +454,7 @@ const Message = () => {
                             <span className="material-icons copied__check">done</span>
                         </div>
                         <button className='navbar__button copy__button' onClick={() => handleCopy()}>
-                            <p className='navbar__button-text'>Copy</p>
+                            Copy
                         </button>
                     </div>
                 </div>
