@@ -9,15 +9,15 @@ const CallToAction = () => {
         <div className='cta__benefit-container'>
             <div className='cta__benefits'>
                 <span className="material-icons copied__check">check_circle</span>
-                <p className='cta__text'>Save time by discovering the right contacts</p>
+                <p className='cta__text'>Save time by discovering the right recruiters & hiring managers</p>
             </div>
             <div className='cta__benefits'>
                 <span className="material-icons copied__check">check_circle</span>
-                <p className='cta__text'>Make the best first impressions to your recruiters</p>
+                <p className='cta__text'>Make the best first impressions to anyone you reach out to</p>
             </div>
             <div className='cta__benefits'>
                 <span className="material-icons copied__check">check_circle</span>
-                <p className='cta__text'>Discover new contacts if you don't hear back</p>
+                <p className='cta__text'>Discover secondary contacts if you don't hear back from the job poster</p>
             </div>
         </div>
         <Link to='/message'>

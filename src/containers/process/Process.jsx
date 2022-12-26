@@ -13,7 +13,7 @@ const Process = () => {
           <div className="text__content">
             <h4 className='step'>Find Your Contact</h4>
             <p>
-              Discover the point of contact for any job posting with just a URL.
+              Discover the job poster for any job application with just a URL.
             </p>
             <p className="learn__more-process"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
           </div>
@@ -30,7 +30,7 @@ const Process = () => {
           <div className="text__content">
             <h4 className='step'>Craft Your Message</h4>
             <p>
-              Design a LinkedIn introduction to maximize your reply rate.
+              Design an introduction message to maximize your chance of receiving a response.
             </p>
             <p className="learn__more-process"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
           </div>

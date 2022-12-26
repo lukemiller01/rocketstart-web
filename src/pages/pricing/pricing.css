@@ -1,0 +1,25 @@
+.pricing {
+    margin: 3rem 8rem;
+}
+
+.pricing__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.pricing__table {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid lightgrey;
+}
+
+.pricing__descriptions {
+    display: flex;
+    flex: 1 1 0px;
+    align-items: center;
+    justify-content: center;
+}

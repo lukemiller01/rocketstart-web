@@ -1,0 +1,52 @@
+.pricing__tier {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 1rem;
+    flex: 1 1 0px;
+}
+
+.price__text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+}
+
+.border__both {
+    border-width: 0px 2px 0px 2px;
+    border-color: lightgray;
+    border-style: solid;
+}
+
+.border__right {
+    border-width: 0px 2px 0px 0px;
+    border-color: lightgray;
+    border-style: solid;
+}
+
+/* Button style: */
+.pricing__button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 130px;
+    height: 40px;
+    background-color: dodgerblue;
+    border: 2px solid dodgerblue;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 12pt;
+    color: white;
+    margin: 0;
+}
+
+.pricing__button:hover {
+    color: black;
+    background-color: white;
+    transition: all .33s ease;
+}
