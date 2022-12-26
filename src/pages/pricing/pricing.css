@@ -1,4 +1,8 @@
 .pricing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     margin: 3rem 8rem;
 }
 
@@ -10,16 +14,49 @@
 }
 
 .pricing__table {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid lightgrey;
+    padding: 2rem;
+    box-shadow: 0px 0px 20px rgb(0 0 0 / 20%);
+    border-radius: 15px;
 }
 
-.pricing__descriptions {
+.pricing__period {
+    text-align: center;
     display: flex;
-    flex: 1 1 0px;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 4.75rem 3rem 1rem 3rem;
+}
+
+.pricing__period-text {
+    margin: 0;
+    padding: .5rem;
+}
+
+.pricing__feature-header {
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: .25rem;
+    padding-top: 1rem;
+}
+
+.pricing__feature-sub {
+    margin: 0;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.pricing__feature-spec {
+    text-align: center;
+    margin: 0;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.pricing__feature-padding {
+    padding: 1rem;
+}
+
+.pricing__icon {
+    text-align: center;
 }
