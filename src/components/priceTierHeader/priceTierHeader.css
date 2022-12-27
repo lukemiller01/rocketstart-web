@@ -2,15 +2,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem 3rem 1rem 3rem;
+    padding: 1rem 4rem 1rem 4rem;
 }
 
 .pricing__price {
     font-size: 24pt;
+    margin: 0;
 }
 
 .price__text {
     padding-top: 1rem;
+    /* padding-bottom: 1rem; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -24,7 +26,7 @@
     align-items: center;
     justify-content: center;
     width: 130px;
-    height: 40px;
+    height: 34px;
     background-color: dodgerblue;
     border: 2px solid dodgerblue;
     border-radius: 50px;
@@ -49,7 +51,19 @@
     flex-direction: column;
 }
 
-.pricing__tier-rule {
-    border: 2px solid lightgrey;
-    width: 100%;
+.pricing__visible {
+    opacity: 1;
+    /* transition: opacity .33s ease; */
+    margin-top: -1rem;
+    color: grey;
+    font-size: 10pt;
+    margin: -.25rem;
+}
+
+.pricing__hidden {
+    opacity: 0;
+    color: grey;
+    font-size: 10pt;
+    margin: -.25rem;
+    /* transition: opacity .33s ease; */
 }
