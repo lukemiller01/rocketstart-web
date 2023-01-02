@@ -10,6 +10,10 @@
 
 .message__header {
     padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 /* Div for left and right columns */
@@ -171,12 +175,10 @@
 /* Text input styles  */
 textarea {
     min-height: 10rem;
-    border-radius: 5px;
     text-align: left;
     padding: 1rem;
     resize: vertical;
     border: solid lightgrey;
-    border-radius: 15px;
     box-shadow: 0 0.5em 1em -0.5em hsl(0deg 0% 5% / 10%), 0 0 0 1px hsl(0deg 0% 5% / 1%);
     font-family: var(--font-family);
     font-size: 14px;
@@ -263,7 +265,6 @@ textarea:focus {
     background-color: white;
     border-style: solid;
     border-color: lightgray;
-    border-radius: 15px;
 
     box-shadow: 0 0.5em 1em -0.5em hsl(0deg 0% 5% / 10%), 0 0 0 1px hsl(0deg 0% 5% / 1%);
 
@@ -344,6 +345,55 @@ textarea:focus {
     font-size: 14px;
     margin: 0;
     padding: 1rem;
+}
+
+.modified__explanation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.explanation__aim {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.aim__icon {
+    color: rgba(100, 185, 35, 1);
+}
+
+/* Container with help elements  */
+.help__div {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-height: auto;
+}
+
+/* On hover, change opacity, width, and height  */
+.help__div:hover .help__text {
+    opacity: 1;
+    width: auto;
+    height: auto;
+}
+
+/* Question mark icon  */
+.message__help {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: grey;
+}
+
+/* Explanation of the product  */
+.help__text{
+    transition: opacity .5s linear;
+    margin: 0;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    overflow: hidden;
 }
 
 @media screen and (max-width: 1050px) {

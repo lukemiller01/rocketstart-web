@@ -390,12 +390,16 @@ const Message = () => {
   return (
     <div>
         <Navbar2/>
-        <div className='message grey__bg'>
+        <div className='message'>
             <div className='message__header'>
-                <h4>LinkedIn Invitation Insights</h4>
-                <p>Maximize your LinkedIn invitation reply rates through text analysis.</p>
+                <h2>Message</h2>
+                <div className='help__div'>
+                    <span className="material-symbols-outlined message__help">help</span>
+                    <p className='help__text'> 
+                        Craft an optimized LinkedIn invitation message using four text insights proven to increase reply rates.
+                    </p>
+                </div>
             </div>
-            <div style={{margin: '1rem'}}></div>
             <div className='columns'>
                 <div className='left__column'>
                 <div className="insights">
@@ -431,7 +435,7 @@ const Message = () => {
                     </div>
                     <div className="insight__container" id="grade__container" onClick={() => handleExplanation(false, false, true, false)}>
                     <div className="insight">
-                        <h3 className="insight__title">Grade Level</h3>
+                        <h3 className="insight__title">Grade</h3>
                         <div className="insight__metrics">
                         <span className="material-icons insight__icon" id="check3">done</span>
                         <h3 className="insight__number" id="grade">0</h3>
@@ -479,38 +483,57 @@ const Message = () => {
                 </div>
                 <div className="insights__explanation">
                     <div className="explanation__container" id="paragraph__explanation" style={{display: "block"}}>
-                        <h3 className="insight__title">Paragraphs</h3>
+                        <div className='modified__explanation'>
+                            <h3 className="insight__title">Paragraphs</h3>
+                            <div className='explanation__aim'>
+                                <span className="material-icons aim__icon">done</span>
+                                <h3 className='insight__title'>3-4</h3>
+                            </div>
+                        </div>
                         <p className='explanation__text'>
                         Break your message into three components: a greeting, message body, and a farewell.
-                        The brain likes to be presented with three choices.
-                        Anything higher leads to confusion.
                         </p>
                         <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
                     </div>
                     <div className="explanation__container" id="question__explanation" style={{display: "none"}}>
-                        <h3 className="insight__title">Question Count</h3>
+                        <div className='modified__explanation'>
+                            <h3 className="insight__title">Questions</h3>
+                            <div className='explanation__aim'>
+                                <span className="material-icons aim__icon">done</span>
+                                <h3 className='insight__title'>1-2</h3>
+                            </div>
+                        </div>
                         <p className='explanation__text'>
-                        Include a call to action in your message.
-                        Messages with questions receive higher reply rates.
-                        Your recipient should learn why you're interested in connecting with them.
+                        Include a call to action (CTA) for your recipient.
+                        Messages with a question or CTA receive higher reply rates.
                         </p>
                         <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
                     </div>
                     <div className="explanation__container" id="grade__explanation" style={{display: "none"}}>
-                        <h3 className="insight__title">Grade Level</h3>
+                        <div className='modified__explanation'>
+                            <h3 className="insight__title">Grade</h3>
+                            <div className='explanation__aim'>
+                                <span className="material-icons aim__icon">done</span>
+                                <h3 className='insight__title'>2-7</h3>
+                            </div>
+                        </div>
                         <p className='explanation__text'>
                         Make your message easy to read.
                         Messages with short sentences and accessible words receive higher reply rates.
-                        Understanding your intent should be effortless.
                         </p>
                         <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
                     </div>
                     <div className="explanation__container" id="wording__explanation" style={{display: "none"}}>
-                        <h3 className="insight__title">Wording</h3>
+                        <div className='modified__explanation'>
+                            <h3 className="insight__title">Wording</h3>
+                            <div className='explanation__aim'>
+                                <span className="material-icons aim__icon">done</span>
+                                <h3 className='insight__title'>0</h3>
+                            </div>
+                        </div>
                         <p className='explanation__text'>
-                        Avoid adverbs and weak verbs.
-                        You'll save characters, which allows you to write more.
-                        Any ineffective words will be detected and displayed here.
+                        Avoid adverbs and empty verbs to save characters and write more.
+                        Any ineffective words will be detected and displayed below.
                         </p>
                         <h3 className="insight__title" id="adverbsHeader" style={{display: "none"}}>Please remove adverbs:</h3>
                         <p className="red italicBold"id="flaggedAdverbs" style={{display: "none"}}></p>
