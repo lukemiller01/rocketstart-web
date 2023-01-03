@@ -12,6 +12,7 @@ export function AuthProvider({ children }) {
 
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -26,6 +27,8 @@ export function AuthProvider({ children }) {
         currentUser,
         logIn,
         register,
+        error,
+        setError,
     };
 
     function register(email, password) { // If the new account was created, the user is signed in automatically.

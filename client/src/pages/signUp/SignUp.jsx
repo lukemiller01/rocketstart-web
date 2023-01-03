@@ -1,43 +1,47 @@
 import React from 'react';
-import { useAuth } from '../../contexts/AuthContext';
+import { createUser } from '../../actions/users';
+import { useDispatch, useSelector } from 'react-redux'
+// import { useAuth } from '../../contexts/AuthContext';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import './signUp.css';
 
-const SignUp = () => {
-
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+const SignUp = ({ currentId }) => {
 
     const navigate = useNavigate();
-    const { currentUser, register } = useAuth();
-    const [loading, setLoading] = useState(false);
+
+    const [userData, setUserData] = useState({email: '', password: ''});
+
+    const user = useSelector((state) => currentId ? state.users.find((p) => p._id === currentId) : null );
+
+    const dispatch = useDispatch();
+
+    // TODO: reincorporate this!!!
+    // const { user, register, setError } = useAuth();
 
     // Don't allow users to access registration while they're logged in
     useEffect(() => {
-        if (currentUser) {
-          navigate("/");
+        if (user) {
+          navigate("/message");
         }
-    }, [currentUser, navigate]);
+    }, [user, navigate]);
 
     async function handleFormSubmit(e) {
         e.preventDefault();
-    
-        if (password !== confirmPassword) {
-            return alert("Passwords do not match");
-        }
       
         try {
-            setLoading(true);
-            await register(email, password);
-            navigate("/message");
+          dispatch(createUser(userData))
+          // setError("");
+          // setLoading(true);
+          // TODO: reincorporate this!!!
+          // await register(userData);
+          navigate("/message");
         } catch (e) {
-            alert("Failed to register");
+          console.log("failed to register")
+          // TODO: reincorporate this!!!
+          // setError("Failed to register");
         }
-      
-        setLoading(false);
     }
 
   return (
@@ -53,7 +57,7 @@ const SignUp = () => {
                 autoComplete="email"
                 required
                 placeholder="Email address"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setUserData({...userData, email: e.target.value})}
               />
             </div>
             <div>
@@ -64,10 +68,10 @@ const SignUp = () => {
                 autoComplete="current-password"
                 required
                 placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setUserData({...userData, password: e.target.value})}
               />
             </div>
-            <div>
+            {/* <div>
               <input
                 id="confirmPassword"
                 name="confirmPassword"
@@ -77,10 +81,11 @@ const SignUp = () => {
                 placeholder="Confirm password"
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
-            </div>
+            </div> */}
           </div>
           <div>
-            <button type="submit" disabled={loading}>
+            {/* <button type="submit" disabled={loading}> */}
+            <button type="submit">
               Register
             </button>
           </div>

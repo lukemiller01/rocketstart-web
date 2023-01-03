@@ -1,5 +1,6 @@
 import React from 'react';
 import { Home, Blog, Pricing, About, Product, Privacy, Message, Find, SignIn, SignUp } from './pages';
+import { Error } from './components';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './miscellaneous/ScrollToTop';
 import './app.css';
@@ -18,6 +19,7 @@ const App = () => {
       <AuthProvider>
         <BrowserRouter>
           <ScrollToTop />
+          <Error/>
           <Routes>
             <Route path='/' element={<Home/>} />
             <Route path='/product' element={<Product/>}/>
