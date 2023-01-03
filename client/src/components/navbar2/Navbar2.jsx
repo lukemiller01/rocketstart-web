@@ -15,9 +15,9 @@ const Navbar2 = () => {
         {/* <img src={RocketstartLogo} alt="logo" className='image__logo'></img> */}
         <h2>Rocketstart</h2>
       </div>
-      <nav className='navbar__items'>
+      <nav>
         <ul className='menu'>
-          <li className='menu__item'>
+          <li>
             <h3><NavLink to='/message' className={({ isActive }) =>
                 isActive ? 'active__menu' : ''
             }>Message</NavLink></h3>

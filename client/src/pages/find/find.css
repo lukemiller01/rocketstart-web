@@ -18,8 +18,8 @@
 }
 
 .active__element-temp {
-    color: dodgerblue;
-    border-bottom: 2px solid dodgerblue;
+    color: rgb(30, 90, 255);
+    border-bottom: 2px solid rgb(30, 90, 255);
     padding-bottom: 0.5rem;
 }
 
@@ -54,11 +54,11 @@ input {
 
 input:focus {
     outline: none;
-    border-color: dodgerblue;
+    border-color: rgb(30, 90, 255);
 }
 
 .find__button {
-    background-color: dodgerblue;
+    background-color: rgb(30, 90, 255);
     border-radius: 0px 10px 10px 0px;
     color: #fff;
     font-family: var(--font-family);

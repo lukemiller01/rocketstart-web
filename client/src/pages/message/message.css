@@ -187,7 +187,7 @@ textarea {
 /* When the text area is focused, theme the border */
 textarea:focus {
     outline: none;
-    border: 2px solid dodgerblue;
+    border: 2px solid rgb(30, 90, 255);
 }
 
 /* Number of characters, copy popup, copy button  */

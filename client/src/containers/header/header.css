@@ -18,6 +18,7 @@ h1 {
     font-size: 42pt;
     line-height: 1.25;
     margin-bottom: 2rem;
+    font-weight: 900;
 }
 
 /* Paragraph is the sub text below the hook */
@@ -41,8 +42,14 @@ p {
 /* Right-most content flex so both columns are the same width */
 .right__content {
     display: flex;
-    flex: 1 1 0px;
+    flex: 1.2 1 0px;
     align-items: center;
+    transition: transform .1s linear;
+}
+
+.right__content:hover {
+    transition: transform .1s linear;
+    transform: scale(1.015);
 }
 
 /* Gif aspect ratio */
@@ -65,21 +72,32 @@ p {
     align-items: center;
     justify-content: center;
     width: 200px;
-    height: 60px;
-    background-color: dodgerblue;
-    border: 2px solid dodgerblue;
-    border-radius: 50px;
+    height: 50px;
+    background-color: black;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
 
     font-family: var(--font-family);
     font-weight: 600;
-    font-size: 14pt;
+    font-size: 16px;
     color: white;
     margin: 0;
+    transition: all .33s ease;
 }
 
 .button:hover {
-    color: black;
-    background-color: white;
+    transform: scale(.98);
+    background-color: rgb(30, 90, 255);
     transition: all .33s ease;
 }
+
+.color__change {
+    color: rgb(30, 90, 255);
+}
+
+.weight__change {
+    font-weight: 900;
+}
+
+/* Old rgb(30, 90, 255) color: rgb(30, 144, 255) */

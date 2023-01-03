@@ -27,8 +27,8 @@
     justify-content: center;
     width: 130px;
     height: 34px;
-    background-color: dodgerblue;
-    border: 2px solid dodgerblue;
+    background-color: rgb(30, 90, 255);
+    border: 2px solid rgb(30, 90, 255);
     border-radius: 50px;
     cursor: pointer;
     font-family: var(--font-family);

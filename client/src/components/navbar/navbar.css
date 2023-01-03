@@ -31,14 +31,13 @@
 }
 
 .image__logo {
-    width: 50px;
+    padding-right: .5rem;
+    width: 40px;
 }
 
 /* Header 2 is Rocketstart title */
 h2 {
     font-family: var(--font-family);
-
-    /* Manipulating text within button: */
     font-weight: 600;
     font-size: 14pt;
 }
@@ -55,6 +54,7 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 3rem;
 }
 
 /* Product, Blog, About */
@@ -62,6 +62,7 @@ h3 {
     list-style-type: none;
     display: flex;
     align-items: center;
+    padding-left: 3rem;
 }
 
 /* Individual menu item */
@@ -88,46 +89,31 @@ h3 {
     align-items: center;
     justify-content: center;
     width: 100px;
-    height: 40px;
-    background-color: dodgerblue;
-    border-radius: 25px;
-    border: 2px solid dodgerblue;
+    height: 30px;
+    background-color: black;
+    border-radius: 5px;
+    border: none;
 
     cursor: pointer;
 
-    font-weight: 600;
+    font-family: var(--font-family);
+    font-weight: 500;
     font-size: 12pt;
     color: white;
     margin: 0;
 }
 
 .navbar__button:hover {
-    color: black;
-    background-color: white;
+    transform: scale(.98);
+    background-color: rgb(30, 90, 255);
     transition: all .33s ease;
 }
 
-.navbar__button-signin {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100px;
-    height: 40px;
-    background-color: white;
-    color: black;
-    border-radius: 25px;
-    border: 2px solid dodgerblue;
-
+.navbar__item-focused {
     cursor: pointer;
-
-    font-weight: 600;
-    font-size: 12pt;
-    margin: 0;
+    transition: all .2s ease;
 }
 
-.navbar__button-signin:hover {
-    background-color: dodgerblue;
-    color: white;
-    transition: all .33s ease;
+.navbar__item-focused:hover {
+    color: rgb(30, 90, 255);
 }

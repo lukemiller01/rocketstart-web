@@ -16,7 +16,7 @@ h4 {
 
 .step {
     font-size: 28pt;
-    color: rgb(30, 144, 255);
+    color: rgb(30, 90, 255);
     margin-bottom: 1rem;
 }
 
@@ -86,12 +86,11 @@ h4 {
     display: flex;
     flex: 1 1 0px;
     align-items: center;
-
-    border-radius: 15px;
     background-color: white;
     padding: 1rem;
 
     box-shadow: 0px 0px 20px rgb(0 0 0 / 35%);
+    transition: transform .1s linear;
 }
 
 .image__content:hover {

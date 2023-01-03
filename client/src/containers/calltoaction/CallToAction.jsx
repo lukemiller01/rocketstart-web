@@ -22,7 +22,7 @@ const CallToAction = () => {
         </div>
         <Link to='/message'>
             <button className='button'>
-              Start Now
+              Start Now For Free
             </button>
         </Link>
     </div>
