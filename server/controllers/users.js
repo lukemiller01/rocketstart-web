@@ -1,14 +1,18 @@
 import mongoose from "mongoose";
 import User from "../models/user.js";
+import firebaseAdmin from "../firebase.js";
 
 export const getUser = async (req, res) => {
-    res.status(200).json(req.user);
+    try {
+        res.status(200).json(req.user);
+    }
+    catch (error) {
+        console.log(error)
+    }
 };
 
 export const createUser = async (req, res) => {
     const {email, password} = req.body;
-    console.log(req.body);
-    // const newPost = new PostMessage(post);
 
     if(!email || !password ) {
         return res.status(400).json({
@@ -18,7 +22,8 @@ export const createUser = async (req, res) => {
 
     try {
         // await newPost.save()
-        const newFirebaseUser = await firebase.auth.createUser({
+
+        const newFirebaseUser = await firebaseAdmin.firebase.createUser({
             email,
             password
         });
@@ -36,6 +41,7 @@ export const createUser = async (req, res) => {
         if(error.code === 'auth/email-already-exists') {
             return res.status(400).json({error: "An account with that email already exists."})
         }
+        console.log(error);
         return res.status(500).json({ error: "Please try again." });
     }
 };

@@ -6,7 +6,8 @@ import {getUser, createUser } from '../controllers/users.js'
 const router = express.Router();
 
 // Request and response
-router.get('/users', VerifyToken, getUser);
-router.post('/users', createUser);
+// router.get('/', VerifyToken, getUser);
+// router.get('/', getUser);
+router.post('/', createUser);
 
 export default router;
