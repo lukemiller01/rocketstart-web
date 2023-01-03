@@ -12,17 +12,15 @@ export const getUser = async (req, res) => {
 };
 
 export const createUser = async (req, res) => {
-    const {email, password} = req.body;
+    const {first, last, email, password} = req.body;
 
-    if(!email || !password ) {
+    if(!email || !password || !first || !last) {
         return res.status(400).json({
-            error: "Please enter an email & password"
+            error: "Please enter all fields"
         });
     }
 
     try {
-        // await newPost.save()
-
         const newFirebaseUser = await firebaseAdmin.firebase.createUser({
             email,
             password
@@ -30,12 +28,14 @@ export const createUser = async (req, res) => {
 
         if(newFirebaseUser) {
             const user = await User.create({
+                first,
+                last,
                 email,
                 password,
                 firebaseId: newFirebaseUser.uid
             });
         }
-        return res.status(200).json({success: "Account created"})
+        return res.status(200).json({success: "Account created"});
     }
     catch (error) {
         if(error.code === 'auth/email-already-exists') {

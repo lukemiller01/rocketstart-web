@@ -4,7 +4,7 @@ import {Provider} from 'react-redux'; // Keeps track of store (global state) - a
 import App from './App';
 import './index.css';
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from './reducers/user';
+import userReducer from './reducers/userReducer';
 
 const store = configureStore({reducer: { user: userReducer}});
 

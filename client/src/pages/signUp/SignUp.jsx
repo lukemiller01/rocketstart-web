@@ -1,5 +1,5 @@
 import React from 'react';
-import { createUser } from '../../actions/users';
+import { createUser } from '../../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux'
 // import { useAuth } from '../../contexts/AuthContext';
 import { useEffect, useState } from "react";
@@ -11,7 +11,7 @@ const SignUp = ({ currentId }) => {
 
     const navigate = useNavigate();
 
-    const [userData, setUserData] = useState({email: '', password: ''});
+    const [userData, setUserData] = useState({first: '', last: '', email: '', password: ''});
 
     const user = useSelector((state) => currentId ? state.users.find((p) => p._id === currentId) : null );
 
@@ -49,9 +49,28 @@ const SignUp = ({ currentId }) => {
         Sign Up
         <form onSubmit={handleFormSubmit}>
           <div>
+          <div>
+              <input
+                name="first"
+                type="first"
+                autoComplete="first"
+                required
+                placeholder="First Name"
+                onChange={(e) => setUserData({...userData, first: e.target.value})}
+              />
+            </div>
             <div>
               <input
-                id="email-address"
+                name="last"
+                type="last"
+                autoComplete="last"
+                required
+                placeholder="Last Name"
+                onChange={(e) => setUserData({...userData, last: e.target.value})}
+              />
+            </div>
+            <div>
+              <input
                 name="email"
                 type="email"
                 autoComplete="email"
@@ -62,7 +81,6 @@ const SignUp = ({ currentId }) => {
             </div>
             <div>
               <input
-                id="password"
                 name="password"
                 type="password"
                 autoComplete="current-password"
