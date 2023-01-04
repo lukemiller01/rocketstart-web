@@ -14,99 +14,10 @@ h4 {
     font-weight: 700;
 }
 
-.step {
-    font-size: 28pt;
-    color: rgb(30, 90, 255);
-    margin-bottom: 1rem;
-}
-
 /* Aligning process header text */
 .process__header {
     text-align: center;
     margin: 0;
     display: flex;
     flex-direction: column;
-}
-
-/* Container with left content and right content */
-.process__steps-container {
-    display: flex;
-    flex-direction: row;
-    margin-top: 6rem;
-    margin-bottom: 6rem;
-    padding-left: 6rem;
-    padding-right: 6rem;
-}
-
-/* Left-most content flex so both columns are the same width */
-.text__content {
-    flex: 1 1 0px;
-}
-
-/* Adds margin between the header content columns without needing to add right or left margin to either class */
-.middle__gutter {
-    width: 8rem;
-}
-
-@keyframes drawBackground {
-    0% {
-        background-size:    0 2px,
-                            2px 0,
-                            0 2px,
-                            2px 0;
-    }
-    25% {
-        background-size:    100% 2px,
-                            2px 0,
-                            0 2px,
-                            2px 0;
-    }
-    50% {
-        background-size:    100% 2px,
-                            2px 100%,
-                            0 2px,
-                            2px 0;
-    }
-    75% {
-        background-size:    100% 2px,
-                            2px 100%,
-                            100% 2px,
-                            2px 0;
-    }
-    100% {
-        background-size:    100% 2px,
-                            2px 100%,
-                            100% 2px,
-                            2px 100%;
-    }
-}
-
-/* Right-most content flex so both columns are the same width */
-.image__content {
-    display: flex;
-    flex: 1 1 0px;
-    align-items: center;
-    background-color: white;
-    padding: 1rem;
-
-    box-shadow: 0px 0px 20px rgb(0 0 0 / 35%);
-    transition: transform .1s linear;
-}
-
-.image__content:hover {
-    transition: transform .1s linear;
-    transform: scale(1.015);
-}
-
-.rocketstart__howto {
-    width: 100%;
-    height: auto;
-}
-
-.learn__more-process {
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 11pt;
-
-    text-decoration: underline;
 }

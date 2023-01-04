@@ -3,6 +3,9 @@
     margin-left: 6rem;
     margin-right: 6rem;
     margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Header and subheader of testimonial */
@@ -20,9 +23,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 3rem;
 }
 
 .mail__to {
     color: rgb(30, 90, 255);
     font-weight: bold;
+}
+
+.questions__cta {
+    margin-bottom: 3rem;
 }

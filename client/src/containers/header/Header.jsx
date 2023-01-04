@@ -1,6 +1,6 @@
 import React from 'react'
 import './header.css'
-import rocketstartGif from '../../assets/demo.gif'
+import headerDemo from '../../assets/header-demo.mp4'
 import { Link } from 'react-router-dom'
 
 const header = () => {
@@ -39,8 +39,11 @@ const header = () => {
           </div>
         </div>
         <div className="middle__gutter"/>
-        <div className='right__content'>
-          <img src={rocketstartGif} alt='rocketstart demonstration gif' className='rocketstart__demo'/>
+        <div className='right__content rocketstart__demo' >
+          <video width="100%" height="100%" autoPlay loop muted>
+            <source src={headerDemo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </div>

@@ -8,3 +8,4 @@ export { default as Message } from './message/Message';
 export { default as Find } from './find/Find';
 export { default as SignIn } from './signIn/SignIn';
 export { default as SignUp } from "./signUp/SignUp";
+export { default as DemoMessage } from "./demoMessage/DemoMessage";

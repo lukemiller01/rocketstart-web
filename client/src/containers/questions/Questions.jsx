@@ -1,6 +1,7 @@
 import React from 'react'
 import './questions.css'
 import  { Question } from '../../components';
+import { Link } from 'react-router-dom'
 
 const questionData = [
     {
@@ -34,6 +35,15 @@ const Questions = () => {
             <Question question={item.question} answer={item.answer} key={item.question + index} />
             ))}
         </div>
+        <h4 className='questions__cta'>
+            Ready To Land Your
+            <font className='color__change'> Dream Job? </font>
+        </h4>
+        <Link to='/message'>
+            <button className='button'>
+                Start Now For Free
+            </button>
+        </Link>
     </div>
   )
 }

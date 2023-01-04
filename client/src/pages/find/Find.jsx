@@ -1,5 +1,7 @@
 import React from 'react';
 import Navbar2 from '../../components/navbar2/Navbar2';
+import LinkedIn from '../../assets/linkedin.png';
+
 import './find.css';
 
 const Find = () => {
@@ -35,17 +37,20 @@ const Find = () => {
             <p id='poc__title' className='find__paragraph-header' style={{visibility: 'hidden'}}>Hiring for this role:</p>
             <div id='fourth-row' className='row__four' style={{visibility: 'hidden'}}>
               <div>
-                <h5 className='contact__name'>Luke Miller</h5>
-                <p className='find__paragraph-header'>University Recruiter @ Monsters Inc.</p>
+                <div className='find__biography-container'>
+                  <h5 className='contact__name'>Luke Miller</h5>
+                  <img src={LinkedIn} alt='LinkedIn icon' className='footer__icon-find'/>
+                </div>
+                <p className='find__paragraph-header'>Sr. Recruiter @ Google</p>
                 <div className='match__container'>
                   <span className=' material-symbols-outlined verified__icon'>verified_user</span>
                   <div className='match'>99% match</div>
                 </div>
               </div>
-              <div>
-              <button className='navbar__button save__button'>
-                  <p className='navbar__button-text'>Save</p>
-              </button>
+              <div className='find__right-buttons'>
+                <button className='navbar__button save__button'>
+                    Save
+                </button>
               </div>
             </div>
           </div>

@@ -97,7 +97,7 @@ input:focus {
 .match {
     font-family: var(--font-family);
     color: green;
-    font-weight: bold;
+    font-weight: 900;
 }
 
 .match__container {
@@ -140,7 +140,20 @@ input:focus {
     animation: button-loading-spinner 1s ease infinite;
     margin-left: -0.75rem;
     margin-top: -0.75rem;
-  }
+}
+
+.find__biography-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.footer__icon-find {
+    height: 16px;
+    width: auto;
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
 
 @keyframes button-loading-spinner {
     from {

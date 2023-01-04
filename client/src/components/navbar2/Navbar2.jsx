@@ -11,8 +11,7 @@ const Navbar2 = () => {
     <div className='navbar__container'>
     <div className='inner__navbar2'>
       <div className='navbar__logo'>
-        <Link to="/"><img src={RocketstartLogo} alt="logo" className='image__logo'></img></Link>
-        {/* <img src={RocketstartLogo} alt="logo" className='image__logo'></img> */}
+        <Link to="/" className='navbar__logo'><img src={RocketstartLogo} alt="logo" className='image__logo'></img></Link>
         <h2>Rocketstart</h2>
       </div>
       <nav>

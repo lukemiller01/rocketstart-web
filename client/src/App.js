@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Blog, Pricing, About, Product, Privacy, Message, Find, SignIn, SignUp } from './pages';
+import { Home, Blog, Pricing, About, Product, Privacy, Message, Find, SignIn, SignUp, DemoMessage } from './pages';
 import { Error } from './components';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './miscellaneous/ScrollToTop';
@@ -33,6 +33,8 @@ const App = () => {
 
             <Route path='/message' element={<Message/>}/>
             <Route path='/find' element={<Find/>}/>
+
+            <Route path='/demo-message' element={<DemoMessage/>}/>
           </Routes>
         </BrowserRouter>
       </AuthProvider>
