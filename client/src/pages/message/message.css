@@ -173,11 +173,14 @@
 }
 
 /* Text input styles  */
+/* TODO change max height? */
 textarea {
     min-height: 10rem;
+    max-height: 50vh;
     text-align: left;
     padding: 1rem;
     resize: vertical;
+    overflow: auto;
     border: solid lightgrey;
     box-shadow: 0 0.5em 1em -0.5em hsl(0deg 0% 5% / 10%), 0 0 0 1px hsl(0deg 0% 5% / 1%);
     font-family: var(--font-family);
@@ -394,6 +397,18 @@ textarea:focus {
     height: 0;
     width: 0;
     overflow: hidden;
+}
+
+.message__flex {
+    display: flex;
+}
+
+.message__block {
+    display: block;
+}
+
+.message__hide {
+    display: none;
 }
 
 @media screen and (max-width: 1050px) {

@@ -1,181 +1,176 @@
 import React, { useState, useEffect } from 'react'
 import Navbar2 from '../../components/navbar2/Navbar2';
+import VerbExample from '../../components/verbExample/VerbExample';
 // import Footer from '../../containers/footer/Footer'
 import './message.css';
 
 const Message = () => {
 
+    // Message text
     const [message, setMessage] = useState('');
 
+    // Insight checkmarks & wording warning
+    const [check1, setCheck1] = useState(false);
+    const [check2, setCheck2] = useState(false);
+    const [check3, setCheck3] = useState(false);
+    const [check4, setCheck4] = useState(false);
+    const [warning1, setWarning1] = useState(false);
+
+    // Insight explanations
+    const [paragraphExplanation, setParagraphExplanation] = useState(true);
+    const [questionExplanation, setQuestionExplanation] = useState(false);
+    const [gradingExplanation, setGradingExplanation] = useState(false);
+    const [wordingExplanation, setWordingExplanation] = useState(false);
+
+    // Sliders
+    const [paragraphSlider, setParagraphSlider] = useState('');
+    const [questionSlider, setQuestionSlider] = useState('');
+    const [gradingSlider, setGradingSlider] = useState('');
+    const [wordingSlider, setWordingSlider] = useState('');
+
+    // Wording
+    const [adverbsHeader, setAdverbsHeader] = useState(false);
+    const [verbsHeader, setVerbsHeader] = useState(false);
+    const [flaggedAdverbs, setFlaggedAdverbs] = useState('');
+    const [flaggedVerbs, setFlaggedVerbs] = useState('');
+
+    // Text Content:
+    const [paragraph, setParagraph] = useState("0");
+    const [question, setQuestion] = useState("0");
+    const [grade, setGrade] = useState("0");
+    const [wording, setWording] = useState("0");
+
+    // Verb prop:
+    const [verbProp, setVerbProp] = useState([]);
+
+    // Copy button:
+    const [copy, setCopy] = useState(false);
+
+    // Message logic that changes the insights
     useEffect(() => {
 
         const delayFunction = setTimeout(() => {
 
             var info = messageAnalysis(message);
 
+            // setVerbProp(info.verbs);
+
             if(info.paragraphs !== 3) {
-                document.getElementById('check1').style.display = "none";
+                setCheck1(false);
             }
             else {
-                document.getElementById('check1').style.display = "flex";
+                setCheck1(true);
             }
             if(info.questions !== 1 && info.questions !== 2) {
-                document.getElementById('check2').style.display = "none";
+                setCheck2(false);
             }
             else {
-                document.getElementById('check2').style.display = "flex";
+                setCheck2(true);
             }
             if(info.grade > 0 && info.grade <= 7) {
-                document.getElementById('check3').style.display = "flex";
+                setCheck3(true);
             }
             else {
-                document.getElementById('check3').style.display = "none";
+                setCheck3(false);
             }
             // Wording
             if(info.paragraphs === 0) { // No text
-                document.getElementById("adverbsHeader").style.display = "none";
-                document.getElementById("flaggedAdverbs").style.display = "none";
-                document.getElementById("verbsHeader").style.display = "none";
-                document.getElementById("flaggedVerbs").style.display = "none";
-                document.getElementById('verbExamples').style.display = "none";
-                document.getElementById("verbExamplesHeading").style.display = "none";
-                document.getElementById('check4').style.display = "none";
-                document.getElementById('warning').style.display = "none";
+                setAdverbsHeader(false);
+                setVerbsHeader(false);
+                setCheck4(false);
+                setWarning1(false);
             }
+
             else if (info.adverbs.length > 0 || info.verbs.length > 0) { // Text and there's at least one flagged word
                 if (info.adverbs.length > 0){ // Flagged adverb
-                    document.getElementById("adverbsHeader").style.display = "block";
-                    document.getElementById("flaggedAdverbs").style.display = "block";
-                    document.getElementById('check4').style.display = "none";
-                    document.getElementById('warning').style.display = "block";
+                    setAdverbsHeader(true);
+                    setCheck4(false);
+                    setWarning1(true);
                 }
                 else {
-                    document.getElementById("adverbsHeader").style.display = "none";
-                    document.getElementById("flaggedAdverbs").style.display = "none";
+                    setAdverbsHeader(false);
                 }
                 if (info.verbs.length > 0){ // Flagged verb
-                    document.getElementById("verbsHeader").style.display = "block";
-                    document.getElementById("flaggedVerbs").style.display = "block";
-                    document.getElementById("verbExamplesHeading").style.display = "block";
-                    document.getElementById('verbExamples').style.display = "block";
-                    document.getElementById('check4').style.display = "none";
-                    document.getElementById('warning').style.display = "block";
-                    if(document.getElementById("rocketstart-examples-div")) {
-                    document.getElementById("rocketstart-examples-div").remove();
-                    }
+                    setVerbsHeader(true);
+                    setCheck4(false);
+                    setWarning1(true);
+                    setVerbProp(prevState => [])
                 }
                 else {
-                    document.getElementById("verbsHeader").style.display = "none";
-                    document.getElementById("flaggedVerbs").style.display = "none";
+                    setVerbsHeader(false);
                 }
             }
             else { // Text & there's no flagged word
-                document.getElementById("adverbsHeader").style.display = "none";
-                document.getElementById("verbsHeader").style.display = "none";
-                document.getElementById('verbExamples').style.display = "none";
-                document.getElementById('check4').style.display = "flex";
-                document.getElementById('warning').style.display = "none";
+                setAdverbsHeader(false);
+                setVerbsHeader(false);
+                setCheck4(true);
+                setWarning1(false);
             }
                 
             // 1) Update the paragraphs text
-            document.getElementById('paragraphs').textContent = info.paragraphs;
+            setParagraph(info.paragraphs);
             // 2) Update the paragraphs slider.
             if (info.paragraphs > 5) {
                 info.paragraphs = 5;
             }
-            document.getElementById('paragraph__slider').style.left = (info.paragraphs)*20 + "%";
+            setParagraphSlider((info.paragraphs)*20 + "%");
             
             // 1) Update the questions text
-            document.getElementById('questions').textContent = info.questions;
+            setQuestion(info.questions);
             // 2) Update the questions slider.
             if (info.questions > 4) {
                 info.questions = 4;
             }
-            document.getElementById('question__slider').style.left = (info.questions)*25 + "%";
+            setQuestionSlider((info.questions)*25 + "%");
             
             // 1) Update the Grade Level text
-            document.getElementById('grade').textContent = info.grade;
+            setGrade(info.grade);
             // 2) Update the Grade Level Slider.
             if (info.grade < 2) {
                 info.grade = 2;
             }
-            document.getElementById('grade__slider').style.left = (info.grade)*10-20 + "%";
+            setGradingSlider((info.grade)*10-20 + "%");
             
             // 1) Update the Wording text
             var totalFlagged = info.adverbs.length + info.verbs.length
+            setWording(totalFlagged);
             if (totalFlagged > 4) {
                 totalFlagged = 4;
             }
-            document.getElementById('words').textContent = totalFlagged;
             // 2) Update the wording slider.
-            document.getElementById('word__slider').style.left = (totalFlagged)*25 + "%";
+            setWordingSlider((totalFlagged)*25 + "%");
             // 3) Update adverbs list
-            document.getElementById('flaggedAdverbs').textContent = info.adverbs.join(', ');
+            setFlaggedAdverbs(info.adverbs.join(', '));
             // 4) Update verbs list
-            document.getElementById('flaggedVerbs').textContent = info.verbs.join(', ');
+            setFlaggedVerbs(info.verbs.join(', '));
             
-            var numerousFlaggedVerbs = false;
             for (var i = 0; i < info.verbs.length; i++) { // Verbs
-                if(i+1 !== info.verbs.length) {
-                    numerousFlaggedVerbs = true;
-                }
-                else {
-                    numerousFlaggedVerbs = false;
-                }
-                var example =  populateExamples(info.verbs[i], numerousFlaggedVerbs);
-                document.getElementById("verbExamples").appendChild(example);
+                examplePhrases(info.verbs[i])
             }
 
-            function populateExamples(verb, horizontalRule) {
-                var exampleDiv = document.createElement('div');
-                exampleDiv.id = "rocketstart-examples-div";
-              
-                if(!horizontalRule) {
-                  exampleDiv.innerHTML = `
-                  <div class="good__example">
-                    <span class="material-icons explanation__cross">close</span>
-                    <p class="badExample"></p>
-                  </div>
-                  <div class="bad__example">
-                    <span class="material-icons explanation__check">done</span>
-                    <p class="goodExample"></p>
-                  </div>
-                `;
-                }
-                else {
-                  exampleDiv.innerHTML = `
-                  <div class="good__example">
-                    <span class="material-icons explanation__cross">close</span>
-                    <p class="badExample"></p>
-                  </div>
-                  <div class="bad__example">
-                    <span class="material-icons explanation__check">done</span>
-                    <p class="goodExample"></p>
-                  </div>
-                  <hr class="horizontal__rule">
-                  <div style="padding-bottom: .5rem;">
-                `;
-                }
-              
-                // Example phrases
+            function examplePhrases(verb) {
+
+                var goodExample = '';
+                var badExample = '';
+                
                 if(verb === "to be") {
-                  exampleDiv.getElementsByClassName("badExample")[0].textContent = "I want to be a part of your team.";
-                  exampleDiv.getElementsByClassName("goodExample")[0].textContent = "I'd love to join your team.";
+                    badExample = "I want to be a part of your team.";
+                    goodExample = "I'd love to join your team.";
                 }
                 else if(verb === "to have") {
-                  exampleDiv.getElementsByClassName("badExample")[0].textContent = "I'd love to have a conversation with you.";
-                  exampleDiv.getElementsByClassName("goodExample")[0].textContent = "I'd love to chat with you.";
+                    badExample = "I'd love to have a conversation with you.";
+                    goodExample = "I'd love to chat with you.";
                 }
                 else if(verb === "there is" || verb === "there are") {
-                  exampleDiv.getElementsByClassName("badExample")[0].textContent = "There are plenty of strengths that make me stand out.";
-                  exampleDiv.getElementsByClassName("goodExample")[0].textContent = "I stand out because of these strengths.";
+                    badExample = "There are plenty of strengths that make me stand out.";
+                    goodExample = "I stand out because of these strengths.";
                 }
                 else if(verb === "was") {
-                  exampleDiv.getElementsByClassName("badExample")[0].textContent = "I was in the position for two years.";
-                  exampleDiv.getElementsByClassName("goodExample")[0].textContent = "I held the position for two years.";
+                    badExample = "I was in the position for two years.";
+                    goodExample = "I held the position for two years.";
                 }
-              
-                return exampleDiv;
+
+                setVerbProp(prevState => [...prevState, {goodExample: goodExample, badExample: badExample}]);
             }
 
             // Counts the number of syllables per word
@@ -234,7 +229,6 @@ const Message = () => {
                     numSentences = 1;
                 }
                 
-
                 // # of syllables
                 var numSyllables = 0;
                 text = text.replaceAll('\'',''); // Removing apostrophes '
@@ -328,62 +322,38 @@ const Message = () => {
 
     // Handling insight clicks
     const handleExplanation = (one, two, three, four) => {
-        let paragraph__explanation = document.getElementById("paragraph__explanation");
-        let question__explanation = document.getElementById("question__explanation");
-        let grade__explanation = document.getElementById("grade__explanation");
-        let wording__explanation = document.getElementById("wording__explanation");
         if(one) {
-            paragraph__explanation.style.display = `block`;
-            question__explanation.style.display = `none`;
-            grade__explanation.style.display = `none`;
-            wording__explanation.style.display = `none`;
-            // Scale
-            document.getElementById("paragraph__container").classList.add("active__rs");
-            document.getElementById("question__container").classList.remove("active__rs");
-            document.getElementById("grade__container").classList.remove("active__rs");
-            document.getElementById("wording__container").classList.remove("active__rs");
+            setParagraphExplanation(true);
+            setQuestionExplanation(false);
+            setGradingExplanation(false);
+            setWordingExplanation(false);
         }
         else if(two) {
-            paragraph__explanation.style.display = `none`;
-            question__explanation.style.display = `block`;
-            grade__explanation.style.display = `none`;
-            wording__explanation.style.display = `none`;
-            // Scale
-            document.getElementById("paragraph__container").classList.remove("active__rs");
-            document.getElementById("question__container").classList.add("active__rs");
-            document.getElementById("grade__container").classList.remove("active__rs");
-            document.getElementById("wording__container").classList.remove("active__rs");
+            setParagraphExplanation(false);
+            setQuestionExplanation(true);
+            setGradingExplanation(false);
+            setWordingExplanation(false);
         }
         else if(three) {
-            paragraph__explanation.style.display = `none`;
-            question__explanation.style.display = `none`;
-            grade__explanation.style.display = `block`;
-            wording__explanation.style.display = `none`;
-            // Scale
-            document.getElementById("paragraph__container").classList.remove("active__rs");
-            document.getElementById("question__container").classList.remove("active__rs");
-            document.getElementById("grade__container").classList.add("active__rs");
-            document.getElementById("wording__container").classList.remove("active__rs");
+            setParagraphExplanation(false);
+            setQuestionExplanation(false);
+            setGradingExplanation(true);
+            setWordingExplanation(false);
         }
         else if(four) {
-            paragraph__explanation.style.display = `none`;
-            question__explanation.style.display = `none`;
-            grade__explanation.style.display = `none`;
-            wording__explanation.style.display = `block`;
-            // Scale
-            document.getElementById("paragraph__container").classList.remove("active__rs");
-            document.getElementById("question__container").classList.remove("active__rs");
-            document.getElementById("grade__container").classList.remove("active__rs");
-            document.getElementById("wording__container").classList.add("active__rs");
+            setParagraphExplanation(false)
+            setQuestionExplanation(false);
+            setGradingExplanation(false);
+            setWordingExplanation(true);
         }
     };
 
     // Copied to clipboard animation
     const handleCopy = () => {
         navigator.clipboard.writeText(message);
-        document.getElementById("copiedContainer").classList.add("fade__in");
+        setCopy(true)
         setTimeout(function () {
-            document.getElementById("copiedContainer").classList.remove("fade__in");
+            setCopy(false)
           }, 3000);
     }
 
@@ -403,47 +373,47 @@ const Message = () => {
             <div className='columns'>
                 <div className='left__column'>
                 <div className="insights">
-                    <div className="insight__container active__rs" id="paragraph__container" onClick={() => handleExplanation(true, false, false, false)}>
+                    <div className={`insight__container ${paragraphExplanation ? " active__rs" : ""}`} id="paragraph__container" onClick={() => handleExplanation(true, false, false, false)}>
                     <div className="insight">
                         <h3 className="insight__title">Paragraphs</h3>
                         <div className="insight__metrics">
-                        <span className="material-icons insight__icon" id="check1">done</span>
-                        <h3 className="insight__number" id="paragraphs">0</h3>
+                        <span className={`material-icons insight__icon ${check1 ? " message__flex" : " message__hide"}`} id="check1">done</span>
+                        <h3 className="insight__number" id="paragraphs">{paragraph}</h3>
                         </div>
                     </div>
                     <div>
                         <div className="insight__slider">
-                        <div className="slider__rectangle" id="paragraph__slider"></div>
+                        <div className="slider__rectangle" style={{left: paragraphSlider}} id="paragraph__slider"></div>
                         </div>
                     </div>
                     <div className="slider__gradient paragraph__gradient"></div>
                     </div>
-                    <div className="insight__container" id="question__container" onClick={() => handleExplanation(false, true, false, false)}>
+                    <div className={`insight__container ${questionExplanation ? " active__rs" : ""}`} id="question__container" onClick={() => handleExplanation(false, true, false, false)}>
                     <div className="insight">
                         <h3 className="insight__title">Questions</h3>
                         <div className="insight__metrics">
-                        <span className="material-icons insight__icon" id="check2">done</span>
-                        <h3 className="insight__number" id="questions">0</h3>
+                        <span className={`material-icons insight__icon ${check2 ? " message__flex" : " message__hide"}`} id="check2">done</span>
+                        <h3 className="insight__number" id="questions">{question}</h3>
                         </div>
                     </div>
                     <div>
                         <div className="insight__slider">
-                        <div className="slider__rectangle" id="question__slider"></div>
+                        <div className="slider__rectangle" style={{left: questionSlider}} id="question__slider"></div>
                         </div>
                     </div>
                     <div className="slider__gradient question__gradient"></div>
                     </div>
-                    <div className="insight__container" id="grade__container" onClick={() => handleExplanation(false, false, true, false)}>
+                    <div className={`insight__container ${gradingExplanation ? " active__rs" : ""}`} id="grade__container" onClick={() => handleExplanation(false, false, true, false)}>
                     <div className="insight">
                         <h3 className="insight__title">Grade</h3>
                         <div className="insight__metrics">
-                        <span className="material-icons insight__icon" id="check3">done</span>
-                        <h3 className="insight__number" id="grade">0</h3>
+                        <span className={`material-icons insight__icon ${check3 ? " message__flex" : " message__hide"}`} id="check3">done</span>
+                        <h3 className="insight__number" id="grade">{grade}</h3>
                         </div>
                     </div>
                     <div>
                         <div className="insight__slider">
-                        <div className="slider__rectangle" id="grade__slider"></div>
+                        <div className="slider__rectangle" style={{left: gradingSlider}} id="grade__slider"></div>
                         </div>
                     </div>
                     <div className="slider__gradient grade__gradient"></div>
@@ -453,8 +423,8 @@ const Message = () => {
                     <textarea placeholder='Type your invitation note here' maxLength="300" id='textBox' value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
                     <div className='left__column-three'>
                         <p className='character__counter'>{300 - message.length} / 300</p>
-                        <div className='copied__container' id='copiedContainer'>
-                            <p className='copied__text'>Copied to clipboard</p>
+                        <div className={`copied__container ${copy ? " fade__in" : ""}`} id='copiedContainer'>
+                            <p className='copied__text' >Copied to clipboard</p>
                             <span className="material-icons copied__check">done</span>
                         </div>
                         <button className='navbar__button copy__button' onClick={() => handleCopy()}>
@@ -464,25 +434,25 @@ const Message = () => {
                 </div>
             <div className='right__column'>
                 <div className='insights'>
-                    <div className="insight__container" id="wording__container" onClick={() => handleExplanation(false, false, false, true)}>
+                    <div className={`insight__container ${wordingExplanation ? " active__rs" : ""}`} id="wording__container" onClick={() => handleExplanation(false, false, false, true)}>
                         <div className="insight">
                             <h3 className="insight__title">Wording</h3>
                             <div className="insight__metrics">
-                            <span className="material-icons insight__icon" id="check4">done</span>
-                            <span className="material-symbols-outlined insight__warning" id="warning">warning</span>
-                            <h3 className="insight__number" id="words">0</h3>
+                            <span className={`material-icons insight__icon ${check4 ? " message__flex" : " message__hide"}`} id="check4">done</span>
+                            <span className={`material-symbols-outlined insight__warning ${warning1 ? " message__flex" : " message__hide"}`} id="warning">warning</span>
+                            <h3 className="insight__number" id="words">{wording}</h3>
                             </div>
                         </div>
                         <div>
                             <div className="insight__slider">
-                            <div className="slider__rectangle" id="word__slider"></div>
+                            <div className="slider__rectangle" style={{left: wordingSlider}} id="word__slider"></div>
                             </div>
                         </div>
                         <div className="slider__gradient word__gradient"></div>
                     </div>
                 </div>
                 <div className="insights__explanation">
-                    <div className="explanation__container" id="paragraph__explanation" style={{display: "block"}}>
+                    <div className={`explanation__container ${paragraphExplanation ? " message__block" : " message__hide"}`} id="paragraph__explanation">
                         <div className='modified__explanation'>
                             <h3 className="insight__title">Paragraphs</h3>
                             <div className='explanation__aim'>
@@ -495,7 +465,7 @@ const Message = () => {
                         </p>
                         <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
                     </div>
-                    <div className="explanation__container" id="question__explanation" style={{display: "none"}}>
+                    <div className={`explanation__container ${questionExplanation ? " message__block" : " message__hide"}`} id="question__explanation">
                         <div className='modified__explanation'>
                             <h3 className="insight__title">Questions</h3>
                             <div className='explanation__aim'>
@@ -509,7 +479,7 @@ const Message = () => {
                         </p>
                         <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
                     </div>
-                    <div className="explanation__container" id="grade__explanation" style={{display: "none"}}>
+                    <div className={`explanation__container ${gradingExplanation ? " message__block" : " message__hide"}`} id="grade__explanation">
                         <div className='modified__explanation'>
                             <h3 className="insight__title">Grade</h3>
                             <div className='explanation__aim'>
@@ -523,7 +493,7 @@ const Message = () => {
                         </p>
                         <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
                     </div>
-                    <div className="explanation__container" id="wording__explanation" style={{display: "none"}}>
+                    <div className={`explanation__container ${wordingExplanation ? " message__block" : " message__hide"}`} id="wording__explanation">
                         <div className='modified__explanation'>
                             <h3 className="insight__title">Wording</h3>
                             <div className='explanation__aim'>
@@ -535,12 +505,16 @@ const Message = () => {
                         Avoid adverbs and empty verbs to save characters and write more.
                         Any ineffective words will be detected and displayed below.
                         </p>
-                        <h3 className="insight__title" id="adverbsHeader" style={{display: "none"}}>Please remove adverbs:</h3>
-                        <p className="red italicBold"id="flaggedAdverbs" style={{display: "none"}}></p>
-                        <h3 className="insight__title" id="verbsHeader" style={{display: "none"}}>Please remove weak verbs:</h3>
-                        <p className="red italicBold"id="flaggedVerbs" style={{display: "none"}}></p>
-                        <h3 className='verb__examples-heading' id="verbExamplesHeading" style={{display: "none"}}>Example:</h3>
-                        <div id="verbExamples" className="verb__example" style={{display: "none"}}></div>
+                        <h3 className={`insight__title ${adverbsHeader ? " message__block" : " message__hide"}`}>Please remove adverbs:</h3>
+                        <p className={`red italicBold ${adverbsHeader ? " message__block" : " message__hide"}`} id="flaggedAdverbs">{flaggedAdverbs}</p>
+                        <h3 className={`insight__title ${verbsHeader ? " message__block" : " message__hide"}`} id="verbsHeader">Please remove weak verbs:</h3>
+                        <p className={`red italicBold ${verbsHeader ? " message__block" : " message__hide"}`} id="flaggedVerbs">{flaggedVerbs}</p>
+                        <h3 className={`verb__examples-heading ${verbsHeader ? " message__block" : " message__hide"}`} id="verbExamplesHeading">Example:</h3>
+                        <div id="verbExamples" className={`verb__examples-heading ${verbsHeader ? " message__block" : " message__hide"}`}>
+                            {verbProp.map((item, i) =>
+                                <VerbExample key={i} goodExample={item.goodExample} badExample={item.badExample}/>
+                            )}
+                        </div>
                         <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
                     </div>
                 </div>

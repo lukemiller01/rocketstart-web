@@ -1,7 +1,6 @@
 import React from 'react'
 import './questions.css'
 import  { Question } from '../../components';
-import { Link } from 'react-router-dom'
 
 const questionData = [
     {
@@ -28,22 +27,12 @@ const Questions = () => {
         <div className='question__header'>
             <h4 >Frequently Asked Questions</h4>
             <p className="question__paragraph">Can't find what you're looking for? Feel free to <a target="_blank" rel="noopener noreferrer" className='mail__to' href="mailto:luke@rocketstart.careers">contact us.</a></p>
-            {/* <p className='question__paragraph'>Can't find what you're looking for? Feel free to contact us.</p> */}
         </div>
         <div className='question__list'>
             {questionData.map((item, index) => (
             <Question question={item.question} answer={item.answer} key={item.question + index} />
             ))}
         </div>
-        <h4 className='questions__cta'>
-            Ready To Land Your
-            <font className='color__change'> Dream Job? </font>
-        </h4>
-        <Link to='/message'>
-            <button className='button'>
-                Start Now For Free
-            </button>
-        </Link>
     </div>
   )
 }
