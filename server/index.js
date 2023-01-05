@@ -19,7 +19,7 @@ app.use(cors());
 app.use('/users', userRoutes); // Every route is going to start with users, using the imported posts.js router
 
 app.get('/', (req, res) => {
-    res.send('Hello there');
+    res.send('Hello New...');
 })
 
 // const PORT = process.env.PORT || 5001;

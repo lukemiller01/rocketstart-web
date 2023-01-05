@@ -1,12 +1,13 @@
 import React from "react";
 import { createRoot } from 'react-dom/client';
-import {Provider} from 'react-redux'; // Keeps track of store (global state) - allows access from anywhere inside app
+import {Provider} from 'react-redux';
 import App from './App';
 import './index.css';
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from './reducers/userReducer';
+import thunk from "redux-thunk";
+import reducers from './reducers';
 
-const store = configureStore({reducer: { user: userReducer}});
+const store = configureStore({reducer: reducers, middleware: [thunk] });
 
 const container = document.getElementById('root');
 const root = createRoot(container);

@@ -35,13 +35,13 @@ export const createUser = async (req, res) => {
                 firebaseId: newFirebaseUser.uid
             });
         }
-        return res.status(200).json({success: "Account created"});
+        return res.status(200).json({message: "Success!"});
     }
     catch (error) {
         if(error.code === 'auth/email-already-exists') {
             return res.status(400).json({error: "An account with that email already exists."})
         }
         console.log(error);
-        return res.status(500).json({ error: "Please try again." });
+        return res.status(500).json({message: error.message});
     }
 };

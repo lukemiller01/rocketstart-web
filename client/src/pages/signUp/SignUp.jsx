@@ -1,46 +1,35 @@
 import React from 'react';
 import { createUser } from '../../actions/userActions';
-import { useDispatch, useSelector } from 'react-redux'
-// import { useAuth } from '../../contexts/AuthContext';
-import { useEffect, useState } from "react";
+import { useDispatch } from 'react-redux'
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUserAuth } from '../../context/AuthProvider';
 
 import './signUp.css';
 
-const SignUp = ({ currentId }) => {
+const SignUp = () => {
 
+    // Set data to BE
     const navigate = useNavigate();
-
     const [userData, setUserData] = useState({first: '', last: '', email: '', password: ''});
-
-    const user = useSelector((state) => currentId ? state.users.find((p) => p._id === currentId) : null );
-
     const dispatch = useDispatch();
+    // const { register } = useUserAuth();
 
-    // TODO: reincorporate this!!!
-    // const { user, register, setError } = useAuth();
-
-    // Don't allow users to access registration while they're logged in
-    useEffect(() => {
-        if (user) {
-          navigate("/message");
-        }
-    }, [user, navigate]);
+    // useEffect(() => {
+    //   if (currentUser) {
+    //     navigate("/message");
+    //   }
+    // }, [currentUser, navigate]);
 
     async function handleFormSubmit(e) {
         e.preventDefault();
       
         try {
-          dispatch(createUser(userData))
-          // setError("");
-          // setLoading(true);
-          // TODO: reincorporate this!!!
-          // await register(userData);
+          dispatch(createUser(userData));
+          // await register(userData.email, userData.password);
           navigate("/message");
         } catch (e) {
-          console.log("failed to register")
-          // TODO: reincorporate this!!!
-          // setError("Failed to register");
+          console.log(e)
         }
     }
 

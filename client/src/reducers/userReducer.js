@@ -4,7 +4,7 @@ const reducersUsers = (users = [], action) => {
     switch (action.type) {
         case CREATE:
             return [...users, action.payload];
-        default:
+        default: // TODO: fix default action
             return users;
     }
 };
