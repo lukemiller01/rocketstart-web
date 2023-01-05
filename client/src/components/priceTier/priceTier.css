@@ -1,0 +1,98 @@
+/* Pricing tier container  */
+.pricing__tier {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid grey; */
+    flex: 1 1;
+
+    transition: transform .1s linear;
+
+    box-shadow: 0px 0px 20px rgb(0 0 0 / 35%)
+}
+
+.pricing__tier:hover {
+    transition: transform .1s linear;
+    transform: scale(1.01);
+}
+
+/* Pricing tier info ( no highlight ) */
+.pricing__tier-info {
+    padding: 2rem;
+}
+
+/* Middle highlight  */
+.pricing__tier-highlight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem;
+    background-color: rgb(30,90,255);
+    color: white;
+
+    height: 2.5rem;
+}
+
+.pricing__tier-highlight_text {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Name of plan  */
+.pricing__tier-name {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.pricing__tier-header {
+    min-height: 175px;
+}
+
+/* Price / month  */
+.pricing__tier-price_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: .5rem;
+}
+
+/* Price of plan  */
+.pricing__tier-price {
+    font-size: 32px;
+    font-weight: 900;
+}
+
+/* /month  */
+.pricing__tier-price_month {
+    margin: 0;
+}
+
+/* Button style  */
+.pricing__button {
+    margin-bottom: 2rem;
+}
+
+.pricing__benefit-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.pricing__benefits {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    padding-bottom: 0.5rem;
+    margin: 0;
+    gap: 1rem;
+}
+
+.false {
+    display: none;
+}
+
+.false__margin {
+    margin-top: 2.5rem;
+}

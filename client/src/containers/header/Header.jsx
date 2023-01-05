@@ -23,11 +23,13 @@ const header = () => {
             </div>
             <div className='cta__benefits'>
                 <span className="material-icons copied__check">check_circle</span>
-                <p className='cta__text'>Craft a LinkedIn message to maximize reply rates</p>
+                <p className='cta__text'>
+                  Maximize reply rates on LinkedIn with text analysis
+                </p>
             </div>
             <div className='cta__benefits'>
                 <span className="material-icons copied__check">check_circle</span>
-                <p className='cta__text'>Find secondary contacts if you don't make a connection</p>
+                 <p className='cta__text'>Receive contact suggestions until you make a connection</p>
             </div>
         </div>
           <div className='button__container'>
