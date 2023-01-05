@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './priceTier.css';
 
-const PriceTierHeader = ({name, price, description, search, extension, second, bulk, templates, reply, popular}) => {
+const PriceTierHeader = ({name, price, currency, description, search, extension, second, bulk, templates, reply, popular}) => {
 
   return (
     <div className={`pricing__tier ${popular + "__margin"}`}>
@@ -15,7 +15,7 @@ const PriceTierHeader = ({name, price, description, search, extension, second, b
         <div className='pricing__tier-header'>
           <h2 className='pricing__tier-name'>{name}</h2>
           <div className='pricing__tier-price_container'>
-            <h3 className='pricing__tier-price'>${price}</h3>
+            <h3 className='pricing__tier-price'>{currency}{price}</h3>
             <p className='pricing__tier-price_month'>/month</p>
           </div>
           <p>{description}</p>
@@ -44,7 +44,7 @@ const PriceTierHeader = ({name, price, description, search, extension, second, b
           </div>
           <div className={`pricing__benefits ${templates}`}>
             <span className="material-icons copied__check">check_circle</span>
-            <p className='cta__text'>Message Templates</p>
+            <p className='cta__text'>Message templates</p>
           </div>
           <div className={`pricing__benefits ${second}`}>
             <span className="material-icons copied__check">check_circle</span>

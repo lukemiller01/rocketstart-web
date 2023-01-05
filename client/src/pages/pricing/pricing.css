@@ -1,14 +1,129 @@
+/* Container styles  */
 .pricing {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     margin: 5rem 8rem 5rem 8rem;
+    padding-bottom: 5rem;
 }
 
+/* Styles for container of all tiers  */
 .pricing__tiers {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.pricing__options {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+/* Container for button  */
+.pricing__button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 50px;
+    background-color: rgb(30,90,255);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 16px;
+    color: white;
+    margin: 0;
+}
+
+/* All currency options  */
+.pricing__currency-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+
+    border-radius: 10px;
+    border: 1px solid rgb(30,90,255);
+}
+
+/* Individual currency  */
+.pricing__currency {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    margin: 0;
+    width: 100%;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* On hover, change color of currency  */
+.pricing__currency:hover {
+    background-color: rgb(30,90,255);
+    color: white;
+}
+
+/* Border on all items besides the last item  */
+.pricing__currencies-border {
+    border-bottom: 1px solid rgb(30,90,255);
+}
+
+/* Hide div when the currency options are not active */
+.pricing__hidden {
+    opacity: 0;
+    height: 0px;
+    transition: opacity .2s ease, padding .33s ease, height .33s ease;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+}
+
+/* Open div when the currency options is active */
+.pricing__visible {
+    opacity: 1;
+    height: 121px;
+    transition: opacity .2s ease, padding .33s ease, height .33s ease;
+}
+
+.pricing__plans {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid rgb(30,90,255);
+    width: 250px;
+    height: 50px;
+    gap: .25rem;
+    border-radius: 25px;
+}
+
+.pricing__plan-options {
+    width: 50%;
+    border-radius: 25px;
+    border: 3px solid white;
+    color: black;
+    background-color: white;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.pricing__plan-options:hover {
+    background-color: rgb(30,90,255);
+    color: white;
+}
+
+.pricing__period-color {
+    background-color: rgb(30,90,255);
+    color: white;
+}
+
+.pricing__discount {
+    color: red;
 }
