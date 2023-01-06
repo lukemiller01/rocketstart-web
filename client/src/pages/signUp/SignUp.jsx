@@ -7,9 +7,8 @@ import { useUserAuth } from '../../context/AuthProvider';
 import { Link } from 'react-router-dom';
 
 import './signUp.css';
-import { Navbar3 } from '../../components';
 
-const SignUp = () => {
+const SignUp = ({ setModalOpen }) => {
 
     // Set data to BE
     const navigate = useNavigate();
@@ -44,81 +43,89 @@ const SignUp = () => {
 
   return (
     <div>
-      <Navbar3/>
-      <div className='signup'>
-        <h1 className='signup__header'>Sign Up</h1>
-        <form className='signup__fields' onSubmit={handleFormSubmit}>
-            <div className='signup__name-container'>
-              <input
-                className='signup__input signup__input-name'
-                autoFocus
-                required
-                name='first name'
-                autoComplete='given-name'
-                placeholder="First Name"
-                onChange={(e) => setUserData({...userData, first: e.target.value})}
-              />
-              <input
-                className='signup__input signup__input-name'
-                required
-                name='last name'
-                autoComplete='family-name'
-                placeholder="Last Name"
-                onChange={(e) => setUserData({...userData, last: e.target.value})}
-              />
-            </div>
-            <input
-              className='signup__input'
-              required
-              placeholder="Email"
-              autoComplete='email'
-              name='email'
-              onChange={(e) => setUserData({...userData, email: e.target.value})}
-            />
-            <input
-              className='signup__input'
-              required
-              type='password'
-              autoComplete='new-password'
-              placeholder="Password"
-              onChange={(e) => setUserData({...userData, password: e.target.value})}
-            />
-            <input
-              className='signup__input'
-              required
-              type='password'
-              autoComplete='new-password'
-              placeholder="Confirm Password"
-              onChange={(e) => setUserData({...userData, password: e.target.value})}
-            />
-            {/* <div>
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                autoComplete="current-password"
-                required
-                placeholder="Confirm password"
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </div> */}
-            {/*disabled={loading}> */}
-            <button type="submit" className='signup__button'>
-              Register
-            </button>
-        </form>
-        <p className='signup__terms'>By signing up for Rocketstart you accept our&nbsp;
-          <Link to='/terms-and-conditions' className='signup__terms-links'>
-            Terms & Conditions&nbsp;
-          </Link>
-          and our&nbsp;
-          <Link to='/privacy'  className='signup__terms-links'>
-            Privacy Policy.
-          </Link>
-        </p>
-        {/* <button onClick={signOut}>
-          Sign Out
-        </button> */}
+      <div className='signup__bg'>
+        <div className='signup'>
+          <span className="material-icons exit__button" onClick={() => {setModalOpen(false);}}>close</span>
+          {/* <h4 className='signup__header'>Sign Up</h4> */}
+        <div className='signup__content'>
+          <form className='signup__fields' onSubmit={handleFormSubmit}>
+                <div className='signup__name-container'>
+                  <input
+                    className='signup__input signup__input-name'
+                    autoFocus
+                    required
+                    name='first name'
+                    autoComplete='given-name'
+                    placeholder="First Name"
+                    onChange={(e) => setUserData({...userData, first: e.target.value})}
+                  />
+                  <input
+                    className='signup__input signup__input-name'
+                    required
+                    name='last name'
+                    autoComplete='family-name'
+                    placeholder="Last Name"
+                    onChange={(e) => setUserData({...userData, last: e.target.value})}
+                  />
+                </div>
+                <input
+                  className='signup__input'
+                  required
+                  placeholder="Email"
+                  autoComplete='email'
+                  name='email'
+                  onChange={(e) => setUserData({...userData, email: e.target.value})}
+                />
+                <input
+                  className='signup__input'
+                  required
+                  type='password'
+                  autoComplete='new-password'
+                  placeholder="Password"
+                  onChange={(e) => setUserData({...userData, password: e.target.value})}
+                />
+                <input
+                  className='signup__input'
+                  required
+                  type='password'
+                  autoComplete='new-password'
+                  placeholder="Confirm Password"
+                  onChange={(e) => setUserData({...userData, password: e.target.value})}
+                />
+                {/* <div>
+                  <input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="password"
+                    autoComplete="current-password"
+                    required
+                    placeholder="Confirm password"
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                </div> */}
+                {/*disabled={loading}> */}
+                <button type="submit" className='signup__button'>
+                  Create Account
+                </button>
+          </form>
+          <p className='signup__terms'>By signing up for Rocketstart you accept our&nbsp;
+            <Link to='/terms-and-conditions' className='signup__terms-links'>
+              Terms & Conditions&nbsp;
+            </Link>
+            and our&nbsp;
+            <Link to='/privacy'  className='signup__terms-links'>
+              Privacy Policy.
+            </Link>
+          </p>
+          <p className='signup__signin'>Have an account?</p>
+          <Link to='/sign_in' className='signup__terms-links'>
+            <p className='signup__signin signup__terms-links'>Sign in</p>
+            </Link>
+          {/* <button onClick={signOut}>
+            Sign Out
+          </button> */}
+        </div>
+        </div>
       </div>
     </div>
   )

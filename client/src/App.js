@@ -23,7 +23,7 @@ const App = () => {
             <Route path='/privacy' element={<Privacy/>}/>
 
             <Route path='/sign_in' element={<SignIn/>}/>
-            <Route path='/sign_up' element={<SignUp/>}/>
+            <Route path='/register' element={<SignUp/>}/>
 
             {/* <Route element={<PrivateRoutes/>}>
               <Route path='/message' element={<Message/>}/>
@@ -36,6 +36,7 @@ const App = () => {
           </Routes>
         </BrowserRouter>
       </UserAuthContextProvider>
+      {/* Does this need to be wrapped?  */}
     </div>
   )
 }
