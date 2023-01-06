@@ -1,5 +1,6 @@
 import React from 'react';
-import { Home, Blog, Pricing, About, Product, Privacy, Message, Find, SignIn, SignUp } from './pages';
+import { Home, Blog, Pricing, About, Product, Privacy, Message, Find } from './pages';
+import { SignUp, SignIn } from './modals'
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './miscellaneous/ScrollToTop';
 // import PrivateRoutes from './routes/PrivateRoutes';

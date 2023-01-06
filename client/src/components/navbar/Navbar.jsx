@@ -3,11 +3,41 @@ import { Link } from 'react-router-dom';
 import "./navbar.css";
 import RocketstartLogo from '../../assets/rocketstartLogo.svg';
 import { useState } from 'react';
-import SignUp from '../../pages/signUp/SignUp';
+import { SignUp } from '../../modals';
 
 const Navbar = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [buttonState, setButtonState] = useState('');
+  const [bottomTextQState, setBottomTextQState] = useState('');
+  const [bottomTextAState, setBottomTextAState] = useState('');
+  const [termsTextState, setTermsTextState] = useState('');
+  const [resetTextState, setResetTextState] = useState('');
+
+  function handleUserLogin(type) {
+    // Opening the modal:
+    setModalOpen(true);
+    if(type) {
+      setButtonState(true);
+      setBottomTextQState(true);
+      setBottomTextAState(true);
+      setTermsTextState(true);
+      setResetTextState(true);
+    }
+    else {
+      setButtonState(false);
+      setBottomTextQState(false);
+      setBottomTextAState(false);
+      setTermsTextState(false);
+      setResetTextState(false);
+    }
+  }
+
+  let buttonText = buttonState ? 'Create Account' : 'Sign In';
+  let question = bottomTextQState ? 'Have An Account?' : 'No Account?';
+  let answer = bottomTextAState ? 'Sign In' : "Create One";
+  let terms = termsTextState ? '' : 'signup__no-visibility';
+  let reset = resetTextState ? 'signup__no-visibility' : '';
 
   return (
     <div className='navbar__container'>
@@ -34,9 +64,7 @@ const Navbar = () => {
           </ul>
         </div>
         <nav className='navbar__items'>
-          <Link to='/sign_in' className='navbar__item-focused'>
-            <h3>Sign In</h3>
-          </Link>
+          <h3 className='navbar__item-focused' onClick={() => {handleUserLogin(false)}}>Sign In</h3>
           {/* <div className='button__container'>
             <Link to='/register'>
               <button className='navbar__button'>
@@ -45,13 +73,23 @@ const Navbar = () => {
             </Link>
           </div> */}
           <div className='button__container'>
-            <button className='navbar__button' onClick={() => {setModalOpen(true);}}>
-              Sign Up
-            </button>
+            <button className='navbar__button' onClick={() => {handleUserLogin(true)}}>Sign Up</button>
           </div>
         </nav>
       </div>
-      {modalOpen && <SignUp setModalOpen={setModalOpen} />}
+      {modalOpen && <SignUp
+        setModalOpen={setModalOpen} // To open and close the modal with the close button
+        buttonText={buttonText} // The modal text button
+        setButtonState={setButtonState} // To change the text if the user navigates to the other button
+        question={question} // Text for the question
+        answer={answer} // Text for the answer
+        setBottomTextQState={setBottomTextQState} // To set the question
+        setBottomTextAState={setBottomTextAState} // To set the answer
+        terms={terms} // Acces to terms
+        setTermsTextState={setTermsTextState}
+        reset={reset}
+        setResetTextState={setResetTextState}
+        />}
     </div>
   )
 }

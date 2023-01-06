@@ -8,11 +8,11 @@ import { Link } from 'react-router-dom';
 
 import './signUp.css';
 
-const SignUp = ({ setModalOpen }) => {
+const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, setBottomTextQState, setBottomTextAState, terms, setTermsTextState, reset, setResetTextState }) => {
 
     // Set data to BE
     const navigate = useNavigate();
-    const [userData, setUserData] = useState({first: '', last: '', email: '', password: '', confirm: ''});
+    const [userData, setUserData] = useState({email: '', password: ''});
     const dispatch = useDispatch();
     // TODO: FLAG
     // const { register, logOut } = useUserAuth();
@@ -25,8 +25,13 @@ const SignUp = ({ setModalOpen }) => {
     // }, [currentUser, navigate]);
 
     async function handleFormSubmit(e) {
+
+      if(buttonText === "Sign In") { // Sign in logic
+        // TODO: fill
+      }
+      else { // Sign up logic
         e.preventDefault();
-      
+
         try {
           dispatch(createUser(userData));
           await register(userData.email, userData.password);
@@ -34,6 +39,25 @@ const SignUp = ({ setModalOpen }) => {
         } catch (e) {
           console.log(e)
         }
+      }
+    }
+
+    // TO handle the modal change between Sign Up and Sign In
+    function handleModalSwitch() {
+      if(buttonText === "Sign In") {
+        setButtonState(true);
+        setBottomTextQState(true);
+        setBottomTextAState(true);
+        setTermsTextState(true);
+        setResetTextState(true);
+      }
+      else {
+        setButtonState(false);
+        setBottomTextQState(false);
+        setBottomTextAState(false);
+        setTermsTextState(false);
+        setResetTextState(false);
+      }
     }
 
     // TODO: FLAG
@@ -49,25 +73,6 @@ const SignUp = ({ setModalOpen }) => {
           {/* <h4 className='signup__header'>Sign Up</h4> */}
         <div className='signup__content'>
           <form className='signup__fields' onSubmit={handleFormSubmit}>
-                <div className='signup__name-container'>
-                  <input
-                    className='signup__input signup__input-name'
-                    autoFocus
-                    required
-                    name='first name'
-                    autoComplete='given-name'
-                    placeholder="First Name"
-                    onChange={(e) => setUserData({...userData, first: e.target.value})}
-                  />
-                  <input
-                    className='signup__input signup__input-name'
-                    required
-                    name='last name'
-                    autoComplete='family-name'
-                    placeholder="Last Name"
-                    onChange={(e) => setUserData({...userData, last: e.target.value})}
-                  />
-                </div>
                 <input
                   className='signup__input'
                   required
@@ -84,31 +89,12 @@ const SignUp = ({ setModalOpen }) => {
                   placeholder="Password"
                   onChange={(e) => setUserData({...userData, password: e.target.value})}
                 />
-                <input
-                  className='signup__input'
-                  required
-                  type='password'
-                  autoComplete='new-password'
-                  placeholder="Confirm Password"
-                  onChange={(e) => setUserData({...userData, password: e.target.value})}
-                />
-                {/* <div>
-                  <input
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    type="password"
-                    autoComplete="current-password"
-                    required
-                    placeholder="Confirm password"
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                  />
-                </div> */}
                 {/*disabled={loading}> */}
                 <button type="submit" className='signup__button'>
-                  Create Account
+                  {buttonText}
                 </button>
           </form>
-          <p className='signup__terms'>By signing up for Rocketstart you accept our&nbsp;
+          <p className={`signup__terms ${terms}`}>By signing up for Rocketstart you accept our&nbsp;
             <Link to='/terms-and-conditions' className='signup__terms-links'>
               Terms & Conditions&nbsp;
             </Link>
@@ -117,10 +103,13 @@ const SignUp = ({ setModalOpen }) => {
               Privacy Policy.
             </Link>
           </p>
-          <p className='signup__signin'>Have an account?</p>
-          <Link to='/sign_in' className='signup__terms-links'>
-            <p className='signup__signin signup__terms-links'>Sign in</p>
-            </Link>
+          <p className={`signup__reset signup__terms-links ${reset}`}>Reset Password</p>
+          <div className='signup__question-answer'>
+            <p className='signup__signin'>{question}&nbsp;</p>
+            <div onClick={() => {handleModalSwitch();}}>
+              <p className='signup__signin signup__terms-links'>{answer}</p>
+            </div>
+          </div>
           {/* <button onClick={signOut}>
             Sign Out
           </button> */}
