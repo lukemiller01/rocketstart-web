@@ -1,0 +1,76 @@
+/* Container for entire page */
+.signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5rem 28rem 5rem 28rem;
+}
+
+.signup__header {
+    text-align: center;
+}
+
+/* Container for all inputs  */
+.signup__fields {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+/* First and last name  */
+.signup__name-container {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+}
+
+/* Styles for each individual input  */
+.signup__input {
+    border-radius: 10px;
+    border: 2px solid black;
+    height: 50px;
+    padding: .25rem 1rem .25rem 1rem;
+    font-size: 16px;
+}
+
+.signup__input:focus {
+    border-color: rgb(30,90,255);
+}
+
+.signup__input-name {
+    flex: 1;
+}
+
+/* Sign up button styles  */
+.signup__button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background-color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 16px;
+    color: white;
+    margin: 0;
+    transition: all .33s ease;
+}
+
+/* Sign up button hover  */
+.signup__button:hover{
+    transform: scale(.98);
+    background-color: rgb(30, 90, 255);
+    transition: all .33s ease;
+}
+
+.signup__terms {
+    margin-top: 1rem;
+}
+
+.signup__terms-links {
+    color: rgb(30, 90, 255);
+}

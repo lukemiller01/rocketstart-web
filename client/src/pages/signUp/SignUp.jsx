@@ -4,16 +4,20 @@ import { useDispatch } from 'react-redux'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserAuth } from '../../context/AuthProvider';
+import { Link } from 'react-router-dom';
 
 import './signUp.css';
+import { Navbar3 } from '../../components';
 
 const SignUp = () => {
 
     // Set data to BE
     const navigate = useNavigate();
-    const [userData, setUserData] = useState({first: '', last: '', email: '', password: ''});
+    const [userData, setUserData] = useState({first: '', last: '', email: '', password: '', confirm: ''});
     const dispatch = useDispatch();
-    // const { register } = useUserAuth();
+    // TODO: FLAG
+    // const { register, logOut } = useUserAuth();
+    const { register } = useUserAuth();
 
     // useEffect(() => {
     //   if (currentUser) {
@@ -26,58 +30,67 @@ const SignUp = () => {
       
         try {
           dispatch(createUser(userData));
-          // await register(userData.email, userData.password);
+          await register(userData.email, userData.password);
           navigate("/message");
         } catch (e) {
           console.log(e)
         }
     }
 
+    // TODO: FLAG
+    // function signOut() {
+    //   logOut();
+    // }
+
   return (
     <div>
-        Sign Up
-        <form onSubmit={handleFormSubmit}>
-          <div>
-          <div>
+      <Navbar3/>
+      <div className='signup'>
+        <h1 className='signup__header'>Sign Up</h1>
+        <form className='signup__fields' onSubmit={handleFormSubmit}>
+            <div className='signup__name-container'>
               <input
-                name="first"
-                type="first"
-                autoComplete="first"
+                className='signup__input signup__input-name'
+                autoFocus
                 required
+                name='first name'
+                autoComplete='given-name'
                 placeholder="First Name"
                 onChange={(e) => setUserData({...userData, first: e.target.value})}
               />
-            </div>
-            <div>
               <input
-                name="last"
-                type="last"
-                autoComplete="last"
+                className='signup__input signup__input-name'
                 required
+                name='last name'
+                autoComplete='family-name'
                 placeholder="Last Name"
                 onChange={(e) => setUserData({...userData, last: e.target.value})}
               />
             </div>
-            <div>
-              <input
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                placeholder="Email address"
-                onChange={(e) => setUserData({...userData, email: e.target.value})}
-              />
-            </div>
-            <div>
-              <input
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                placeholder="Password"
-                onChange={(e) => setUserData({...userData, password: e.target.value})}
-              />
-            </div>
+            <input
+              className='signup__input'
+              required
+              placeholder="Email"
+              autoComplete='email'
+              name='email'
+              onChange={(e) => setUserData({...userData, email: e.target.value})}
+            />
+            <input
+              className='signup__input'
+              required
+              type='password'
+              autoComplete='new-password'
+              placeholder="Password"
+              onChange={(e) => setUserData({...userData, password: e.target.value})}
+            />
+            <input
+              className='signup__input'
+              required
+              type='password'
+              autoComplete='new-password'
+              placeholder="Confirm Password"
+              onChange={(e) => setUserData({...userData, password: e.target.value})}
+            />
             {/* <div>
               <input
                 id="confirmPassword"
@@ -89,14 +102,24 @@ const SignUp = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div> */}
-          </div>
-          <div>
-            {/* <button type="submit" disabled={loading}> */}
-            <button type="submit">
+            {/*disabled={loading}> */}
+            <button type="submit" className='signup__button'>
               Register
             </button>
-          </div>
         </form>
+        <p className='signup__terms'>By signing up for Rocketstart you accept our&nbsp;
+          <Link to='/terms-and-conditions' className='signup__terms-links'>
+            Terms & Conditions&nbsp;
+          </Link>
+          and our&nbsp;
+          <Link to='/privacy'  className='signup__terms-links'>
+            Privacy Policy.
+          </Link>
+        </p>
+        {/* <button onClick={signOut}>
+          Sign Out
+        </button> */}
+      </div>
     </div>
   )
 }

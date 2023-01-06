@@ -21,20 +21,28 @@ export const createUser = async (req, res) => {
     }
 
     try {
-        const newFirebaseUser = await firebaseAdmin.firebase.createUser({
-            email,
-            password
-        });
+        // * Adding to firebase is being handled client-side for simplicity.
+        // const newFirebaseUser = await firebaseAdmin.firebase.createUser({
+        //     email,
+        //     password
+        // });
 
-        if(newFirebaseUser) {
-            const user = await User.create({
-                first,
-                last,
-                email,
-                password,
-                firebaseId: newFirebaseUser.uid
-            });
-        }
+        // if(newFirebaseUser) {
+        //     const user = await User.create({
+        //         first,
+        //         last,
+        //         email,
+        //         password,
+        //         firebaseId: newFirebaseUser.uid
+        //     });
+        // }
+
+        const user = await User.create({
+            first,
+            last,
+            email,
+            password,
+        });
         return res.status(200).json({message: "Success!"});
     }
     catch (error) {

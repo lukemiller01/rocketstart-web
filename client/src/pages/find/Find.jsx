@@ -31,7 +31,7 @@ const Find = () => {
               <h3>Find by Role</h3>
             </div>
             <div className='row__three'>
-              <input placeholder='Job URL'></input>
+              <input className='find__input' placeholder='Job URL'></input>
               <button className='find__button' id='find-button' onClick={handleSearch}>Find</button>
             </div>
             <p id='poc__title' className='find__paragraph-header' style={{visibility: 'hidden'}}>Hiring for this role:</p>
