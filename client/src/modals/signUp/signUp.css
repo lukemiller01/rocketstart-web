@@ -76,6 +76,7 @@
     font-size: 16px;
     color: white;
     margin: 0;
+    margin-bottom: 1rem;
     transition: all .33s ease;
 }
 
@@ -87,12 +88,13 @@
 }
 
 .signup__terms {
-    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .signup__reset {
-    margin: 1rem 0rem 1rem 0rem;
+    margin-bottom: 1rem;
     text-align: center;
+    cursor: pointer;
 }
 
 .signup__terms-links {

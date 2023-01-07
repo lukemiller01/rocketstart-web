@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom';
 
 import './signUp.css';
 
-const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, setBottomTextQState, setBottomTextAState, terms, setTermsTextState, reset, setResetTextState }) => {
+const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, setBottomTextQState, setBottomTextAState, terms, setTermsTextState, reset, setResetTextState, password, setPasswordState }) => {
 
-    // Set data to BE
+    // Set Firebase and send data to MongoDB
     const navigate = useNavigate();
     const [userData, setUserData] = useState({email: '', password: ''});
     const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       if(buttonText === "Sign In") { // Sign in logic
         // TODO: fill
       }
-      else { // Sign up logic
+      else if (buttonText === "Create Account" ) { // Sign up logic
         e.preventDefault();
 
         try {
@@ -40,23 +40,35 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
           console.log(e)
         }
       }
+      else { // Reset password logic
+        // TODO: fill
+      }
     }
 
-    // TO handle the modal change between Sign Up and Sign In
-    function handleModalSwitch() {
-      if(buttonText === "Sign In") {
-        setButtonState(true);
-        setBottomTextQState(true);
-        setBottomTextAState(true);
+    // To handle the modal change between Sign Up and Sign In
+    function handleModalSwitch(type) {
+      if(type && buttonText === "Sign In") {
+        setButtonState("Create Account");
+        setBottomTextQState('Have An Account?');
+        setBottomTextAState("Sign In");
         setTermsTextState(true);
         setResetTextState(true);
+        setPasswordState(true);
       }
-      else {
-        setButtonState(false);
-        setBottomTextQState(false);
-        setBottomTextAState(false);
+      else if ((type && buttonText === "Create Account") || (type && buttonText === "Reset Password")) {
+        setButtonState("Sign In");
+        setBottomTextQState('No Account?');
+        setBottomTextAState("Create One");
         setTermsTextState(false);
         setResetTextState(false);
+        setPasswordState(true);
+      }
+      else {
+        setButtonState("Reset Password");
+        setBottomTextQState(false);
+        setBottomTextAState("Cancel");
+        setResetTextState(true);
+        setPasswordState(false);
       }
     }
 
@@ -79,10 +91,11 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
                   placeholder="Email"
                   autoComplete='email'
                   name='email'
+                  ref={input => input && input.focus()}
                   onChange={(e) => setUserData({...userData, email: e.target.value})}
                 />
                 <input
-                  className='signup__input'
+                  className={`signup__input ${password}`}
                   required
                   type='password'
                   autoComplete='new-password'
@@ -103,10 +116,10 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
               Privacy Policy.
             </Link>
           </p>
-          <p className={`signup__reset signup__terms-links ${reset}`}>Reset Password</p>
+          <p className={`signup__reset signup__terms-links ${reset}`} onClick={() => {handleModalSwitch(false);}}>Reset Password</p>
           <div className='signup__question-answer'>
             <p className='signup__signin'>{question}&nbsp;</p>
-            <div onClick={() => {handleModalSwitch();}}>
+            <div onClick={() => {handleModalSwitch(true);}}>
               <p className='signup__signin signup__terms-links'>{answer}</p>
             </div>
           </div>

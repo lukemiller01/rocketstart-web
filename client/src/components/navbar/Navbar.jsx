@@ -13,31 +13,30 @@ const Navbar = () => {
   const [bottomTextAState, setBottomTextAState] = useState('');
   const [termsTextState, setTermsTextState] = useState('');
   const [resetTextState, setResetTextState] = useState('');
+  const [passwordState, setPasswordState] = useState(true);
 
   function handleUserLogin(type) {
     // Opening the modal:
     setModalOpen(true);
     if(type) {
-      setButtonState(true);
-      setBottomTextQState(true);
-      setBottomTextAState(true);
+      setButtonState("Create Account");
+      setBottomTextQState('Have An Account?');
+      setBottomTextAState("Sign In");
       setTermsTextState(true);
       setResetTextState(true);
     }
     else {
-      setButtonState(false);
-      setBottomTextQState(false);
-      setBottomTextAState(false);
+      setButtonState("Sign In");
+      setBottomTextQState('No Account?');
+      setBottomTextAState("Create One");
       setTermsTextState(false);
       setResetTextState(false);
     }
   }
 
-  let buttonText = buttonState ? 'Create Account' : 'Sign In';
-  let question = bottomTextQState ? 'Have An Account?' : 'No Account?';
-  let answer = bottomTextAState ? 'Sign In' : "Create One";
   let terms = termsTextState ? '' : 'signup__no-visibility';
   let reset = resetTextState ? 'signup__no-visibility' : '';
+  let password = passwordState ? '' : 'signup__no-visibility';
 
   return (
     <div className='navbar__container'>
@@ -79,16 +78,18 @@ const Navbar = () => {
       </div>
       {modalOpen && <SignUp
         setModalOpen={setModalOpen} // To open and close the modal with the close button
-        buttonText={buttonText} // The modal text button
+        buttonText={buttonState} // The modal text button
         setButtonState={setButtonState} // To change the text if the user navigates to the other button
-        question={question} // Text for the question
-        answer={answer} // Text for the answer
+        question={bottomTextQState} // Text for the question
+        answer={bottomTextAState} // Text for the answer
         setBottomTextQState={setBottomTextQState} // To set the question
         setBottomTextAState={setBottomTextAState} // To set the answer
-        terms={terms} // Acces to terms
-        setTermsTextState={setTermsTextState}
-        reset={reset}
-        setResetTextState={setResetTextState}
+        terms={terms} // Access to terms & privacy text
+        setTermsTextState={setTermsTextState} // To set the term visibility
+        reset={reset} // Access to Reset button
+        setResetTextState={setResetTextState} // To set the reset visibility
+        password={password} // Access to password button
+        setPasswordState={setPasswordState} // To set password button
         />}
     </div>
   )
