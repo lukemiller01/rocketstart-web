@@ -65,7 +65,7 @@ const Navbar = () => {
         <nav className='navbar__items'>
           <h3 className='navbar__item-focused' onClick={() => {handleUserLogin(false)}}>Sign In</h3>
           {/* <div className='button__container'>
-            <Link to='/register'>
+            <Link to='/login'>
               <button className='navbar__button'>
                 Sign Up
               </button>

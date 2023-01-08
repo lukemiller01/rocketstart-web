@@ -11,3 +11,17 @@
     margin-left: 6.5rem;
     margin-right: 6.5rem;
 }
+
+.navbar__account {
+    display: flex;
+    justify-content: flex-end;
+    width: 6rem;
+    user-select: none;
+}
+
+.navbar__account-icon {
+    display: flex;
+    padding-left: 0.25rem;
+    font-size: 19px;
+    height: 19px;
+}

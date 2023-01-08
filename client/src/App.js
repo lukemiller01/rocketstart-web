@@ -1,6 +1,6 @@
 import React from 'react';
 import { Home, Blog, Pricing, About, Product, Privacy, Message, Find } from './pages';
-import { SignUp, SignIn } from './modals'
+import { SignUp } from './modals'
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './miscellaneous/ScrollToTop';
 // import PrivateRoutes from './routes/PrivateRoutes';
@@ -23,8 +23,7 @@ const App = () => {
             <Route path='/pricing' element={<Pricing/>}/>
             <Route path='/privacy' element={<Privacy/>}/>
 
-            <Route path='/sign_in' element={<SignIn/>}/>
-            <Route path='/register' element={<SignUp/>}/>
+            <Route path='/login' element={<SignUp/>}/>
 
             {/* <Route element={<PrivateRoutes/>}>
               <Route path='/message' element={<Message/>}/>
