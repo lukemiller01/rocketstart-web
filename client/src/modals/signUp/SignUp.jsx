@@ -1,7 +1,7 @@
 import React from 'react';
 import { createUser } from '../../actions/userActions';
 import { useDispatch } from 'react-redux'
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserAuth } from '../../context/AuthProvider';
 import { Link } from 'react-router-dom';
@@ -14,9 +14,10 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
     const navigate = useNavigate();
     const [userData, setUserData] = useState({email: '', password: ''});
     const dispatch = useDispatch();
-    // TODO: FLAG
-    // const { register, logOut } = useUserAuth();
-    const { register } = useUserAuth();
+    const { register, logIn } = useUserAuth();
+
+    // Ref for focus element:
+    const emailRef = useRef(null);
 
     // useEffect(() => {
     //   if (currentUser) {
@@ -27,7 +28,16 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
     async function handleFormSubmit(e) {
 
       if(buttonText === "Sign In") { // Sign in logic
-        // TODO: fill
+        e.preventDefault();
+
+        try {
+          await logIn(userData.email, userData.password);
+          navigate("/message");
+        }
+        catch (e) {
+          console.log(e);
+        }
+
       }
       else if (buttonText === "Create Account" ) { // Sign up logic
         e.preventDefault();
@@ -47,6 +57,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
 
     // To handle the modal change between Sign Up and Sign In
     function handleModalSwitch(type) {
+      emailRef.current.focus(); // Because element unfocuses on handleModalSwitch
       if(type && buttonText === "Sign In") {
         setButtonState("Create Account");
         setBottomTextQState('Have An Account?');
@@ -72,11 +83,6 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       }
     }
 
-    // TODO: FLAG
-    // function signOut() {
-    //   logOut();
-    // }
-
   return (
     <div>
       <div className='signup__bg'>
@@ -91,7 +97,8 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
                   placeholder="Email"
                   autoComplete='email'
                   name='email'
-                  ref={input => input && input.focus()}
+                  autoFocus
+                  ref={emailRef}
                   onChange={(e) => setUserData({...userData, email: e.target.value})}
                 />
                 <input

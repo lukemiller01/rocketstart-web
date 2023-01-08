@@ -4,8 +4,8 @@ function useOutsideClick(ref, handler) {
     useEffect(
       () => {
         const listener = (event) => {
-          // Do nothing if clicking ref's element or descendent elements
-          if (!ref.current || ref.current.contains(event.target)) {
+          if (!ref.current || ref.current.contains(event.target) ) {
+            console.log('NOT A MODAL CLICK')
             return;
           }
           handler(event);

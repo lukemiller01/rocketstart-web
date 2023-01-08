@@ -11,6 +11,15 @@ import { Account } from '../../modals';
 const Navbar2 = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [communicateState, setCommunicateState] = useState(true);
+
+  const [accountIconState, setAccountIconState ] = useState('expand_more');
+  let icon = accountIconState ? 'expand_more' : 'expand_less';
+
+  function handleModalOpen() {
+    setModalOpen(!modalOpen);
+    setAccountIconState(!accountIconState);
+  }
 
   return (
   <div className='navbar__container'>
@@ -22,13 +31,16 @@ const Navbar2 = () => {
       <nav>
         <ul className='menu'>
           <li className='menu__item navbar__item-focused'>
-            <h3><NavLink to='/message' className={({ isActive }) =>
-                isActive ? 'active__menu' : ''
-            }>Message</NavLink></h3>
+            <h3>
+              <NavLink to='/message' className={({ isActive }) => isActive ? 'active__menu' : ''}>
+                Message
+              </NavLink>
+            </h3>
           </li>
-          <li className='navbar__item-focused navbar__account' onClick={() => {setModalOpen(!modalOpen)}}>
+          {/* onClick={() => {setModalOpen(!modalOpen)}} */}
+          <li className='navbar__item-focused navbar__account' onClick={handleModalOpen} onMouseEnter={() => {setCommunicateState(false)}} onMouseLeave={() => {setCommunicateState(true)}}>
             <h3>Account</h3>
-            <span className="material-symbols-outlined navbar__account-icon">expand_more</span>
+            <span className="material-symbols-outlined navbar__account-icon">{icon}</span>
           </li>
           {/* <li className='menu__item'>
             <h3><NavLink to='/find' className={({ isActive }) =>
@@ -45,7 +57,7 @@ const Navbar2 = () => {
         </div>
       </nav>
     </div>
-    {modalOpen && <Account setModalOpen={setModalOpen}/>}
+    {modalOpen && <Account setModalOpen={setModalOpen} setAccountIconState={setAccountIconState} communicateState={communicateState}/>}
   </div>
   )
 }

@@ -4,10 +4,11 @@ import { useUserAuth } from '../context/AuthProvider';
 
 const PrivateRoutes = () => {
 
-    const { user } = useUserAuth()
+  const { user } = useUserAuth();
 
-  return (
-    user? <Outlet/> : <Navigate to="/login"/>
+  return typeof user === 'undefined' ? (
+    <h1>Loading.....</h1> ) :
+    user? ( <Outlet/> ) : (<Navigate to="/login"/>
   )
 }
 
