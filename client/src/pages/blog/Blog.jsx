@@ -1,14 +1,18 @@
 import React from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import Footer from '../../containers/footer/Footer'
+import { useOutletContext } from 'react-router-dom';
 import './blog.css';
 import Article from '../../components/article/Article';
 import {map, retro, mac, pen} from './imports';
 
 const Blog = () => {
+
+  const { navOne, navTwo, logoURL } = useOutletContext();
+
   return (
     <div>
-      <Navbar/>
+      <Navbar navOne={navOne} navTwo={navTwo} logoURL={logoURL}/>
       <div className='blog'>
         <h1>Blog</h1>
         <p>Discover Rocketstart's posts on making the most out of your job search.</p>

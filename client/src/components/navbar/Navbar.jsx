@@ -5,8 +5,9 @@ import RocketstartLogo from '../../assets/rocketstartLogo.svg';
 import { useState } from 'react';
 import { SignUp } from '../../modals';
 
-const Navbar = () => {
+const Navbar = ({navOne, navTwo, logoURL}) => {
 
+  // Modal state
   const [modalOpen, setModalOpen] = useState(false);
   const [buttonState, setButtonState] = useState('');
   const [bottomTextQState, setBottomTextQState] = useState('');
@@ -42,7 +43,7 @@ const Navbar = () => {
     <div className='navbar__container'>
       <div className='inner__navbar'>
         <div className='navbar__logo'>
-          <Link to="/" className='navbar__logo'><img src={RocketstartLogo} alt="logo" className='image__logo'></img></Link>
+          <Link to={logoURL} className='navbar__logo'><img src={RocketstartLogo} alt="logo" className='image__logo'></img></Link>
           <h2>Rocketstart</h2>
           <ul className='menu'>
             <li className='menu__item navbar__item-focused'>
@@ -50,7 +51,7 @@ const Navbar = () => {
               <h3>Product</h3>
             </li>
             <li className='menu__item'>
-              <h3 ><Link to="/blog" className='navbar__item-focused'>Blog</Link></h3>
+              <h3><Link to="/blog" className='navbar__item-focused'>Blog</Link></h3>
             </li>
             <li className='menu__item navbar__item-focused'>
               {/* <h3><Link to="/pricing">Pricing</Link></h3> */}
@@ -62,20 +63,29 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <nav className='navbar__items'>
-          <h3 className='navbar__item-focused' onClick={() => {handleUserLogin(false)}}>Sign In</h3>
-          {/* <div className='button__container'>
-            <Link to='/login'>
-              <button className='navbar__button'>
-                Sign Up
-              </button>
-            </Link>
-          </div> */}
+
+        <div className={navOne}>
+          <nav className='navbar__items'>
+
+            <h3 className='navbar__item-focused' onClick={() => {handleUserLogin(false)}}>Sign In</h3>
+
+            <div className='button__container'>
+              <button className='navbar__button' onClick={() => {handleUserLogin(true)}}>Sign Up</button>
+            </div>
+
+          </nav>
+        </div>
+
+        <div className={navTwo}>
           <div className='button__container'>
-            <button className='navbar__button' onClick={() => {handleUserLogin(true)}}>Sign Up</button>
+            <Link to='/message'>
+              <button className='navbar__button home__dashboard-button'>Dashboard</button>
+            </Link>
           </div>
-        </nav>
+        </div>
+
       </div>
+
       {modalOpen && <SignUp
         setModalOpen={setModalOpen} // To open and close the modal with the close button
         buttonText={buttonState} // The modal text button
@@ -90,6 +100,9 @@ const Navbar = () => {
         setResetTextState={setResetTextState} // To set the reset visibility
         password={password} // Access to password button
         setPasswordState={setPasswordState} // To set password button
+        background={"signup__bg"} // To keep the absolute positioning
+        closeButton={"close__show"} // To keep the close button
+        containerStyle={'signup'}
         />}
     </div>
   )

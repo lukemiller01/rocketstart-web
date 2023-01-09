@@ -5,7 +5,6 @@ function useOutsideClick(ref, handler) {
       () => {
         const listener = (event) => {
           if (!ref.current || ref.current.contains(event.target) ) {
-            console.log('NOT A MODAL CLICK')
             return;
           }
           handler(event);

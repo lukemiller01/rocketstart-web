@@ -8,86 +8,83 @@ import { Link } from 'react-router-dom';
 
 import './signUp.css';
 
-const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, setBottomTextQState, setBottomTextAState, terms, setTermsTextState, reset, setResetTextState, password, setPasswordState }) => {
+const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, setBottomTextQState, setBottomTextAState, terms, setTermsTextState, reset, setResetTextState, password, setPasswordState, background, closeButton, setHeaderState, containerStyle }) => {
 
-    // Set Firebase and send data to MongoDB
-    const navigate = useNavigate();
-    const [userData, setUserData] = useState({email: '', password: ''});
-    const dispatch = useDispatch();
-    const { register, logIn } = useUserAuth();
+  // Set Firebase and send data to MongoDB
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState({email: '', password: ''});
+  const dispatch = useDispatch();
+  const { register, logIn } = useUserAuth();
 
-    // Ref for focus element:
-    const emailRef = useRef(null);
+  // Ref for focus element:
+  const emailRef = useRef(null);
 
-    // useEffect(() => {
-    //   if (currentUser) {
-    //     navigate("/message");
-    //   }
-    // }, [currentUser, navigate]);
+  async function handleFormSubmit(e) {
 
-    async function handleFormSubmit(e) {
+    if(buttonText === "Sign In") { // Sign in logic
+      e.preventDefault();
 
-      if(buttonText === "Sign In") { // Sign in logic
-        e.preventDefault();
-
-        try {
-          await logIn(userData.email, userData.password);
-          navigate("/message");
-        }
-        catch (e) {
-          console.log(e);
-        }
-
+      try {
+        await logIn(userData.email, userData.password);
+        navigate("/message");
       }
-      else if (buttonText === "Create Account" ) { // Sign up logic
-        e.preventDefault();
-
-        try {
-          dispatch(createUser(userData));
-          await register(userData.email, userData.password);
-          navigate("/message");
-        } catch (e) {
-          console.log(e)
-        }
+      catch (e) {
+        console.log(e);
       }
-      else { // Reset password logic
-        // TODO: fill
+
+    }
+    else if (buttonText === "Create Account" ) { // Sign up logic
+      e.preventDefault();
+
+      try {
+        dispatch(createUser(userData));
+        await register(userData.email, userData.password);
+        navigate("/message");
+      } catch (e) {
+        console.log(e)
       }
     }
-
-    // To handle the modal change between Sign Up and Sign In
-    function handleModalSwitch(type) {
-      emailRef.current.focus(); // Because element unfocuses on handleModalSwitch
-      if(type && buttonText === "Sign In") {
-        setButtonState("Create Account");
-        setBottomTextQState('Have An Account?');
-        setBottomTextAState("Sign In");
-        setTermsTextState(true);
-        setResetTextState(true);
-        setPasswordState(true);
-      }
-      else if ((type && buttonText === "Create Account") || (type && buttonText === "Reset Password")) {
-        setButtonState("Sign In");
-        setBottomTextQState('No Account?');
-        setBottomTextAState("Create One");
-        setTermsTextState(false);
-        setResetTextState(false);
-        setPasswordState(true);
-      }
-      else {
-        setButtonState("Reset Password");
-        setBottomTextQState(false);
-        setBottomTextAState("Cancel");
-        setResetTextState(true);
-        setPasswordState(false);
-      }
+    else { // Reset password logic
+      // TODO: fill
     }
+  }
+
+  // To handle the modal change between Sign Up and Sign In
+  function handleModalSwitch(type) {
+    emailRef.current.focus(); // Because element unfocuses on handleModalSwitch
+    if(type && buttonText === "Sign In") {
+      setButtonState("Create Account");
+      setBottomTextQState('Have An Account?');
+      setBottomTextAState("Sign In");
+      setTermsTextState(true);
+      setResetTextState(true);
+      setPasswordState(true);
+      setHeaderState('Create a Free Account');
+    }
+    else if ((type && buttonText === "Create Account") || (type && buttonText === "Reset Password")) {
+      setButtonState("Sign In");
+      setBottomTextQState('No Account?');
+      setBottomTextAState("Create One");
+      setTermsTextState(false);
+      setResetTextState(false);
+      setPasswordState(true);
+      setHeaderState('Welcome back!');
+    }
+    else {
+      setButtonState("Reset Password");
+      setBottomTextQState(false);
+      setBottomTextAState("Cancel");
+      setResetTextState(true);
+      setPasswordState(false);
+      setHeaderState('Reset Password');
+    }
+  }
 
   return (
-    <div>
-      <div className='signup__bg'>
-        <div className='signup'>
-          <span className="material-icons exit__button" onClick={() => {setModalOpen(false);}}>close</span>
+    <div> 
+      <div className={`${background}`}>
+        <div className={`${containerStyle}`}>
+          <span className={`material-icons exit__button ${closeButton}`} onClick={() => {setModalOpen(false);}}>close</span>
           {/* <h4 className='signup__header'>Sign Up</h4> */}
         <div className='signup__content'>
           <form className='signup__fields' onSubmit={handleFormSubmit}>

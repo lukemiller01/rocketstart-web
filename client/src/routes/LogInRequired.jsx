@@ -2,7 +2,7 @@ import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom';
 import { useUserAuth } from '../context/AuthProvider';
 
-const PrivateRoutes = () => {
+const LogInRequired = () => {
 
   const { user } = useUserAuth();
 
@@ -12,4 +12,4 @@ const PrivateRoutes = () => {
   )
 }
 
-export default PrivateRoutes
+export default LogInRequired

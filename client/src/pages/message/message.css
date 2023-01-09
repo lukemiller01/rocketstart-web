@@ -387,6 +387,7 @@ textarea:focus {
     padding-left: 1rem;
     padding-right: 1rem;
     color: grey;
+    font-size: 18px;
 }
 
 /* Explanation of the product  */

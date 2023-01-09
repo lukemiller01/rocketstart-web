@@ -1,12 +1,12 @@
 import React from 'react'
 import { Header, Questions, Footer, Process, CallToAction } from '../../containers';
-import Navbar from '../../components/navbar/Navbar'
+import { Navbar } from '../../components';
 
-const Home = () => {
-
+const Home = ({navOne, navTwo, logoURL}) => {
+  
   return (
     <div>
-      <Navbar/>
+      <Navbar navOne={navOne} navTwo={navTwo} logoURL={logoURL} />
       <Header/>
         {/* <div className="grey__bg">
           <Testimonials/>

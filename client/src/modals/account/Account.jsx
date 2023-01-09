@@ -19,7 +19,6 @@ const Account = ({setModalOpen, setAccountIconState, communicateState}) => {
     });
 
     async function handleLogOut() {
-        console.log('logout')
         try {
             await logOut();
             navigate("/");
@@ -52,14 +51,17 @@ const Account = ({setModalOpen, setAccountIconState, communicateState}) => {
             </div>
 
             <div className='account__nav-container'>
+
                 <div className='account__nav-options'>
                     <span className="material-icons account__icons">account_circle</span>
                     <p className='account__modal-text_nav'>Account</p>
                 </div>
-                <div className='account__nav-options'>
+
+                <Link to='/home' className='account__nav-options'>
                     <span className="material-icons account__icons">home</span>
                     <p className='account__modal-text_nav'>Home Page</p>
-                </div>
+                </Link>
+                
                 <div className='account__nav-options' onClick={handleLogOut}>
                     <span className="material-icons account__icons">logout</span>
                     <p className='account__modal-text_nav'>Log Out</p>

@@ -106,6 +106,10 @@ h3 {
     color: white;
 }
 
+.home__dashboard-button {
+    width: 120px;
+}
+
 .navbar__button:hover {
     transform: scale(.98);
     background-color: rgb(30, 90, 255);
@@ -119,4 +123,8 @@ h3 {
 
 .navbar__item-focused:hover {
     color: rgb(30, 90, 255);
+}
+
+.navbar__hidden {
+    display: none;
 }
