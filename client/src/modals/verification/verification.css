@@ -1,0 +1,46 @@
+/* Contains background and spans entire screen  */
+.verification__bg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100vw;
+    height: 100vw;
+    background-color: rgba(30,30,30,.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: -55rem;
+    z-index: 1001;
+}
+
+/* Container with modal  */
+.verification__modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5rem 30rem;
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+/* Welcome message  */
+.verification__modal-header {
+    margin-bottom: 1rem;
+}
+
+/* Remaining modal text  */
+.verification__modal-text {
+    margin-bottom: 1rem;
+}
+
+/* Bold for email highlight  */
+.verification__modal-email {
+    font-weight: 700;
+}
+
+.verification__modal-link {
+    color: rgb(30,90,255);
+}

@@ -9,7 +9,7 @@
 }
 
 .message__header {
-    padding: 1rem;
+    margin-bottom: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -18,7 +18,7 @@
 
 /* Div for left and right columns */
 .columns {
-    padding: 1rem;
+    /* padding: 1rem; */
     display: flex;
     flex-direction: row;
     gap: 1.5rem;

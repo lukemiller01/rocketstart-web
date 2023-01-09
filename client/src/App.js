@@ -8,7 +8,6 @@ import UserRedirect from './routes/UserRedirect';
 import './app.css';
 import HomeRedirect from './routes/HomeRedirect';
 import AuxiliaryRedirect from './routes/AuxiliaryRedirect';
-// import AuxiliaryRedirect from './routes/AuxiliaryRedirect';
 
 const App = () => {
 

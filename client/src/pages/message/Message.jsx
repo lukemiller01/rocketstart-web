@@ -1,10 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import Navbar2 from '../../components/navbar2/Navbar2';
 import VerbExample from '../../components/verbExample/VerbExample';
+import Verification from '../../modals/verification/Verification';
+import { useUserAuth } from '../../context/AuthProvider';
 // import Footer from '../../containers/footer/Footer'
 import './message.css';
 
 const Message = () => {
+
+    // Modal state
+    const [modalOpen, setModalOpen] = useState(false);
+    const { user } = useUserAuth();
+
+    let userEmail = user.email;
+
+    useEffect(() => {
+        if(!user.emailVerified) {
+            setModalOpen(true);
+        }
+      }, [user]);
+
+    // ------------------------------------------
 
     // Message text
     const [message, setMessage] = useState('');
@@ -522,6 +538,7 @@ const Message = () => {
             </div>
         </div>
         {/* <Footer/> */}
+        {modalOpen && <Verification userEmail={userEmail} />}
     </div>
   )
 }

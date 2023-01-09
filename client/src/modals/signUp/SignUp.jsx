@@ -25,7 +25,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       e.preventDefault();
 
       try {
-        await logIn(userData.email, userData.password);
+        await logIn(userData.email, userData.password);        
         navigate("/message");
       }
       catch (e) {
