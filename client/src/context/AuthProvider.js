@@ -2,7 +2,6 @@ import { useState, useEffect, createContext, useContext } from 'react';
 import auth from "../firebase";
 import {
     createUserWithEmailAndPassword,
-    sendEmailVerification,
     signInWithEmailAndPassword,
     signOut,
   } from "firebase/auth";
@@ -14,11 +13,7 @@ export function UserAuthContextProvider({ children }) {
     const [user, setUser] = useState();
 
     function register(email, password) {
-      return createUserWithEmailAndPassword(auth, email, password)
-    }
-
-    function sendVerificationEmail(user) {
-      return sendEmailVerification(user);
+      return createUserWithEmailAndPassword(auth, email, password);
     }
 
     function logIn(email, password) {
@@ -32,9 +27,10 @@ export function UserAuthContextProvider({ children }) {
     useEffect(() => {
       const unsubscribe = auth.onAuthStateChanged( (currentuser) => {
         setUser(currentuser);
-        if(currentuser && !currentuser.emailVerified) {
-          sendEmailVerification(currentuser);
-        }
+        // if(currentuser && !currentuser.emailVerified) {
+        //   sendEmailVerification(currentuser);
+        // }
+        // TODO - see if you want to keep the above?
       });
   
       return () => {
@@ -44,7 +40,7 @@ export function UserAuthContextProvider({ children }) {
   
     return (
       <AuthContext.Provider
-        value={{ user, register, sendVerificationEmail, logIn, logOut}}
+        value={{ user, register, logIn, logOut}}
       >
         {children}
       </AuthContext.Provider>

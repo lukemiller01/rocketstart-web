@@ -37,8 +37,8 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       e.preventDefault();
 
       try {
-        dispatch(createUser(userData));
         await register(userData.email, userData.password);
+        dispatch(createUser(userData));
         navigate("/message");
       } catch (e) {
         console.log(e)
