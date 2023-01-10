@@ -3,7 +3,9 @@ import User from "../models/user.js";
 import firebaseAdmin from "../firebase.js";
 import dotenv from 'dotenv';
 import postmark from 'postmark';
-
+import Handlebars from "handlebars";
+import fs from 'fs';
+import path from "path";
 
 dotenv.config();
 
@@ -22,19 +24,36 @@ export const createUser = async (req, res) => {
     try {
         // Generate verification link
         var link = await firebaseAdmin.firebase.generateEmailVerificationLink(email);
-        console.log(link);
+        // console.log(link);
 
         // Set up postmark client
         var client = new postmark.ServerClient(process.env.POSTMARK_KEY);
+
+        // Get the correct HTML file & replace content.
+        // var html = fs.readFileSync('../public/html/verification.html',"utf-8");
+        const html = fs.readFileSync(path.resolve("../server/public/html/verification.html"),"utf-8");
+        var template = Handlebars.compile(html);
+        var replacements = {
+            link: link
+       };
+       var finalHTML = template(replacements);
 
         // Send user the verification email
         client.sendEmail({
             "From": '"Luke" <luke@rocketstart.careers>',
             "To": `${email}`,
             "Subject": "[Rocketstart] Please Verify Your Email",
-            "HtmlBody": `<strong>Hello!</strong> Please verify your email using this link: ${link}`,
+            "HtmlBody": finalHTML,
             "TextBody": "Hello from Postmark!",
-            "MessageStream": "outbound"
+            "MessageStream": "outbound",
+            "Attachments": [
+                {
+                    "Name": "rocketstart.jpep",
+                    "Content": fs.readFileSync("../server/public/images/rocketstart.jpeg").toString('base64'),
+                    "ContentType": "image/jpeg",
+                    "ContentID": "cid:logo"
+                }
+            ]
           });
 
         // Create user in MongoDB

@@ -18,6 +18,8 @@ app.use(cors());
 // app.use(VerifyToken);
 app.use('/users', userRoutes); // Every route is going to start with users, using the imported posts.js router
 
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
     res.send('Hello New...');
 })
