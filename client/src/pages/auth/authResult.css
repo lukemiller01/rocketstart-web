@@ -1,0 +1,40 @@
+.auth__result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30rem;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.home__button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 150px;
+    background-color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 16px;
+    color: white;
+    margin: 0;
+    margin-bottom: 1rem;
+    transition: all .33s ease;
+}
+
+/* Sign up button hover  */
+.home__button:hover{
+    transform: scale(.98);
+    background-color: rgb(30, 90, 255);
+    transition: all .33s ease;
+}
+
+.auth__result-paragraph {
+    text-align: center;
+}

@@ -25,7 +25,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       e.preventDefault();
 
       try {
-        await logIn(userData.email, userData.password);        
+        await logIn(userData.email, userData.password);
         navigate("/message");
       }
       catch (e) {
@@ -127,9 +127,6 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
               <p className='signup__signin signup__terms-links'>{answer}</p>
             </div>
           </div>
-          {/* <button onClick={signOut}>
-            Sign Out
-          </button> */}
         </div>
         </div>
       </div>

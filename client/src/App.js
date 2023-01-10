@@ -1,11 +1,16 @@
 import React from 'react';
-import { Home, Blog, Pricing, About, Product, Privacy, Message, Find, Login } from './pages';
+
+import { Home, Blog, Pricing, About, Product, Privacy, Message, Find, Login, Action } from './pages';
+// import { Action } from './pages/auth/Action'
+
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './miscellaneous/ScrollToTop';
 import { UserAuthContextProvider } from './context/AuthProvider';
+
+import './app.css';
+
 import LogInRequired from './routes/LogInRequired';
 import UserRedirect from './routes/UserRedirect';
-import './app.css';
 import HomeRedirect from './routes/HomeRedirect';
 import AuxiliaryRedirect from './routes/AuxiliaryRedirect';
 
@@ -20,6 +25,8 @@ const App = () => {
 
             {/* Login  */}
             <Route path='/login' element={<Login/>}/>
+
+            <Route path='/auth/action' element={<Action/>}/>
 
             {/* Dashboard Toggle: redirects to /message if user is logged in  */}
             <Route element={<UserRedirect/>}>
