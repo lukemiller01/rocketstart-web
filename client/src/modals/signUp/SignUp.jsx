@@ -1,5 +1,5 @@
 import React from 'react';
-import { createUser } from '../../actions/userActions';
+import { createUser, resetPassword } from '../../actions/userActions';
 import { useDispatch } from 'react-redux'
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,9 +10,12 @@ import './signUp.css';
 
 const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, setBottomTextQState, setBottomTextAState, terms, setTermsTextState, reset, setResetTextState, password, setPasswordState, background, closeButton, setHeaderState, containerStyle }) => {
 
-  // Set Firebase and send data to MongoDB
+  // Set Firebase auth and send user data MongoDB
   const navigate = useNavigate();
+  // Keeps track of user input
   const [userData, setUserData] = useState({email: '', password: ''});
+  // Checks if the password is required for the form to be submitted
+  const [passwordRequired, setPasswordRequired] = useState(true);
   const dispatch = useDispatch();
   const { register, logIn } = useUserAuth();
 
@@ -38,14 +41,29 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
 
       try {
         await register(userData.email, userData.password);
-        dispatch(createUser(userData));
+        dispatch(createUser({email: userData.email}));
         navigate("/message");
       } catch (e) {
         console.log(e)
       }
     }
-    else { // Reset password logic
-      // TODO: fill
+    else if (buttonText === "Reset Password") { // Reset password logic
+      e.preventDefault();
+
+      try {
+        dispatch(resetPassword({email: userData.email}));
+        setButtonState("Sign In");
+        setBottomTextQState('No Account?');
+        setBottomTextAState("Create One");
+        setTermsTextState(false);
+        setResetTextState(false);
+        setPasswordState(true);
+        if(containerStyle === 'signup__login') {
+          setHeaderState('Welcome back!');
+        }
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
 
@@ -59,7 +77,10 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       setTermsTextState(true);
       setResetTextState(true);
       setPasswordState(true);
-      setHeaderState('Create a Free Account');
+      if(containerStyle === 'signup__login') {
+        setHeaderState('Create a Free Account');
+      }
+      setPasswordRequired(true);
     }
     else if ((type && buttonText === "Create Account") || (type && buttonText === "Reset Password")) {
       setButtonState("Sign In");
@@ -68,7 +89,10 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       setTermsTextState(false);
       setResetTextState(false);
       setPasswordState(true);
-      setHeaderState('Welcome back!');
+      if(containerStyle === 'signup__login') {
+        setHeaderState('Welcome back!');
+      }
+      setPasswordRequired(true);
     }
     else {
       setButtonState("Reset Password");
@@ -76,7 +100,10 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       setBottomTextAState("Cancel");
       setResetTextState(true);
       setPasswordState(false);
-      setHeaderState('Reset Password');
+      if(containerStyle === 'signup__login') {
+        setHeaderState('Reset Password');
+      }
+      setPasswordRequired(false);
     }
   }
 
@@ -100,7 +127,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
                 />
                 <input
                   className={`signup__input ${password}`}
-                  required
+                  required={passwordRequired}
                   type='password'
                   autoComplete='new-password'
                   placeholder="Password"

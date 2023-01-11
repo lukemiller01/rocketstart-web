@@ -14,12 +14,13 @@ export const getUser = async (req, res) => {
         res.status(200).json(req.user);
     }
     catch (error) {
-        console.log(error)
+        console.log(error);
     }
 };
 
 export const createUser = async (req, res) => {
-    const {email, password} = req.body;
+    console.log('create user')
+    const {email: email} = req.body;
 
     try {
         // Include Firebase ID in MongoDB so the user can be updated later
@@ -51,7 +52,7 @@ export const createUser = async (req, res) => {
             "MessageStream": "outbound",
             "Attachments": [
                 {
-                    "Name": "rocketstart.jpep",
+                    "Name": "rocketstart.jpeg",
                     "Content": fs.readFileSync("../server/public/images/rocketstart.jpeg").toString('base64'),
                     "ContentType": "image/jpeg",
                     "ContentID": "cid:logo"
@@ -62,7 +63,6 @@ export const createUser = async (req, res) => {
         // Create user in MongoDB
         const user = await User.create({
             email,
-            password,
             uid,
         });
         return res.status(200).json({message: "Success!"});
@@ -109,7 +109,7 @@ export const resendVerification = async (req, res) => {
             "MessageStream": "outbound",
             "Attachments": [
                 {
-                    "Name": "rocketstart.jpep",
+                    "Name": "rocketstart.jpeg",
                     "Content": fs.readFileSync("../server/public/images/rocketstart.jpeg").toString('base64'),
                     "ContentType": "image/jpeg",
                     "ContentID": "cid:logo"
@@ -118,7 +118,7 @@ export const resendVerification = async (req, res) => {
           });
 
         // Update the user in MongoDB
-        User.findOne({id: uid}, function (err, user) {
+        User.findOne({uid: uid}, function (err, user) {
             user.email = updatedEmail;
 
             user.save(function (err) {
@@ -131,10 +131,56 @@ export const resendVerification = async (req, res) => {
         return res.status(200).json({message: "Success!"});
     }
     catch (error) {
-        if(error.code === 'auth/email-already-exists') {
-            return res.status(400).json({error: "An account with that email already exists."})
-        }
         console.log(error);
         return res.status(500).json(error);
     }
 };
+
+export const resetPassword = async (req, res) => {
+    console.log("reset password")
+    const {email: email} = req.body;
+    console.log(email);
+
+    try {
+        // Get new email:
+
+        // Generate verification link
+        var link = await firebaseAdmin.firebase.generatePasswordResetLink(email);
+
+        // Set up postmark client
+        var client = new postmark.ServerClient(process.env.POSTMARK_KEY);
+
+        // Get the correct HTML file & replace content.
+        const html = fs.readFileSync(path.resolve("../server/public/html/reset-password.html"),"utf-8");
+        var template = Handlebars.compile(html);
+        var replacements = {
+            link: link
+       };
+       var finalHTML = template(replacements);
+
+       // TODO: fix "Hello from Postmark!"
+        // Send user the password reset email
+        client.sendEmail({
+            "From": '"Luke at Rocketstart" <luke@rocketstart.careers>',
+            "To": `${email}`,
+            "Subject": "[Rocketstart] Please Reset Your Password",
+            "HtmlBody": finalHTML,
+            "TextBody": "Hello from Postmark!",
+            "MessageStream": "outbound",
+            "Attachments": [
+                {
+                    "Name": "rocketstart.jpeg",
+                    "Content": fs.readFileSync("../server/public/images/rocketstart.jpeg").toString('base64'),
+                    "ContentType": "image/jpeg",
+                    "ContentID": "cid:logo"
+                }
+            ]
+          });
+
+        return res.status(200).json({message: "Success!"});
+    }
+    catch (error) {
+        console.log(error);
+        return res.status(500).json(error);
+    }
+}

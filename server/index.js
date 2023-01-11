@@ -3,7 +3,6 @@ import cors from 'cors';
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import bodyParser from "body-parser";
-import VerifyToken from "./middleware/VerifyToken.js";
 
 import userRoutes from './routes/user.js'
 
@@ -15,7 +14,6 @@ app.use(bodyParser.json({limit: "30mb", extended: true})); // Sending images, wh
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true})); // Setting up body parser to send requests
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-// app.use(VerifyToken);
 app.use('/users', userRoutes); // Every route is going to start with users, using the imported posts.js router
 
 app.use(express.static('public'));
