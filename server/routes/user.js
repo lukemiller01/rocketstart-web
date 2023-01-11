@@ -1,7 +1,6 @@
 import express from 'express';
-import VerifyToken from '../middleware/VerifyToken.js';
 
-import {getUser, createUser } from '../controllers/users.js'
+import {getUser, createUser, resendVerification } from '../controllers/users.js'
 
 const router = express.Router();
 
@@ -9,5 +8,6 @@ const router = express.Router();
 // router.get('/', VerifyToken, getUser);
 router.get('/', getUser);
 router.post('/', createUser);
+router.patch('/:id', resendVerification);
 
 export default router;

@@ -1,20 +1,111 @@
 import React from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { useUserAuth } from '../../context/AuthProvider'
+import { resendVerification } from '../../actions/userActions';
 import './verification.css'
 
 const Verification = ({userEmail}) => {
+
+  const { user, changeEmail } = useUserAuth();
+  
+  const dispatch = useDispatch();
+
+  // Ref for focus element:
+  const emailRef = useRef(null);
+
+  // Final user email
+  const [email, setEmail] = useState(userEmail);
+  // User email state in FE
+  const [typedEmail, setTypedEmail] = useState('');
+  // Button text change
+  const [buttonText, setButtonText] = useState('Edit Email Address');
+  // Input visibility
+  const [inputVis, setInputVis] = useState('');
+
+  // Resend verification email
+  async function resendVerificationEmail(e) {
+    try {
+      setEmail(typedEmail);
+      await changeEmail(typedEmail);
+      dispatch(resendVerification(user.uid, {email: typedEmail}));
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  // When user is typing, but hasn't confirmed the email
+  function editingEmail(typed) {
+    setTypedEmail(typed);
+    if(typed === '') {
+      setButtonText('Cancel');
+      // TODO: input display none
+    }
+    else {
+      setButtonText('Resend Verification Email');
+    }
+  }
+
+  // When the user clicks confirm
+  function handleEmailEdit() {
+    if(buttonText === "Edit Email Address") { // USER STARTS ACTION. Change from "Edit Email Address" to "Cancel"
+      setButtonText('Cancel');
+      setInputVis('opened__verification-input')
+      // When button text is cancel or confirm, the email is visibile. When button text is edit email address, email is none.
+      // TODO: input display flex
+    }
+    else if(buttonText === "Cancel"){ // USER CANCELS ACTION. Change from "Cancel" to "Edit email Address"
+      setInputVis('')
+      setButtonText('Edit Email Address');
+      // TODO: input display none
+    }
+    else if(buttonText === "Resend Verification Email") { // Handle email change
+      setInputVis('')
+      setButtonText('Edit Email Address');
+      setTypedEmail(typedEmail);
+      setEmail(typedEmail)
+      resendVerificationEmail()
+      // TODO: change user email
+      // TODO: input display none
+    }
+  }
+
+  useEffect(() => { // Listens for the button being clicked and adds focus to email
+    emailRef.current.focus(); // Because element unfocuses on handleModalSwitch
+   }, [buttonText])
+
   return (
     <div className='verification__bg'>
         <div className='verification__modal'>
-            <h2 className='verification__modal-header'>Welcome to Rocketstart!</h2>
-            <p className='verification__modal-text'>
-                We sent an email to
-                <font className='verification__modal-email'> {userEmail}</font>
-                .
+            <h2 className='verification__modal-header'>Verification email sent!</h2>
+
+            <p className='verification__modal-text-backup'>
+                Please activate your account to get started.
             </p>
-            <p className='verification__modal-text'>Please click on the link to activate your account. If you don't see an email, please make sure the above email is correct and check your spam folder.</p>
+
             <p className='verification__modal-text'>
-                <font className='verification__modal-link'>Click here </font>
-                to resend email verification email or change your email.</p>
+                Email sent to:
+            </p>
+
+            <p><font className='verification__modal-email'> {email}</font></p>
+
+            {/* <button type="submit" className='verification__button' onClick={() => {resendVerification()}}>
+              Resend Verification Email
+            </button> */}
+
+            <input
+                className={`verification__input ${inputVis}`}
+                required
+                placeholder="Email"
+                autoComplete='email'
+                name='email'
+                ref={emailRef}
+                onChange={(e) => editingEmail(e.target.value)}></input>
+
+            <button type="submit" className='verification__button' onClick={handleEmailEdit}>
+              {buttonText}
+            </button>
+
         </div>
     </div>
   )

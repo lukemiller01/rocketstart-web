@@ -6,6 +6,7 @@ const router = express.Router();
 const userSchema = mongoose.Schema({
     email: String,
     password: String,
+    uid: String,
 })
 
 // Turn schema into a model using Mongoose

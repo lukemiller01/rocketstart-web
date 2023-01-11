@@ -23,7 +23,9 @@
     margin: 5rem 30rem;
     background-color: white;
     border-radius: 10px;
-    padding: 2rem;
+    padding: 2rem 3rem 2rem 3rem;
+    align-items: center;
+    text-align: center;
 }
 
 /* Welcome message  */
@@ -36,6 +38,10 @@
     margin-bottom: 1rem;
 }
 
+.verification__modal-text-backup {
+    margin: 0;
+}
+
 /* Bold for email highlight  */
 .verification__modal-email {
     font-weight: 700;
@@ -43,4 +49,51 @@
 
 .verification__modal-link {
     color: rgb(30,90,255);
+}
+
+.verification__button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 300px;
+    background-color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 16px;
+    color: white;
+    margin: 0;
+    margin-bottom: 1rem;
+    transition: all .33s ease;
+}
+
+/* Sign up button hover  */
+.verification__button:hover{
+    transform: scale(.98);
+    background-color: rgb(30, 90, 255);
+    transition: all .33s ease;
+}
+
+.verification__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.verification__input {
+    border: 3px solid black;
+    height: 50px;
+    width: 300px;
+    padding: 0.25rem 1rem 0.25rem 1rem;
+    font-size: 16px;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+.opened__verification-input {
+    display: flex;
 }

@@ -12,14 +12,15 @@ export default class VerifyEmail extends Component {
   componentDidMount() {
     // Try to apply the email verification code.
     
-      applyActionCode(auth, this.props.actionCode)
-      .then(() => {
-        // Email address has been verified.
-        this.setState({ validCode: true, verifiedCode: true });
-      }, error => {
-        // Code is invalid or expired. Ask the user to verify their email address
-        this.setState({ error: error.message, validCode: false, verifiedCode: true });
-      });
+    applyActionCode(auth, this.props.actionCode)
+    .then(() => {
+      // Email address has been verified.
+      this.setState({ validCode: true, verifiedCode: true });
+      auth.currentUser.reload();
+    }, error => {
+      // Code is invalid or expired. Ask the user to verify their email address
+      this.setState({ error: error.message, validCode: false, verifiedCode: true });
+    });
   }
 
   render() {

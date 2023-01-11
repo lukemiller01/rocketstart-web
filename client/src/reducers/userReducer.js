@@ -1,10 +1,12 @@
-import { CREATE } from '../constants/actionTypes.js';
+import { CREATE, UPDATEEMAIL } from '../constants/actionTypes.js';
 
 const reducersUsers = (users = [], action) => {
     switch (action.type) {
         case CREATE:
             return [...users, action.payload];
-        default: // TODO: fix default action
+        case UPDATEEMAIL:
+            return users.map((user) => (user._id === action.payload._id ? action.payload : user));
+        default: // TODO: fix default action?
             return users;
     }
 };

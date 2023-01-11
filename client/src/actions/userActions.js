@@ -1,5 +1,5 @@
 import * as api from '../api/index.js';
-import { CREATE } from '../constants/actionTypes.js'
+import { CREATE, UPDATEEMAIL } from '../constants/actionTypes.js'
 
 // Actions are objects that have a type and payload 
 
@@ -12,3 +12,12 @@ export const createUser = (user) => async (dispatch) => {
         console.log(error);
     }
 };
+
+export const resendVerification = (id, updatedEmail) => async (dispatch) => {
+    try {
+        const {data} = await api.resendVerification(id, updatedEmail);
+        dispatch({type: UPDATEEMAIL, payload: data})
+    } catch (error) {
+        console.log(error);
+    }
+}
