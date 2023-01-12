@@ -52,10 +52,10 @@ const Account = ({setModalOpen, setAccountIconState, communicateState}) => {
 
             <div className='account__nav-container'>
 
-                <div className='account__nav-options'>
-                    <span className="material-icons account__icons">account_circle</span>
+                <Link  className='account__nav-options'  to='/account'>
+                <span className="material-icons account__icons">account_circle</span>
                     <p className='account__modal-text_nav'>Account</p>
-                </div>
+                </Link>
 
                 <Link to='/home' className='account__nav-options'>
                     <span className="material-icons account__icons">home</span>

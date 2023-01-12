@@ -1,0 +1,95 @@
+.account {
+    margin-left: 20rem;
+    margin-right: 20rem;
+    margin-top: 10rem;
+    margin-bottom: 8rem;
+    border-radius: 10px;
+    border: 1px solid grey;
+    padding: 2rem 3rem 2rem 3rem;
+}
+
+.account__fields {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem
+}
+
+.account__profile-header {
+    margin-bottom: 2rem;
+}
+
+.account__fields-paragraph {
+    margin: 0;
+}
+
+.account__field-title {
+    min-width: 100px;
+    min-height: 50px;
+    align-items: center;
+    display: flex;
+}
+
+.account__fields-container {
+    flex-direction: column;
+    display: flex;
+    margin-bottom: 2rem;
+    gap: 2rem;
+}
+
+.account__buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.account__button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 150px;
+    background-color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 16px;
+    color: white;
+    margin: 0;
+    transition: all .33s ease;
+}
+
+.account__button:hover {
+    transform: scale(.98);
+    background-color: rgb(30, 90, 255);
+    transition: all .33s ease;
+}
+
+.account__password-width {
+    width: 250px;
+}
+
+.fields__none {
+    display: none;
+}
+
+.fields {
+    display: flex;
+}
+
+.account__input {
+    border: 3px solid black;
+    height: 50px;
+    width: 250px;
+    padding: 0.25rem 1rem 0.25rem 1rem;
+    font-size: 16px;
+}
+
+.account__fields {
+    display: nojne;
+    flex-direction: row;
+    gap: 0.5rem;
+}

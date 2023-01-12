@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Home, Blog, Pricing, About, Product, Privacy, Message, Find, Login, Action } from './pages';
+import { Home, Blog, Pricing, About, Product, Privacy, Message, Find, Login, Action, Account, NotFound } from './pages';
 // import { Action } from './pages/auth/Action'
 
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
@@ -23,20 +23,19 @@ const App = () => {
           <ScrollToTop />
           <Routes>
 
-            {/* Login  */}
-            <Route path='/login' element={<Login/>}/>
-
-            <Route path='/auth/action' element={<Action/>}/>
+            <Route path='/auth/action/' element={<Action/>}/>
 
             {/* Dashboard Toggle: redirects to /message if user is logged in  */}
             <Route element={<UserRedirect/>}>
               <Route path='/' element={<Home navOne={''} navTwo={'navbar__hidden'} logoURL={'/'}/>} />
+              <Route path='/login' element={<Login/>}/>
             </Route>
 
             {/* Private Pages: redirects to /login if user is not logged in */}
             <Route element={<LogInRequired/>}>
               <Route path='/message' element={<Message/>}/>
               <Route path='/find' element={<Find/>}/>
+              <Route path='account' element={<Account/>}/>
             </Route>
 
             {/* Home Toggle: redirects to / if user is not logged in */}
@@ -52,6 +51,9 @@ const App = () => {
               <Route path='/pricing' element={<Pricing/>}/>
               <Route path='/privacy' element={<Privacy/>}/>
             </Route>
+
+            {/* If the typed URL doesn't exist  */}
+            <Route path='*' element={<NotFound />}/>
             
           </Routes>
         </BrowserRouter>

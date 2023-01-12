@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSearchParams } from 'react-router-dom';
-import AuthResult from './components/verify/AuthResult';
 import { ResetPassword, VerifyEmail } from './components';
+import NotFound from '../notfound/NotFound';
 
 // https://rocketstart-careers.firebaseapp.com/__/auth/action?mode=verifyEmail&oobCode=yQyK1z_KF7kAtET4rWXRVi5XVj4a3zO_S2ziU30PAGkAAAGFmRDhLw&apiKey=AIzaSyCjTBBUn1bG4keC3RhGCm85yhpcflkuycA&lang=en
 
@@ -26,7 +26,7 @@ const Action = () => {
         case 'resetPassword':
             return <ResetPassword actionCode={actionCode}/>
         default:
-            return <AuthResult/> // TODO: input prop
+            return <NotFound/> // If there's no query parameter, return 404.
     }
 }
 

@@ -7,4 +7,6 @@ export { default as Privacy } from './privacy/Privacy';
 export { default as Message } from './message/Message';
 export { default as Find } from './find/Find';
 export { default as Login } from './login/Login';
-export { default as Action } from './auth/Action'
+export { default as Action } from './auth/Action';
+export { default as NotFound} from './notfound/NotFound';
+export { default as Account } from './account/Account';
