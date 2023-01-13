@@ -57,8 +57,7 @@ const Navbar = ({navOne, navTwo, logoURL}) => {
               <h3>Pricing</h3>
             </li>
             <li className='menu__item navbar__item-focused'>
-              {/* <h3><Link to="/about">About</Link></h3> */}
-              <h3>About</h3>
+              <h3><Link to="/about">About</Link></h3>
             </li>
           </ul>
         </div>

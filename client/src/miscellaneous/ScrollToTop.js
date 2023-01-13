@@ -7,8 +7,6 @@ export default function ScrollToTop() {
   // Hash is added because ScrollToTop shouldn't work if the user is going to a specific hash
   const hash = window.location.hash;
 
-  console.log(pathname,hash);
-
   useEffect(() => {
     if(!hash) {
       window.scrollTo(0, 0);
