@@ -33,7 +33,7 @@ const Footer = () => {
                 <h2>Rocketstart</h2>
             </div>
             <div className='footer__middle'>
-                <p className='footer__paragraph'>2022 © Rocketstart. All Rights Reserved.</p>
+                <p className='footer__paragraph'>2023 © Rocketstart. All Rights Reserved.</p>
             </div>
             <div className='footer__social'>
                 <img src={LinkedIn} alt='LinkedIn icon' className='footer__icon'/>

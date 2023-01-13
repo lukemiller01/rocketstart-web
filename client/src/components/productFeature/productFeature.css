@@ -1,0 +1,43 @@
+.product__feature {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 6rem;
+    padding-top: 6rem;
+    gap: 10rem;
+}
+
+.product__feature-text_content {
+    flex: 1 1;
+}
+
+.product__feature-header {
+    color: rgb(30,90,255);
+    font-size: 28pt;
+    margin-bottom: 1rem;
+}
+
+.product__feature-image_content {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgb(0 0 0 / 35%);
+    display: flex;
+    flex: 1.5 1;
+}
+
+.product__feature-image_content:hover {
+    transform: scale(1.015);
+    transition: transform .1s linear;
+}
+
+.product__feature-image {
+    height: auto;
+    width: 100%;
+}
+
+.product__feature-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 6rem;
+}

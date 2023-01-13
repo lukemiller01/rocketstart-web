@@ -8,6 +8,7 @@ import {map, retro, mac, pen} from './imports';
 
 const Blog = () => {
 
+  // Setting the navbar based on if the user is logged in
   const { navOne, navTwo, logoURL } = useOutletContext();
 
   return (

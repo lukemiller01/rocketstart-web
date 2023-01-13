@@ -47,8 +47,7 @@ const Navbar = ({navOne, navTwo, logoURL}) => {
           <h2>Rocketstart</h2>
           <ul className='menu'>
             <li className='menu__item navbar__item-focused'>
-              {/* <h3><Link to='/product'>Product</Link></h3> */}
-              <h3>Product</h3>
+              <h3><Link to='/product'>Product</Link></h3>
             </li>
             <li className='menu__item'>
               <h3><Link to="/blog" className='navbar__item-focused'>Blog</Link></h3>
