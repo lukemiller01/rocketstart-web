@@ -3,6 +3,7 @@ import Navbar from '../../components/navbar/Navbar'
 import Footer from '../../containers/footer/Footer';
 import { useOutletContext } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import { Helmet } from 'react-helmet';
 import ProductFeature from '../../components/productFeature/ProductFeature';
 import './product.css'
 
@@ -14,6 +15,9 @@ const Product = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Product · Rocketstart</title>
+      </Helmet>
       <Navbar navOne={navOne} navTwo={navTwo} logoURL={logoURL}/>
       <div className='product'>
         <div className='product__header'>

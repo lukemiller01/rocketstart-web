@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { resetPassword, resendVerification } from '../../actions/userActions';
 import { Navbar2 } from '../../components';
 import { useUserAuth } from '../../context/AuthProvider';
+import { Helmet } from 'react-helmet'
 import './account.css';
 
 const Account = () => {
@@ -98,6 +99,9 @@ const Account = () => {
 
   return (
     <div>
+        <Helmet>
+            <title>Account · Rocketstart</title>
+        </Helmet>
         <Navbar2/>
         <div className='account'>
 

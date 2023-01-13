@@ -1,10 +1,14 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Navbar3 } from '../../components'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Navbar3 } from '../../components';
+import { Helmet } from 'react-helmet';
 
 const NotFound = () => {
   return (
     <div>
+        <Helmet>
+          <title>404 · Rocketstart</title>
+        </Helmet>
         <Navbar3/>
         <div className='login'>
         <h1>404 Not Found</h1>

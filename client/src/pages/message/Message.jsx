@@ -4,6 +4,7 @@ import VerbExample from '../../components/verbExample/VerbExample';
 import Verification from '../../modals/verification/Verification';
 import { useUserAuth } from '../../context/AuthProvider';
 // import Footer from '../../containers/footer/Footer'
+import { Helmet } from 'react-helmet';
 import './message.css';
 
 const Message = () => {
@@ -375,6 +376,9 @@ const Message = () => {
 
   return (
     <div>
+        <Helmet>
+            <title>Maximize LinkedIn reply rates · Rocketstart</title>
+        </Helmet>
         <Navbar2/>
         <div className='message'>
             <div className='message__header'>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar2 from '../../components/navbar2/Navbar2';
 import LinkedIn from '../../assets/linkedin.png';
+import { Helmet } from 'react-helmet';
 
 import './find.css';
 
@@ -20,6 +21,9 @@ const Find = () => {
 
   return (
     <div>
+        <Helmet>
+            <title>Find the recruiter for any job application in one click · Rocketstart</title>
+        </Helmet>
         <Navbar2/>
         <div className='find'>
           <div className='rows'>

@@ -1,6 +1,7 @@
 import React from 'react';
+import ReactGA from 'react-ga4';
 
-import { Home, Blog, Pricing, About, Product, Privacy, Message, Find, Login, Action, Account, NotFound } from './pages';
+import { Home, Blog, Pricing, About, Product, Privacy, Terms, Message, Find, Login, Action, Account, NotFound } from './pages';
 // import { Action } from './pages/auth/Action'
 
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
@@ -15,6 +16,8 @@ import HomeRedirect from './routes/HomeRedirect';
 import AuxiliaryRedirect from './routes/AuxiliaryRedirect';
 
 const App = () => {
+
+  ReactGA.initialize(process.env.REACT_APP_MEASUREMENT_ID);
 
   return (
     <div>
@@ -50,6 +53,7 @@ const App = () => {
               <Route path='/about' element={<About/>}/>
               <Route path='/pricing' element={<Pricing/>}/>
               <Route path='/privacy' element={<Privacy/>}/>
+              <Route path='/terms' element={<Terms/>}/>
             </Route>
 
             {/* If the typed URL doesn't exist  */}

@@ -11,7 +11,7 @@ const CallToAction = () => {
         </h4>
         <Link to='/message'>
             <button className='button'>
-              Start Now For Free
+              Get started for free
             </button>
         </Link>
     </div>

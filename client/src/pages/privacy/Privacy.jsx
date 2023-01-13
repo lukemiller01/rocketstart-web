@@ -1,8 +1,8 @@
 import React from 'react';
 import { Navbar } from '../../components';
-import { Footer } from '../../containers';
+import { Footer, PrivacyPolicy } from '../../containers';
 import { useOutletContext } from 'react-router-dom';
-import PrivacyPolicy from '../../containers/privacy-policy/PrivacyPolicy';
+import {Helmet } from 'react-helmet';
 
 const Privacy = () => {
 
@@ -11,6 +11,9 @@ const Privacy = () => {
 
   return (
     <div>
+        <Helmet>
+          <title>Privacy · Rocketstart</title>
+        </Helmet>
         <Navbar navOne={navOne} navTwo={navTwo} logoURL={logoURL}/>
         <PrivacyPolicy/>
         <div className="grey__bg">

@@ -4,6 +4,7 @@ import Footer from '../../containers/footer/Footer'
 import { useOutletContext } from 'react-router-dom';
 import './blog.css';
 import Article from '../../components/article/Article';
+import { Helmet } from 'react-helmet';
 import {map, retro, mac, pen} from './imports';
 
 const Blog = () => {
@@ -13,6 +14,9 @@ const Blog = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Blog · Rocketstart</title>
+      </Helmet>
       <Navbar navOne={navOne} navTwo={navTwo} logoURL={logoURL}/>
       <div className='blog'>
         <h1>Blog</h1>

@@ -10,3 +10,4 @@ export { default as Login } from './login/Login';
 export { default as Action } from './auth/Action';
 export { default as NotFound} from './notfound/NotFound';
 export { default as Account } from './account/Account';
+export { default as Terms } from './terms/Terms';

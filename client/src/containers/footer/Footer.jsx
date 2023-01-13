@@ -17,7 +17,7 @@ const Footer = () => {
             </div>
             <div className='column__two'>
                 <p className='column__header footer__paragraph'>Resources</p>
-                <p className='footer__paragraph'>Terms & Conditions</p>
+                <Link to='/terms'><p className='footer__paragraph'>Terms & Conditions</p></Link>
                 <Link to='/privacy'><p className='footer__paragraph'>Privacy Policy</p></Link>
             </div>
             <div className='column__three'>

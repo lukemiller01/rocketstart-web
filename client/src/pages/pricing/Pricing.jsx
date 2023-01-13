@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import Navbar from '../../components/navbar/Navbar';
 import PriceTier from '../../components/priceTier/PriceTier';
 import './pricing.css';
@@ -170,6 +171,9 @@ const Pricing = () => {
   return (
     <div>
       <Navbar/>
+      <Helmet>
+        <title>Pricing · Rocketstart</title>
+      </Helmet>
       <div className='pricing'>
         <h1>
           Land Your

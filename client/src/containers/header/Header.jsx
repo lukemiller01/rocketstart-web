@@ -35,7 +35,7 @@ const header = () => {
           <div className='button__container'>
             <Link to='/login'>
               <button className='button'>
-                Start Now For Free
+                Get started for free
               </button>
             </Link>
           </div>

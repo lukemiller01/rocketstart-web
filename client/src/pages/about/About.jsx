@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import { useOutletContext } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import headshot from '../../assets/square.jpg'
 import './about.css'
 
@@ -11,6 +12,9 @@ const About = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Our Story · Rocketstart</title>
+      </Helmet>
       <Navbar navOne={navOne} navTwo={navTwo} logoURL={logoURL}/>
       
       <div className='about'>
@@ -22,10 +26,10 @@ const About = () => {
             Hello! My name is Luke. Like me, you've probably struggled finding a job or internship. You fill applications endlessly. You send dozens of connection requests on LinkedIn. You never hear back.
           </p>
           <p className='about__paragraph'>
-            Qualified candiates are getting ghosted. They need a way to cut through the noise. That's why I built Rocketstart. I compiled all the strategies I used to receive job offers from companies like Tesla and SpaceX into one platform. Rocketstart reveals the recruiter for any job posting and helps craft the best possible message to them. 
+            Qualified candiates are getting ghosted. They need a way to cut through the noise. That's why I built Rocketstart. I compiled all the strategies I used to receive job offers from companies like Tesla and SpaceX into one platform. Rocketstart lets job seekers discover the recruiter for any application and craft the best possible message to them. 
           </p>
           <p className='about__paragraph'>
-            My mission is to help you land your dream job. Get started with Rocketstart to take the first step. I wish you the very best in your job hunt.
+            My mission is to help you land your dream job. Check out Rocketstart to take the first step. I wish you the very best in your job hunt.
           </p>
           <p className='about__paragraph'>
             With 💙, <br/> Luke

@@ -2,7 +2,8 @@ import React from 'react';
 import { Navbar3 } from '../../../../components';
 import { useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
-import { useUserAuth } from '../../../../context/AuthProvider'
+import { useUserAuth } from '../../../../context/AuthProvider';
+import { Helmet } from 'react-helmet';
 import './passwordResult.css';
 
 const PasswordResult = ({actionCode}) => {
@@ -32,6 +33,9 @@ const PasswordResult = ({actionCode}) => {
 
   return (
     <div>
+      <Helmet>
+        <title>Reset Password · Rocketstart</title>
+      </Helmet>
     <Navbar3/>
     <div className='login'>
     <h1>Reset Your Password</h1>

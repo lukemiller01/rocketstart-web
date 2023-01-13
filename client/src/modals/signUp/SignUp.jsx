@@ -139,8 +139,8 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
                 </button>
           </form>
           <p className={`signup__terms ${terms}`}>By signing up for Rocketstart you accept our&nbsp;
-            <Link to='/terms-and-conditions' className='signup__terms-links'>
-              Terms & Conditions&nbsp;
+            <Link to='/terms' className='signup__terms-links'>
+              Terms of Service&nbsp;
             </Link>
             and our&nbsp;
             <Link to='/privacy'  className='signup__terms-links'>

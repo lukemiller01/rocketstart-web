@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { SignUp } from '../../modals'
 import { Navbar3 } from '../../components'
+import { Helmet } from 'react-helmet';
 import './login.css';
 
 const Login = () => {
@@ -23,6 +24,9 @@ const Login = () => {
 
   return (
     <div>
+        <Helmet>
+          <title>Log In · Rocketstart</title>
+        </Helmet>
         <Navbar3/>
         <div className='login'>
           <h1>{headerState}</h1>
