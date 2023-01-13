@@ -35,7 +35,7 @@ const App = () => {
             <Route element={<LogInRequired/>}>
               <Route path='/message' element={<Message/>}/>
               <Route path='/find' element={<Find/>}/>
-              <Route path='account' element={<Account/>}/>
+              <Route path='/account' element={<Account/>}/>
             </Route>
 
             {/* Home Toggle: redirects to / if user is not logged in */}

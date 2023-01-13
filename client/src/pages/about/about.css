@@ -17,16 +17,9 @@
 }
 
 .about__headshot {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    transition: all .33s ease-in-out;
-}
-
-.about__headshot:hover {
-    width: 150px;
-    height: 150px;
-    transition: all .33s ease-in-out;
 }
 
 .about__profile {

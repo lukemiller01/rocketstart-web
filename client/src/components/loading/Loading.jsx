@@ -3,8 +3,8 @@ import './loading.css';
 
 const Loading = () => {
   return (
-    <div className="ring">Loading
-    <span className='spinning'></span>
+    <div className="ring">
+      <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
   )
 }
