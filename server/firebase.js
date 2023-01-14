@@ -1,4 +1,5 @@
 import admin from "firebase-admin";
+import dotenv from 'dotenv';
 // import { getAuth } from 'firebase-admin/auth';
 // import { readFileSync } from "fs";
 // const serviceAcctKey = JSON.parse(readFileSync("./serviceAcctKey.json"));
