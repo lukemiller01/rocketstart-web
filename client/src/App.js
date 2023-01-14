@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactGA from 'react-ga4';
 
 import { Home, Blog, Pricing, About, Product, Privacy, Terms, Message, Find, Login, Action, Account, NotFound } from './pages';
 // import { Action } from './pages/auth/Action'
@@ -16,8 +15,6 @@ import HomeRedirect from './routes/HomeRedirect';
 import AuxiliaryRedirect from './routes/AuxiliaryRedirect';
 
 const App = () => {
-
-  ReactGA.initialize(process.env.REACT_APP_MEASUREMENT_ID);
 
   return (
     <div>

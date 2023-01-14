@@ -19,11 +19,11 @@ app.use('/users', userRoutes); // Every route is going to start with users, usin
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    res.send('Hello New...');
+    res.send('Hello Rocketstart!');
 })
 
-// const PORT = process.env.PORT || 5001;
-const PORT = 5001;
+const PORT = process.env.PORT || 5001;
+// const PORT = 5001;
 
 mongoose.connect(process.env.CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT} `)))

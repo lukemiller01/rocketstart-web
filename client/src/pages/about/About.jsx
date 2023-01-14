@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import { useOutletContext } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import headshot from '../../assets/square.jpg'
+import headshot from '../../assets/square.jpg';
 import './about.css'
 
 const About = () => {
