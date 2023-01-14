@@ -14,7 +14,7 @@ app.use(bodyParser.json({limit: "30mb", extended: true})); // Sending images, wh
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true})); // Setting up body parser to send requests
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-app.use('/users', userRoutes); // Every route is going to start with users, using the imported posts.js router
+app.use('/users', userRoutes); // Every route is going to start with users, using the imported users.js router
 
 app.use(express.static('public'));
 
@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
     res.send('Hello Rocketstart!');
 })
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT;
 // const PORT = 5001;
 
 mongoose.connect(process.env.CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true })

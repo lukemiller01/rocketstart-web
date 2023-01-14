@@ -20,7 +20,6 @@ export const getUser = async (req, res) => {
 
 export const createUser = async (req, res) => {
     const {email: email} = req.body;
-    console.log(email);
 
     try {
         // Include Firebase ID in MongoDB so the user can be updated later
