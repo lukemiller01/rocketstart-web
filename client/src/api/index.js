@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = 'https://rocketstart.herokuapp.com/';
+const url = process.env.REACT_APP_API_SERVICE;
 
 export const createUser = (newUser) => axios.post(url, newUser);
 
