@@ -7,6 +7,7 @@ import { CREATE, UPDATEEMAIL, RESETPASSWORD } from '../constants/actionTypes.js'
 export const createUser = (user) => async (dispatch) => {
     try {
         const {data} = await api.createUser(user);
+        console.log(data);
         dispatch({type: CREATE, payload: data });
     } catch (error) {
         console.log(error);
