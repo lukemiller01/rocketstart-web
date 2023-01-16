@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 5001;
 
-app.get(`/${PORT}/health`, (req,res) => {
+app.get('/health', (req,res) => {
     res.send(200);
 })
 
