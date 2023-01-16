@@ -22,6 +22,10 @@ app.get('/', (req, res) => {
     res.send('Hello Rocketstart!');
 })
 
+app.get(`/${PORT}/health`, (req,res) => {
+    res.send(200);
+})
+
 const PORT = process.env.PORT || 5001;
 // const PORT = 5001; Render automatically changes this port.
 

@@ -9,7 +9,7 @@ const CallToAction = () => {
           Ready to Land Your
           <font className='color__change'> Dream Job? </font>
         </h4>
-        <Link to='/message'>
+        <Link to='/login'>
             <button className='button'>
               Get started for free
             </button>
