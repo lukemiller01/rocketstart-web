@@ -22,12 +22,11 @@ app.get('/', (req, res) => {
     res.send('Hello Rocketstart!');
 })
 
+const PORT = process.env.PORT || 5001;
+
 app.get(`/${PORT}/health`, (req,res) => {
     res.send(200);
 })
-
-const PORT = process.env.PORT || 5001;
-// const PORT = 5001; Render automatically changes this port.
 
 mongoose.connect(process.env.CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT} `)))
