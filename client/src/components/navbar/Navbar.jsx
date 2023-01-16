@@ -5,7 +5,15 @@ import RocketstartLogo from '../../assets/rocketstartLogo.svg';
 import { useState } from 'react';
 import { SignUp } from '../../modals';
 
-const Navbar = ({navOne, navTwo, logoURL}) => {
+const Menu = () => (
+  <>
+  <h3><Link to='/product'>Product</Link></h3>
+  <h3><Link to="/blog" className='navbar__item-focused'>Blog</Link></h3>
+  <h3><Link to="/about">About</Link></h3>
+  </>
+)
+
+const Navbar = ({navOne, logoURL}) => {
 
   // Modal state
   const [modalOpen, setModalOpen] = useState(false);
@@ -39,6 +47,9 @@ const Navbar = ({navOne, navTwo, logoURL}) => {
   let reset = resetTextState ? 'signup__no-visibility' : '';
   let password = passwordState ? '' : 'signup__no-visibility';
 
+  // For collapsed menu navbar media query
+  const [ toggleMenu, setToggleMenu ] = useState(false);
+
   return (
     <div className='navbar__container'>
       <div className='inner__navbar'>
@@ -52,33 +63,71 @@ const Navbar = ({navOne, navTwo, logoURL}) => {
             <li className='menu__item'>
               <h3><Link to="/blog" className='navbar__item-focused'>Blog</Link></h3>
             </li>
-            <li className='menu__item navbar__item-focused'>
-              {/* <h3><Link to="/pricing">Pricing</Link></h3> */}
-              <h3>Pricing</h3>
-            </li>
+            {/* <li className='menu__item navbar__item-focused'>
+              <h3><Link to="/pricing">Pricing</Link></h3>
+            </li> */}
             <li className='menu__item navbar__item-focused'>
               <h3><Link to="/about">About</Link></h3>
             </li>
           </ul>
         </div>
 
-        <div className={navOne}>
-          <nav className='navbar__items'>
-
-            <h3 className='navbar__item-focused' onClick={() => {handleUserLogin(false)}}>Sign In</h3>
-
-            <div className='button__container'>
-              <button className='navbar__button' onClick={() => {handleUserLogin(true)}}>Sign Up</button>
-            </div>
-
-          </nav>
-        </div>
-
-        <div className={navTwo}>
-          <div className='button__container'>
-            <Link to='/message'>
-              <button className='navbar__button home__dashboard-button'>Dashboard</button>
-            </Link>
+        <div className='navbar__right'>
+          <div className='navbar__buttons-not_collapsed'>
+            { navOne
+                ? 
+                <div>
+                  <nav className='navbar__items'>
+        
+                    <h3 className='navbar__item-focused' onClick={() => {handleUserLogin(false)}}>Sign In</h3>
+        
+                    <div className='button__container'>
+                      <button className='navbar__button' onClick={() => {handleUserLogin(true)}}>Sign Up</button>
+                    </div>
+        
+                  </nav>
+                </div>
+                : 
+                <div>
+                  <div className='button__container'>
+                    <Link to='/message'>
+                      <button className='navbar__button home__dashboard-button'>Dashboard</button>
+                    </Link>
+                  </div>
+              </div>
+              }
+          </div>
+          <div className='collapsed__menu'>
+            {toggleMenu
+              ? <span className="material-symbols-outlined collapsed__menu-icons" onClick={() => setToggleMenu(false)}>close</span>
+              : <span className="material-symbols-outlined collapsed__menu-icons" onClick={() => setToggleMenu(true)}>menu</span>
+            }
+            {toggleMenu && ( 
+              <div className="collapsed__menu-container scale-up-center">
+                <div className="navbar__inner-menu">
+                  <Menu/>
+                  <div className="navbar__inner-menu_signup">
+                    { navOne
+                        ? 
+                        <div className="navbar__inner-menu_signup">
+                          <h3 className='navbar__item-focused' onClick={() => {handleUserLogin(false)}}>Sign In</h3>
+                          <div className='button__container'>
+                            <button className='navbar__button' onClick={() => {handleUserLogin(true)}}>Sign Up</button>
+                          </div>
+                        </div>
+                        : 
+                        <div>
+                          <div className='button__container'>
+                            <Link to='/message'>
+                              <button className='navbar__button home__dashboard-button'>Dashboard</button>
+                            </Link>
+                          </div>
+                      </div>
+                      }
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

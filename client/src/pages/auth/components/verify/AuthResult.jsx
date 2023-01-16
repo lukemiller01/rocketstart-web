@@ -12,13 +12,13 @@ const AuthResult = ({action, result, message}) => {
         </Helmet>
         <Navbar3/>
         <div className='login'>
-        <h1>{action} {result}</h1>
-          <div className='auth__result'>
-            <p className='auth__result-paragraph'>{message}</p>
-            <Link className='home__button' to={'/'}>
-              Home
-            </Link>
-          </div>
+          <h1 className='auth__header'>{action} {result}</h1>
+            <div className='auth__result'>
+              <p className='auth__result-paragraph'>{message}</p>
+              <Link className='home__button' to={'/'}>
+                Home
+              </Link>
+            </div>
         </div>
     </div>
   )

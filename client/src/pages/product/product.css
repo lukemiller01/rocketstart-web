@@ -28,3 +28,49 @@
     justify-content: space-between;
     gap: 2rem;
 }
+
+@media screen and (max-width: 1350px) {
+    .product__header {
+        padding: 5rem 10rem 5rem 10rem;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .product {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+
+    .product__header {
+        padding: 3rem 5rem 3rem 5rem;
+    }
+
+    .product__header-button_container {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .product {
+        margin-left: 4rem;
+        margin-right: 4rem;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .product {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    .product__header {
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .product {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}

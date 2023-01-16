@@ -6,3 +6,74 @@ a {
     text-decoration: none;
     color: black;
 }
+
+h1 {
+    font-family: var(--font-family);
+    font-size: 42pt;
+    line-height: 1.25;
+    margin-bottom: 2rem;
+    font-weight: 900;
+}
+
+h3 {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 12pt;
+}
+
+h4 {
+    margin-bottom: .5rem;
+    font-size: 36pt;
+    font-family: var(--font-family);
+    font-weight: 700;
+}
+
+/* User name (bolded) */
+h5 {
+    font-family: var(--font-family);
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: .5rem;
+}
+
+/* H1 media:  */
+
+@media screen and (max-width: 1435px) {
+    h1 {
+        font-size: 36pt;
+    }
+}
+
+@media screen and (max-width: 1225px) {
+    h1 {
+        font-size: 32pt;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    h1 {
+        font-size: 22pt;
+    }
+}
+
+/* H4 media:  */
+
+@media screen and (max-width: 1050px) {
+    h4 {
+        font-size: 28pt;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    h4 {
+        font-size: 22pt;
+    }
+}
+
+/* H5 media:  */
+
+@media screen and (max-width: 400px) {
+    h5 {
+        font-size: 15px;
+    }
+}

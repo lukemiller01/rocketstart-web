@@ -107,3 +107,15 @@
 .account__quota-text {
     margin: 0.25rem 1rem 1rem 1rem;
 }
+
+@media screen and (max-width: 1050px) {
+    .account__modal {
+        right: 3rem;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .account__modal {
+        right: 1rem;
+    }
+}

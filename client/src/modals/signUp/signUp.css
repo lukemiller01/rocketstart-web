@@ -2,20 +2,18 @@
 
 /* ALTERNATE BETWEEN SIGNUP BG AND SIGNUP PAGE */
 .signup__bg {
-    position: absolute;
-    left: 0; 
-    right: 0; 
-    margin-left: auto; 
-    margin-right: auto; 
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     width: 100vw;
-    height: 100vw;
-
+    height: 103vh;
     background-color: rgba(30,30,30,.5);
-
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: -22rem;
+    margin-top: -3rem;
 }
 
 .login__bg {
@@ -150,4 +148,54 @@
 
 .close__none {
     display: none;
+}
+
+@media screen and (max-width: 1350px) {
+    .signup {
+        margin: 5rem 25rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .signup {
+        margin: 5rem 20rem;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .signup {
+        margin: 5rem 15rem;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .signup {
+        margin: 5rem 10rem;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .signup {
+        margin: 5rem 5rem;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .signup {
+        margin: 5rem 2rem;
+    }
+    
+    .signup__content {
+        padding: 2rem 1rem 2rem 1rem;
+    }
+
+    .signup__login {
+        width: 75vw;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .signup {
+        margin: 5rem 1rem;
+    }
 }

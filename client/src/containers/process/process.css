@@ -20,3 +20,27 @@ h4 {
     display: flex;
     flex-direction: column;
 }
+
+@media screen and (max-width: 800px) {
+    .process {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .process {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .process {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 1rem;
+    }
+}

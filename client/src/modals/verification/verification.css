@@ -1,17 +1,17 @@
 /* Contains background and spans entire screen  */
 .verification__bg {
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     margin-left: auto;
     margin-right: auto;
     width: 100vw;
-    height: 100vw;
+    height: 103vh;
     background-color: rgba(30,30,30,.5);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: -55rem;
     z-index: 1001;
 }
 
@@ -96,4 +96,57 @@
 
 .opened__verification-input {
     display: flex;
+}
+
+@media screen and (max-width: 1350px) {
+    .verification__modal {
+        margin: 5rem 25rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .verification__modal {
+        margin: 5rem 20rem;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .verification__modal {
+        margin: 5rem 15rem;
+    }
+}
+
+
+@media screen and (max-width: 850px) {
+    .verification__modal {
+        margin: 5rem 10rem;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .verification__modal {
+        margin: 5rem 5rem;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .verification__modal {
+        margin: 5rem 2rem;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .verification__button {
+        width: 80vw;
+    }
+
+    .verification__input {
+        width: 80vw;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .verification__modal {
+        margin: 5rem 1rem;
+    }
 }

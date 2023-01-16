@@ -10,15 +10,7 @@
 .header__content-container {
     display: flex;
     flex-direction: row;
-}
-
-/* Header 1 is the hook text */
-h1 {
-    font-family: var(--font-family);
-    font-size: 42pt;
-    line-height: 1.25;
-    margin-bottom: 2rem;
-    font-weight: 900;
+    gap: 8rem;
 }
 
 /* Paragraph is the sub text below the hook */
@@ -32,11 +24,6 @@ p {
 /* Left-most content flex so both columns are the same width */
 .left__content {
     flex: 1 1 0px;
-}
-
-/* Adds margin between the header content columns without needing to add right or left margin to either class */
-.middle__gutter {
-    width: 8rem;
 }
 
 /* Right-most content flex so both columns are the same width */
@@ -56,7 +43,7 @@ p {
 .rocketstart__demo {
     width: 100%;
     height: auto;
-    box-shadow: 0px 0px 20px rgb(0 0 0 / 35%)
+    box-shadow: 0px 0px 20px rgb(0 0 0 / 35%);
 }
 
 /* Aligning text and Chrome SVG within button */
@@ -101,3 +88,76 @@ p {
 }
 
 /* Old rgb(30, 90, 255) color: rgb(30, 144, 255) */
+
+@media screen and (max-width: 1435px) {
+    .header__content-container {
+        gap: 4rem;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .header {
+        margin-top: 8rem;
+        margin-bottom: 10rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .header {
+        margin-top: 4rem;
+        margin-bottom: 6rem;
+    }
+
+    .header__content-container {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .cta__benefit-container {
+        width: fit-content;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .right__content {
+        width: 60vw;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .header {
+        margin-left: 4rem;
+        margin-right: 4rem;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .header {
+        margin-left: 2rem;
+        margin-right: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .right__content {
+        width: 75vw;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .header {
+        margin-left: 4rem;
+        margin-right: 4rem;
+    }
+
+    .header__content-title {
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .header {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}

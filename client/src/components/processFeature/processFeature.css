@@ -8,8 +8,6 @@
     background-color: #FAFAFA;
     align-items: center;
     text-align: center;
-    padding-left: 25rem;
-    padding-right: 25rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
@@ -34,14 +32,13 @@
     flex-direction: row;
     color: rgb(30, 90, 255);
     position: relative;
-    width: 251px;
+    /* width: 251px; */
     height: auto;
     margin-left: 1rem;
+    text-align: center;
 }
 
 .process__explore-text {
-    font-size: 20px;
-    font-weight: 800;
     cursor: pointer;
     white-space: nowrap;
 }
@@ -54,4 +51,28 @@
 .process__explore-container:hover .process__feature-icon{
     transition: all .25s ease;
     margin-left: .5rem;
+}
+
+@media screen and (max-width: 1050px) {
+    .process__steps-container {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .process__steps-container {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .process__icon {
+        font-size: 50px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .process__feature-icon {
+        font-size: 20px;
+    }
 }

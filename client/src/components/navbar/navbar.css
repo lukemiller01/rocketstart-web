@@ -42,13 +42,6 @@ h2 {
     font-size: 14pt;
 }
 
-/* Header 3 is menu items */
-h3 {
-    font-family: var(--font-family);
-    font-weight: 500;
-    font-size: 12pt;
-}
-
 /* Rightmost side of navbar with menu items and "Add to Chrome" button */
 .navbar__items {
     display: flex;
@@ -127,4 +120,130 @@ h3 {
 
 .navbar__hidden {
     display: none;
+}
+
+.collapsed__menu {
+    display: none;
+}
+
+.collapsed__menu-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    text-align: end;
+    padding: 2rem;
+    position: absolute;
+    top: 45px;
+    right: 8rem;
+    margin-top: 9px;
+    min-width: 175px;
+    border-radius: 10px;
+    background: white;
+    border: 1px solid lightgray;
+}
+
+.scale-up-center {
+	-webkit-animation: scale-up-center 0.1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: scale-up-center 0.1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@-webkit-keyframes scale-up-center {
+    0% {
+      -webkit-transform: scale(0.5);
+              transform: scale(0.5);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+  }
+  @keyframes scale-up-center {
+    0% {
+      -webkit-transform: scale(0.5);
+              transform: scale(0.5);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+}
+
+.navbar__inner-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.navbar__inner-menu_signup {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    display: none;
+}
+
+.navbar__right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+}
+
+.collapsed__menu-icons {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1050px) {
+    .menu {
+        display: none;
+    }
+
+    .collapsed__menu {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .inner__navbar {
+        margin-left: 4rem;
+        margin-right: 4rem;
+    }
+
+    .collapsed__menu-container {
+        right: 4rem;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .inner__navbar {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    .navbar__buttons-not_collapsed {
+        display: none;
+    }
+
+    .collapsed__menu-container {
+        padding: 1rem;
+    }
+
+    .navbar__inner-menu_signup {
+        display: flex;
+    }
+
+    .collapsed__menu-container {
+        right: 2rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .inner__navbar {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .collapsed__menu-container {
+        right: 1rem;
+    }
 }

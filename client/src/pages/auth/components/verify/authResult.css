@@ -8,6 +8,10 @@
     margin-left: auto;
 }
 
+.auth__header {
+    text-align: center;
+}
+
 .home__button {
     display: flex;
     flex-direction: row;
@@ -37,4 +41,26 @@
 
 .auth__result-paragraph {
     text-align: center;
+}
+
+@media screen and (max-width: 1050px) {
+    .auth__result {
+        width: auto;
+        margin-left: 4rem;
+        margin-right: 4rem;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .auth__result {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .auth__result {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
 }

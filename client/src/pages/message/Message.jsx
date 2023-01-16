@@ -390,70 +390,63 @@ const Message = () => {
                     </p>
                 </div>
             </div>
-            <div className='columns'>
-                <div className='left__column'>
-                <div className="insights">
+            <div className="insights">
+                
+                <div className='outer__container'>
                     <div className={`insight__container ${paragraphExplanation ? " active__rs" : ""}`} id="paragraph__container" onClick={() => handleExplanation(true, false, false, false)}>
-                    <div className="insight">
-                        <h3 className="insight__title">Paragraphs</h3>
-                        <div className="insight__metrics">
-                        <span className={`material-icons insight__icon ${check1 ? " message__flex" : " message__hide"}`} id="check1">done</span>
-                        <h3 className="insight__number" id="paragraphs">{paragraph}</h3>
+                        <div className="insight">
+                            <h3 className="insight__title">Paragraphs</h3>
+                            <div className="insight__metrics">
+                                <span className={`material-icons insight__icon ${check1 ? " message__flex" : " message__hide"}`} id="check1">done</span>
+                                <h3 className="insight__number" id="paragraphs">{paragraph}</h3>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <div className="insight__slider">
-                        <div className="slider__rectangle" style={{left: paragraphSlider}} id="paragraph__slider"></div>
+                        <div>
+                            <div className="insight__slider">
+                                <div className="slider__rectangle" style={{left: paragraphSlider}} id="paragraph__slider"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div className="slider__gradient paragraph__gradient"></div>
-                    </div>
-                    <div className={`insight__container ${questionExplanation ? " active__rs" : ""}`} id="question__container" onClick={() => handleExplanation(false, true, false, false)}>
-                    <div className="insight">
-                        <h3 className="insight__title">Questions</h3>
-                        <div className="insight__metrics">
-                        <span className={`material-icons insight__icon ${check2 ? " message__flex" : " message__hide"}`} id="check2">done</span>
-                        <h3 className="insight__number" id="questions">{question}</h3>
-                        </div>
-                    </div>
-                    <div>
-                        <div className="insight__slider">
-                        <div className="slider__rectangle" style={{left: questionSlider}} id="question__slider"></div>
-                        </div>
-                    </div>
-                    <div className="slider__gradient question__gradient"></div>
-                    </div>
-                    <div className={`insight__container ${gradingExplanation ? " active__rs" : ""}`} id="grade__container" onClick={() => handleExplanation(false, false, true, false)}>
-                    <div className="insight">
-                        <h3 className="insight__title">Grade</h3>
-                        <div className="insight__metrics">
-                        <span className={`material-icons insight__icon ${check3 ? " message__flex" : " message__hide"}`} id="check3">done</span>
-                        <h3 className="insight__number" id="grade">{grade}</h3>
-                        </div>
-                    </div>
-                    <div>
-                        <div className="insight__slider">
-                        <div className="slider__rectangle" style={{left: gradingSlider}} id="grade__slider"></div>
-                        </div>
-                    </div>
-                    <div className="slider__gradient grade__gradient"></div>
-                    </div>
-
-            </div>
-                    <textarea placeholder='Type your invitation note here' maxLength="300" id='textBox' value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
-                    <div className='left__column-three'>
-                        <p className='character__counter'>{300 - message.length} / 300</p>
-                        <div className={`copied__container ${copy ? " fade__in" : ""}`} id='copiedContainer'>
-                            <p className='copied__text' >Copied to clipboard</p>
-                            <span className="material-icons copied__check">done</span>
-                        </div>
-                        <button className='navbar__button copy__button' onClick={() => handleCopy()}>
-                            Copy
-                        </button>
+                        <div className="slider__gradient paragraph__gradient"></div>
                     </div>
                 </div>
-            <div className='right__column'>
-                <div className='insights'>
+
+                <div className='outer__container'>
+                    <div className={`insight__container ${questionExplanation ? " active__rs" : ""}`} id="question__container" onClick={() => handleExplanation(false, true, false, false)}>
+                        <div className="insight">
+                            <h3 className="insight__title">Questions</h3>
+                            <div className="insight__metrics">
+                                <span className={`material-icons insight__icon ${check2 ? " message__flex" : " message__hide"}`} id="check2">done</span>
+                                <h3 className="insight__number" id="questions">{question}</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="insight__slider">
+                                <div className="slider__rectangle" style={{left: questionSlider}} id="question__slider"></div>
+                            </div>
+                        </div>
+                        <div className="slider__gradient question__gradient"></div>
+                    </div>
+                </div>
+
+                <div className='outer__container'>
+                    <div className={`insight__container ${gradingExplanation ? " active__rs" : ""}`} id="grade__container" onClick={() => handleExplanation(false, false, true, false)}>
+                        <div className="insight">
+                            <h3 className="insight__title">Grade</h3>
+                            <div className="insight__metrics">
+                                <span className={`material-icons insight__icon ${check3 ? " message__flex" : " message__hide"}`} id="check3">done</span>
+                                <h3 className="insight__number" id="grade">{grade}</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="insight__slider">
+                                <div className="slider__rectangle" style={{left: gradingSlider}} id="grade__slider"></div>
+                            </div>
+                        </div>
+                        <div className="slider__gradient grade__gradient"></div>
+                    </div>
+                </div>
+
+                <div className='outer__container'>
                     <div className={`insight__container ${wordingExplanation ? " active__rs" : ""}`} id="wording__container" onClick={() => handleExplanation(false, false, false, true)}>
                         <div className="insight">
                             <h3 className="insight__title">Wording</h3>
@@ -471,6 +464,23 @@ const Message = () => {
                         <div className="slider__gradient word__gradient"></div>
                     </div>
                 </div>
+
+            </div>
+            <div className='columns'>
+                <div className='left__column'>
+                    <textarea placeholder='Type your invitation note here' maxLength="300" id='textBox' value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
+                    <div className='left__column-three'>
+                        <p className='character__counter'>{300 - message.length} / 300</p>
+                        <div className={`copied__container ${copy ? " fade__in" : ""}`} id='copiedContainer'>
+                            <p className='copied__text' >Copied to clipboard</p>
+                            <span className="material-icons copied__check">done</span>
+                        </div>
+                        <button className='navbar__button copy__button' onClick={() => handleCopy()}>
+                            Copy
+                        </button>
+                    </div>
+                </div>
+            <div className='right__column'>
                 <div className="insights__explanation">
                     <div className={`explanation__container ${paragraphExplanation ? " message__block" : " message__hide"}`} id="paragraph__explanation">
                         <div className='modified__explanation'>
@@ -538,6 +548,7 @@ const Message = () => {
                         <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
                     </div>
                 </div>
+
             </div>
             </div>
         </div>

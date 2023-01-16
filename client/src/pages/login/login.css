@@ -2,5 +2,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 5rem 8rem 5rem 8rem;
+    margin: 5rem 0rem 5rem 0rem;
+}
+
+@media screen and (max-width: 625px) {
+    .signup {
+        margin: 5rem 2rem;
+    }
+    
+    .signup__content {
+        padding: 2rem 1rem 2rem 1rem;
+    }
 }

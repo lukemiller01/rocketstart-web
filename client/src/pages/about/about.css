@@ -33,3 +33,47 @@
     font-size: 22px;
     font-weight: 700;
 }
+
+@media screen and (max-width: 1200px) {
+    .about {
+        padding-left: 15rem;
+        padding-right: 15rem;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .about {
+        padding-left: 10rem;
+        padding-right: 10rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .about {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+
+    .about__paragraph {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .process {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .about__headshot {
+        width: 50vw;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .process {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}

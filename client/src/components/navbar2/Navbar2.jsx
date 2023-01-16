@@ -1,12 +1,35 @@
 import React from 'react';
 // import { Link, NavLink } from 'react-router-dom';
-import { NavLink, Link, useLocation} from 'react-router-dom';
+import { NavLink, Link, useLocation, useNavigate} from 'react-router-dom';
 import { useState } from 'react';
 import "./navbar2.css";
 import RocketstartLogo from '../../assets/rocketstartLogo.svg';
 import { Account } from '../../modals';
+import { useUserAuth } from '../../context/AuthProvider';
 
-// TODO: add icons to Message and Find tabs
+const Menu = () => {
+
+  const navigate = useNavigate();
+  const { logOut } = useUserAuth();
+
+    async function handleLogOut() {
+      try {
+          await logOut();
+          navigate("/");
+        }
+        catch (e) {
+          console.log(e);
+        }
+    }
+
+  return (
+    <>
+      <h3><Link to='/account'>Account</Link></h3>
+      <h3><Link to="/home" className='navbar__item-focused'>Home</Link></h3>
+      <h3 onClick={handleLogOut}>Log Out</h3>
+    </>
+  )
+}
 
 const Navbar2 = () => {
 
@@ -26,6 +49,9 @@ const Navbar2 = () => {
   const { pathname } = location;
   const split = pathname.split("/");
 
+  // For collapsed menu navbar media query
+  const [ toggleMenu, setToggleMenu ] = useState(false);
+
   return (
   <div className='navbar__container'>
     <div className='inner__navbar2'>
@@ -34,7 +60,7 @@ const Navbar2 = () => {
         <h2>Rocketstart</h2>
       </div>
       <nav>
-        <ul className='menu'>
+        <ul className='menu__nav-two'>
 
           <li className='menu__item navbar__item-focused'>
             <h3>
@@ -45,7 +71,7 @@ const Navbar2 = () => {
             </h3>
           </li>
 
-          <li className='menu__item navbar__item-focused' onClick={handleModalOpen} onMouseEnter={() => {setCommunicateState(false)}} onMouseLeave={() => {setCommunicateState(true)}} >
+          <li className='navbar__item-focused' onClick={handleModalOpen} onMouseEnter={() => {setCommunicateState(false)}} onMouseLeave={() => {setCommunicateState(true)}} >
               <NavLink className={split[1] === "account" ? "active__menu" : ""} style={{display: 'flex'}}>
                 <h3>Account</h3>
                 <span className="material-symbols-outlined navbar__account-icon">{icon}</span>
@@ -59,6 +85,20 @@ const Navbar2 = () => {
           </li> */}
           
         </ul>
+
+        <div className='collapsed__menu-nav_two'>
+          {toggleMenu
+            ? <span className="material-symbols-outlined collapsed__menu-icons" onClick={() => setToggleMenu(false)}>close</span>
+            : <span className="material-symbols-outlined collapsed__menu-icons" onClick={() => setToggleMenu(true)}>menu</span>
+          }
+          {toggleMenu && ( 
+            <div className="collapsed__menu-container scale-up-center">
+              <div className="navbar__inner-menu">
+                <Menu/>
+              </div>
+            </div>
+          )}
+        </div>
       </nav>
     </div>
     {modalOpen && <Account setModalOpen={setModalOpen} setAccountIconState={setAccountIconState} communicateState={communicateState}/>}

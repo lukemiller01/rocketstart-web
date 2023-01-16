@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Home, Blog, Pricing, About, Product, Privacy, Terms, Message, Find, Login, Action, Account, NotFound } from './pages';
-// import { Action } from './pages/auth/Action'
 
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './miscellaneous/ScrollToTop';
@@ -27,7 +26,7 @@ const App = () => {
 
             {/* Dashboard Toggle: redirects to /message if user is logged in  */}
             <Route element={<UserRedirect/>}>
-              <Route path='/' element={<Home navOne={''} navTwo={'navbar__hidden'} logoURL={'/'}/>} />
+              <Route path='/' element={<Home navOne={true} logoURL={'/'}/>} />
               <Route path='/login' element={<Login/>}/>
             </Route>
 
@@ -40,7 +39,7 @@ const App = () => {
 
             {/* Home Toggle: redirects to / if user is not logged in */}
             <Route element={<HomeRedirect/>}>
-              <Route path='/home' element={<Home navOne={'navbar__hidden'} navTwo={''} logoURL={'/home'}/>} />
+              <Route path='/home' element={<Home navOne={false} logoURL={'/home'}/>} />
             </Route>
 
             {/* Auxiliary Pages: changes navbar based on user state */}

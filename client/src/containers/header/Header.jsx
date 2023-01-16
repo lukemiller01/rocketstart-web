@@ -8,7 +8,7 @@ const header = () => {
     <div className="header">
       <div className="header__content-container">
         <div className="left__content">
-          <h1>
+          <h1 className='header__content-title'>
             <font className='color__change'>Stand Out </font>
             In Every Job Application.
           </h1>
@@ -40,9 +40,8 @@ const header = () => {
             </Link>
           </div>
         </div>
-        <div className="middle__gutter"/>
-        <div className='right__content rocketstart__demo' >
-          <video width="100%" height="100%" autoPlay loop muted>
+        <div className='right__content' >
+          <video width="100%" height="100%" autoPlay loop muted className='rocketstart__demo'>
             <source src={headerDemo} type="video/mp4" />
             Your browser does not support the video tag.
           </video>

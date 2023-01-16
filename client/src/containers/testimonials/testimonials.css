@@ -3,14 +3,6 @@
     margin-bottom: 6rem;
 }
 
-/* Header text for testimonials */
-h4 {
-    margin-bottom: .5rem;
-    font-size: 36pt;
-    font-family: var(--font-family);
-    font-weight: 700;
-}
-
 /* Header and subheader of testimonial */
 .testimonials__header {
     text-align: center;

@@ -37,13 +37,6 @@
     flex: 1;
 }
 
-/* User name (bolded) */
-h5 {
-    font-family: var(--font-family);
-    font-size: 12pt;
-    margin-bottom: .5rem;
-}
-
 /* Text on right side of testimonial */
 .biographical__text {
     min-width: 180px;

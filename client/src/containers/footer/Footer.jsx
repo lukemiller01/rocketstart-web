@@ -36,7 +36,7 @@ const Footer = () => {
                 <p className='footer__paragraph'>2023 © Rocketstart. All Rights Reserved.</p>
             </div>
             <div className='footer__social'>
-                <img src={LinkedIn} alt='LinkedIn icon' className='footer__icon'/>
+                <img src={LinkedIn} href="https://www.linkedin.com/company/rocketstartcareers" target="_blank" alt='LinkedIn icon' className='footer__icon'/>
                 <img src={YouTube} alt='YouTube icon' className='footer__icon'/>
             </div>
         </div>
