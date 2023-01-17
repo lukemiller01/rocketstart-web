@@ -49,8 +49,7 @@ const pricingData = [
 
 const Pricing = () => {
 
-  const umami = window.umami
-  umami.trackView('/pricing');
+  window.umami.trackView('/pricing');
 
   // Button for currency conversion
   const [btnState, setBtnState ] = useState(false);

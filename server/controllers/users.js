@@ -40,14 +40,12 @@ export const createUser = async (req, res) => {
        };
        var finalHTML = template(replacements);
 
-       // TODO: fix "Hello from Postmark!"
         // Send user the verification email
         client.sendEmail({
             "From": '"Luke at Rocketstart" <luke@rocketstart.careers>',
             "To": `${email}`,
             "Subject": "[Rocketstart] Please Verify Your Email",
             "HtmlBody": finalHTML,
-            "TextBody": "Hello from Postmark!",
             "MessageStream": "outbound",
             "Attachments": [
                 {
@@ -67,9 +65,6 @@ export const createUser = async (req, res) => {
         return res.status(200).json({message: "Success!"});
     }
     catch (error) {
-        if(error.code === 'auth/email-already-exists') {
-            return res.status(400).json({error: "An account with that email already exists."})
-        }
         console.log(error);
         return res.status(500).json(error);
     }
@@ -97,14 +92,12 @@ export const resendVerification = async (req, res) => {
        };
        var finalHTML = template(replacements);
 
-       // TODO: fix "Hello from Postmark!"
         // Send user the verification email
         client.sendEmail({
             "From": '"Luke at Rocketstart" <luke@rocketstart.careers>',
             "To": `${updatedEmail}`,
             "Subject": "[Rocketstart] Please Verify Your Email",
             "HtmlBody": finalHTML,
-            "TextBody": "Hello from Postmark!",
             "MessageStream": "outbound",
             "Attachments": [
                 {
@@ -157,14 +150,12 @@ export const resetPassword = async (req, res) => {
        };
        var finalHTML = template(replacements);
 
-       // TODO: fix "Hello from Postmark!"
         // Send user the password reset email
         client.sendEmail({
             "From": '"Luke at Rocketstart" <luke@rocketstart.careers>',
             "To": `${email}`,
             "Subject": "[Rocketstart] Please Reset Your Password",
             "HtmlBody": finalHTML,
-            "TextBody": "Hello from Postmark!",
             "MessageStream": "outbound",
             "Attachments": [
                 {

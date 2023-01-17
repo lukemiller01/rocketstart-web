@@ -9,8 +9,7 @@ import './account.css';
 
 const Account = () => {
 
-    const umami = window.umami
-    umami.trackView('/account');
+    window.umami.trackView('/account');
 
     const navigate = useNavigate();
 
@@ -198,7 +197,7 @@ const Account = () => {
                     </div>
                 </div>
 
-                {error && <Error message={errorMessage}/>}
+                {error && <Error message={errorMessage} justify={false}/>}
             </div>
 
             <div className='account__buttons-container'>

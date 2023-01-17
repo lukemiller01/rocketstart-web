@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import Footer from '../../containers/footer/Footer';
+import CallToAction from '../../containers/calltoaction/CallToAction'
 import { useOutletContext } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { Helmet } from 'react-helmet';
@@ -10,8 +11,7 @@ import './product.css'
 
 const Product = () => {
 
-  const umami = window.umami
-  umami.trackView('/product');
+  window.umami.trackView('/product');
 
   // Setting the navbar based on if the user is logged in
   const { navOne, navTwo, logoURL } = useOutletContext();
@@ -50,7 +50,7 @@ const Product = () => {
             boxOneText={"Contact Finder provides results for over 95% of jobs posted online."}
             boxTwo={"Transparent Data"}
             boxTwoText={"Rocketstart's data is used ethically. Every contact we distribute has a public source."}
-            boxThree={"+70% Accuracy"}
+            boxThree={"+80% Accuracy"}
             boxThreeText={"Contact Finder is accurate and its algorithm is continously improving."}
 
             boxIconOne={'work'}
@@ -75,6 +75,7 @@ const Product = () => {
             boxIconThree={'science'}/>
         </div>
       </div>
+      <CallToAction page={'CTA Button (/product)'}/>
       <div className="grey__bg">
         <Footer/>
       </div>

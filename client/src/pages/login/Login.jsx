@@ -7,8 +7,7 @@ import './login.css';
 
 const Login = () => {
 
-  const umami = window.umami
-  umami.trackView('/login');
+  window.umami.trackView('/login');
 
     // Parameters needed for the SignUp component:
     let modalOpen = true;

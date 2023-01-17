@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './callToAction.css';
 
-const CallToAction = () => {
+const CallToAction = ({page}) => {
 
   function buttonClick() {
-    window.umami.trackEvent('CTA Button');
+    window.umami.trackEvent(page);
   }
 
   return (

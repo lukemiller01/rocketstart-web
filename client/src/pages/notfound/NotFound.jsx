@@ -5,8 +5,7 @@ import { Helmet } from 'react-helmet';
 
 const NotFound = () => {
 
-  const umami = window.umami
-  umami.trackView('/*');
+  window.umami.trackView('/*');
 
   return (
     <div>

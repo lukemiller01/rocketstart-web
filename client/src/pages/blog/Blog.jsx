@@ -9,8 +9,7 @@ import {map, retro, mac, pen} from './imports';
 
 const Blog = () => {
 
-  const umami = window.umami
-  umami.trackView('/blog');
+  window.umami.trackView('/blog');
 
   // Setting the navbar based on if the user is logged in
   const { navOne, navTwo, logoURL } = useOutletContext();

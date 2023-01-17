@@ -22,8 +22,7 @@ const Footer = () => {
             </div>
             <div className='column__three'>
                 <p className='column__header footer__paragraph'>Support</p>
-                <p className='footer__paragraph'>FAQ</p>
-                <p className='footer__paragraph'>Contact Us</p>
+                <p className='footer__paragraph'><a target="_blank" rel="noopener noreferrer" href="mailto:luke@rocketstart.careers">Contact Us</a></p>
             </div>
         </div>
         <hr></hr>

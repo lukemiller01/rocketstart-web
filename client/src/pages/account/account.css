@@ -149,4 +149,8 @@
     .account__buttons-container {
         flex-direction: column;
     }
+
+    .account__profile-header {
+        text-align: center;
+    }
 }

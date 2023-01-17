@@ -5,7 +5,7 @@
     padding: 2rem;
     border-radius: 10px;
     width: 25vw;
-    height: 25vh;
+    height: auto;
     gap: 1rem;
 }
 
@@ -38,7 +38,6 @@
 @media screen and (max-width: 1000px) {
     .feature__card {
         width: 100%;
-        height: auto;
         align-items: center;
     }
 

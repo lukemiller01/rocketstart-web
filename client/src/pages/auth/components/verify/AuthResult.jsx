@@ -6,8 +6,7 @@ import './authResult.css';
 
 const AuthResult = ({action, result, message}) => {
 
-  const umami = window.umami
-  umami.trackView('/auth/action');
+  window.umami.trackView('/auth/action');
 
   return (
     <div>

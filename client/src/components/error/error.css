@@ -1,6 +1,13 @@
 .error {
     display: flex;
+}
+
+.error__center  {
     justify-content: center;
+}
+
+.error__left {
+    justify-content: flex-start;
 }
 
 .error__text {
@@ -12,7 +19,8 @@
     padding-right: 1rem;
     font-weight: 600;
     color: red;
-    background: rgba(255,0,0,.3);
+    background: rgba(255,0,0,.1);
     border: 1px solid red;
     border-radius: 10px;
+    text-align: center;
 }

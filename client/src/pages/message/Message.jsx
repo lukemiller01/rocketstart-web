@@ -9,8 +9,7 @@ import './message.css';
 
 const Message = () => {
 
-    const umami = window.umami
-    umami.trackView('/message');
+    window.umami.trackView('/message');
 
     // Modal state
     const [modalOpen, setModalOpen] = useState(false);

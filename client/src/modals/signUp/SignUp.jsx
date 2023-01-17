@@ -88,7 +88,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
           setError(true);
         }
         else if(error.code === "auth/invalid-email") {
-          setErrorMessage('The email you enteres is invalid.');
+          setErrorMessage('The email you entered is invalid.');
           setError(true);
         }
         else if(error.code === "auth/too-many-requests") {
@@ -229,7 +229,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
               <p className='signup__signin signup__terms-links'>{answer}</p>
             </div>
           </div>
-          {error && <Error message={errorMessage}/>}
+          {error && <Error message={errorMessage} justify={true}/>}
         </div>
         </div>
       </div>

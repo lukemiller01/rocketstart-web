@@ -19,7 +19,7 @@ const Home = ({navOne, navTwo, logoURL}) => {
       </div> */}
       <Process/>
       <Questions/>
-      <CallToAction/>
+      <CallToAction page={'CTA Button (/)'}/>
       <div className="grey__bg">
         <Footer/>
       </div>

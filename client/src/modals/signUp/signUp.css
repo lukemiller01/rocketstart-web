@@ -9,6 +9,7 @@
     width: 100vw;
     height: 103vh;
     background-color: rgba(30,30,30,.5);
+    backdrop-filter: blur(5px);
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -6,8 +6,7 @@ import {Helmet } from 'react-helmet';
 
 const Privacy = () => {
 
-  const umami = window.umami
-  umami.trackView('/privacy');
+  window.umami.trackView('/privacy');
 
   // Setting the navbar based on if the user is logged in
   const { navOne, navTwo, logoURL } = useOutletContext();

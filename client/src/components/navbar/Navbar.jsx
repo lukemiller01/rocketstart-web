@@ -34,6 +34,7 @@ const Navbar = ({navOne, logoURL}) => {
       setBottomTextAState("Sign In");
       setTermsTextState(true);
       setResetTextState(true);
+      window.umami.trackEvent('Navbar Button');
     }
     else {
       setButtonState("Sign In");
@@ -55,11 +56,11 @@ const Navbar = ({navOne, logoURL}) => {
     <div className='navbar__container'>
       <div className='inner__navbar'>
         <div className='navbar__logo'>
-          <Link to={logoURL} className='navbar__logo'><img src={RocketstartLogo} alt="logo" className='image__logo'></img></Link>
+          <Link to={logoURL} className='navbar__logo'><img src={RocketstartLogo} alt="Rocketstart logo" className='image__logo'></img></Link>
           <h2>Rocketstart</h2>
           <ul className='menu'>
-            <li className='menu__item navbar__item-focused'>
-              <h3><Link to='/product'>Product</Link></h3>
+            <li className='menu__item'>
+              <h3><Link to='/product' className='navbar__item-focused'>Product</Link></h3>
             </li>
             <li className='menu__item'>
               <h3><Link to="/blog" className='navbar__item-focused'>Blog</Link></h3>
@@ -68,7 +69,7 @@ const Navbar = ({navOne, logoURL}) => {
               <h3><Link to="/pricing">Pricing</Link></h3>
             </li> */}
             <li className='menu__item navbar__item-focused'>
-              <h3><Link to="/about">About</Link></h3>
+              <h3><Link to="/about" className='navbar__item-focused'>About</Link></h3>
             </li>
           </ul>
         </div>
