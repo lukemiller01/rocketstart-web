@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { resetPassword, resendVerification } from '../../actions/userActions';
-import { Navbar2 } from '../../components';
+import { Navbar2, Error } from '../../components';
 import { useUserAuth } from '../../context/AuthProvider';
 import { Helmet } from 'react-helmet'
 import './account.css';
 
 const Account = () => {
 
-    const { user, changeEmail, logIn } = useUserAuth();
+    const umami = window.umami
+    umami.trackView('/account');
+
+    const navigate = useNavigate();
+
+    const { user, changeEmail, logIn, logOut } = useUserAuth();
 
     // In case the user only chooses to set their password
     let oldUserEmail = user.email;
@@ -24,22 +30,27 @@ const Account = () => {
 
     // Alternate between setting the fields and setting the buttons display
     const [fieldsState, setFieldsState] = useState('fields');
-    const [fieldsButtonState, setFieldsButtonState] = useState('fields__none');
+    const [fieldsButtonState, setFieldsButtonState] = useState(false);
 
     // Copy button:
     const [copy, setCopy] = useState(false);
 
     const dispatch = useDispatch();
 
+    // Error handling
+    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+
     function handleEdit(e) {
+        setError(false);
         if(buttonState === 'Edit Profile') {
             setFieldsState("fields__none");
-            setFieldsButtonState("fields");
+            setFieldsButtonState(true);
             setButtonState('Save Profile');
         }
         else if(buttonState === "Save Profile") {
             setFieldsState("fields");
-            setFieldsButtonState("fields__none");
+            setFieldsButtonState(false);
             setButtonState('Edit Profile');
 
             handleFormSubmit(e);
@@ -47,13 +58,15 @@ const Account = () => {
     }
 
     function cancelEdit() {
+        setError(false);
         setFieldsState("fields");
-        setFieldsButtonState("fields__none");
+        setFieldsButtonState(false);
         setButtonState('Edit Profile');
     }
 
     async function handleFormSubmit(e) {
         e.preventDefault();
+        setError(false);
 
         if(oldUserEmail !== userData.email && userData.email !== undefined) {
           try {
@@ -61,21 +74,49 @@ const Account = () => {
             await changeEmail(userData.email);
             dispatch(resendVerification(user.uid, {email: userData.email}));
           }
-          catch (e) {
-            console.log(e);
+          catch (error) {
+            if(error.code === "auth/wrong-password") {
+                setErrorMessage('Incorrect password.');
+                setError(true);
+            }
+            else if(error.code === "auth/invalid-email") {
+                setErrorMessage('The email you enteres is invalid.');
+                setError(true);
+            }
+            else if(error.code === "auth/too-many-requests") {
+                setErrorMessage('Too many attempts. Please try in a few minutes.');
+                setError(true);
+            }
+            else if(error.code === 'auth/email-already-in-use') {
+                setErrorMessage('An account with this email already exists.');
+                setError(true);
+            }
+            else if(error.code === "auth/internal-error") {
+                setErrorMessage('An internal error occured. Please try again.');
+                setError(true);
+            }
+            else {
+                setErrorMessage(error.code);
+                setError(true);
+            }
           }
+        }
+        else {
+            setErrorMessage('Email already in use');
+            setError(true);
         }
       }
 
     async function resetPass(e) {
         e.preventDefault();
+        setError(false);
 
         try {
-            console.log(oldUserEmail);
             dispatch(resetPassword({email: oldUserEmail}));
             handlePassword();
-        } catch (e) {
-            console.log(e)
+        } catch (error) {
+            setErrorMessage(error.code);
+            setError(true);
         }
     }
 
@@ -87,6 +128,16 @@ const Account = () => {
         else {
             setPassWordVisible(false);
         }
+    }
+
+    async function handleLogOut() {
+        try {
+            await logOut();
+            navigate("/");
+          }
+          catch (e) {
+            console.log(e);
+          }
     }
 
     // Copied to clipboard animation
@@ -111,14 +162,15 @@ const Account = () => {
                 <div className='account__fields'>
                     <h2 className='account__field-title'>Email:</h2>
                     <p className={`account__fields-paragraph ${fieldsState}`}>{user.email}</p>
-                    <form className={`account__fields ${fieldsButtonState}`}>
+                    <form className={`account__fields ${fieldsButtonState ? " fields" : "fields__none"}`}>
                         <input
                             className='account__input'
                             required
-                            placeholder="Email"
+                            placeholder="New Email"
                             autoComplete='email'
                             name='email'
                             autoFocus
+                            enterKeyHint='next'
                             onChange={(e) => checkPasswordVisibility(e)}
                         />
                         <input
@@ -136,7 +188,7 @@ const Account = () => {
                     <h2 className='account__field-title'>Password:</h2>
                     <p className={`account__fields-paragraph ${fieldsState}`}>•••••••</p>
                     <form onSubmit={(e) => resetPass(e)}>
-                        <button className={`account__button account__password-width ${fieldsButtonState}`} type="submit">
+                        <button className={`account__button account__password-width ${fieldsButtonState ? " fields" : "fields__none"}`} type="submit">
                             Reset Password
                         </button>
                     </form>
@@ -145,15 +197,22 @@ const Account = () => {
                         <span className="material-icons copied__check">done</span>
                     </div>
                 </div>
+
+                {error && <Error message={errorMessage}/>}
             </div>
 
             <div className='account__buttons-container'>
                 <button className='account__button' onClick={(e) => handleEdit(e)}>
                     {buttonState}
                 </button>
-                <button className={`account__button ${fieldsButtonState}`} onClick={cancelEdit}>
+                <div className={`account__buttons-container ${fieldsButtonState ? " fields__none" : "fields"}`}>
+                    <button className='account__button' onClick={handleLogOut}>
+                        Sign Out
+                    </button>
+                </div>
+                <button className={`account__button ${fieldsButtonState ? " fields" : "fields__none"}`} onClick={cancelEdit}>
                     Cancel
-                </button>
+                </button> 
             </div>
 
         </div>

@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import './callToAction.css';
 
 const CallToAction = () => {
+
+  function buttonClick() {
+    window.umami.trackEvent('CTA Button');
+  }
+
   return (
     <div className='call__to-action'>
         <h4 className='cta__header'>
@@ -10,7 +15,7 @@ const CallToAction = () => {
           <font className='color__change'> Dream Job? </font>
         </h4>
         <Link to='/login'>
-            <button className='button'>
+            <button className='button' onClick={buttonClick}>
               Get started for free
             </button>
         </Link>

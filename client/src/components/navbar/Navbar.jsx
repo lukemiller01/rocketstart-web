@@ -26,6 +26,7 @@ const Navbar = ({navOne, logoURL}) => {
 
   function handleUserLogin(type) {
     // Opening the modal:
+    document.body.style.overflow = "hidden"
     setModalOpen(true);
     if(type) {
       setButtonState("Create Account");

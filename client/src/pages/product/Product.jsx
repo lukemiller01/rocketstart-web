@@ -10,6 +10,9 @@ import './product.css'
 
 const Product = () => {
 
+  const umami = window.umami
+  umami.trackView('/product');
+
   // Setting the navbar based on if the user is logged in
   const { navOne, navTwo, logoURL } = useOutletContext();
 
@@ -60,7 +63,7 @@ const Product = () => {
             image={'MessageAnalysis'}
             id={'message-analysis'}
 
-            boxOne={"25% More Responses"}
+            boxOne={"+25% More Responses"}
             boxOneText={"Rocketstart messages receive higher response rates than messages written unaided."}
             boxTwo={"Optimized For LinkedIn"}
             boxTwoText={"Rocketstart makes LinkedIn's 300 character limit feel enormous by suggesting efficient phrases."}

@@ -55,12 +55,12 @@
     }
 
     .about__paragraph {
-        font-size: 14px;
+        font-size: 18px;
     }
 }
 
 @media screen and (max-width: 625px) {
-    .process {
+    .about {
         padding-left: 2rem;
         padding-right: 2rem;
     }
@@ -72,7 +72,7 @@
 }
 
 @media screen and (max-width: 400px) {
-    .process {
+    .about {
         padding-left: 1rem;
         padding-right: 1rem;
     }

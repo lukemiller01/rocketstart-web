@@ -7,6 +7,9 @@ import './find.css';
 
 const Find = () => {
 
+  const umami = window.umami
+  umami.trackView('/find');
+
   const handleSearch = () => {
     document.getElementById('find-button').classList.add('button--loading')
     document.getElementById('find-button').textContent = "";

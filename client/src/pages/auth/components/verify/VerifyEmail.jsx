@@ -30,7 +30,7 @@ export default class VerifyEmail extends Component {
     if (!verifiedCode) {
       component = <Loading/>;
     } else if (verifiedCode && validCode) {
-      component = ( <AuthResult action={'Email verification'} result={'successful.'} message={'Welcome to rocketstart!'}/> );
+      component = ( <AuthResult action={'Email verification'} result={'successful.'} message={'Welcome to Rocketstart!'}/> );
     } else if (verifiedCode && !validCode) {
       component = ( <AuthResult action={'Email verification'} result={'unsuccessful.'} message={'Your request to verify your email has expired or the link has already been used. Please try again.'}/> );
     }

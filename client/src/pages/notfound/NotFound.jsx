@@ -4,6 +4,10 @@ import { Navbar3 } from '../../components';
 import { Helmet } from 'react-helmet';
 
 const NotFound = () => {
+
+  const umami = window.umami
+  umami.trackView('/*');
+
   return (
     <div>
         <Helmet>

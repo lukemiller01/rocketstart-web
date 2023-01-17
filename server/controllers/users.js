@@ -51,8 +51,8 @@ export const createUser = async (req, res) => {
             "MessageStream": "outbound",
             "Attachments": [
                 {
-                    "Name": "rocketstart.jpeg",
-                    "Content": fs.readFileSync("../server/public/images/rocketstart.jpeg").toString('base64'),
+                    "Name": "rocketstart.png",
+                    "Content": fs.readFileSync("../server/public/images/rocketstartLogo256.png").toString('base64'),
                     "ContentType": "image/jpeg",
                     "ContentID": "cid:logo"
                 }
@@ -108,8 +108,8 @@ export const resendVerification = async (req, res) => {
             "MessageStream": "outbound",
             "Attachments": [
                 {
-                    "Name": "rocketstart.jpeg",
-                    "Content": fs.readFileSync("../server/public/images/rocketstart.jpeg").toString('base64'),
+                    "Name": "rocketstart.png",
+                    "Content": fs.readFileSync("../server/public/images/rocketstartLogo256.png").toString('base64'),
                     "ContentType": "image/jpeg",
                     "ContentID": "cid:logo"
                 }
@@ -168,8 +168,8 @@ export const resetPassword = async (req, res) => {
             "MessageStream": "outbound",
             "Attachments": [
                 {
-                    "Name": "rocketstart.jpeg",
-                    "Content": fs.readFileSync("../server/public/images/rocketstart.jpeg").toString('base64'),
+                    "Name": "rocketstart.png",
+                    "Content": fs.readFileSync("../server/public/images/rocketstartLogo256.png").toString('base64'),
                     "ContentType": "image/jpeg",
                     "ContentID": "cid:logo"
                 }

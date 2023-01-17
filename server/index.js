@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 const PORT = process.env.PORT || 5001;
 
 app.get('/health', (req,res) => {
-    res.send(200);
+    res.sendStatus(200);
 })
 
 mongoose.connect(process.env.CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true })

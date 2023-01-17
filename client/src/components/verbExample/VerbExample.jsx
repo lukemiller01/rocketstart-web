@@ -13,7 +13,7 @@ const VerbExample = ({badExample, goodExample}) => {
             <p className="goodExample">{goodExample}</p>
         </div>
         <hr className="horizontal__rule"></hr>
-        <div style={{paddingBottom: ".5rem"}}></div>
+        <div style={{paddingBottom: "1rem"}}></div>
     </div>
   )
 }

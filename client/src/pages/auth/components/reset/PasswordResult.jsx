@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar3 } from '../../../../components';
+import { Navbar3, Error } from '../../../../components';
 import { useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 import { useUserAuth } from '../../../../context/AuthProvider';
@@ -14,8 +14,13 @@ const PasswordResult = ({actionCode}) => {
     const [userInput, setUserInput] = useState({password: '', confirmPassword: ''});
     const { resetPassword } = useUserAuth();
 
+    // Error handling
+    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+
     async function handleFormSubmit(e) {
         e.preventDefault();
+        setError(false);
     
         try {
             if(userInput.password === userInput.confirmPassword) {
@@ -23,11 +28,27 @@ const PasswordResult = ({actionCode}) => {
               navigate("/login");
             }
             else {
-                // Error: passwords do not match
+              setErrorMessage('Passwords do not match.');
+              setError(true);
             }
         }
-        catch (e) {
-          console.log(e);
+        catch (error) {
+          if(error.code === "auth/too-many-requests") {
+            setErrorMessage('Too many attempts. Please try in a few minutes.');
+            setError(true);
+          }
+          else if(error.code === "auth/internal-error") {
+            setErrorMessage('An internal error occured. Please try again.');
+            setError(true);
+          }
+          else if(error.code === "auth/weak-password") {
+            setErrorMessage('Your password must be at least 6 characters.');
+            setError(true);
+          }
+          else {
+            setErrorMessage(error.code);
+            setError(true);
+          }
         }
     }
 
@@ -72,6 +93,7 @@ const PasswordResult = ({actionCode}) => {
                 Reset Password
             </button>
         </form>
+        {error && <Error message={errorMessage}/>}
       </div>
     </div>
 </div>

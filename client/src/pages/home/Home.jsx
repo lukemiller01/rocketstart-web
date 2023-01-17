@@ -4,6 +4,8 @@ import { Navbar } from '../../components';
 import { Helmet } from 'react-helmet';
 
 const Home = ({navOne, navTwo, logoURL}) => {
+
+  window.umami.trackView('/');
   
   return (
     <div>

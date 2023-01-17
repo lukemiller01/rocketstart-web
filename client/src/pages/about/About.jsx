@@ -7,6 +7,9 @@ import './about.css'
 
 const About = () => {
 
+  const umami = window.umami;
+  umami.trackView('/about');
+
   // Setting the navbar based on if the user is logged in
   const { navOne, navTwo, logoURL } = useOutletContext();
 

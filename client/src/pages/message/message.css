@@ -188,9 +188,9 @@
 
 /* Text input styles  */
 /* TODO change max height? */
-textarea {
-    min-height: 10rem;
-    max-height: 50vh;
+.text__area {
+    /* min-height: 10rem; */
+    /* max-height: 50vh; */
     text-align: left;
     padding: 1rem;
     resize: vertical;
@@ -198,11 +198,11 @@ textarea {
     border: solid lightgrey;
     box-shadow: 0 0.5em 1em -0.5em hsl(0deg 0% 5% / 10%), 0 0 0 1px hsl(0deg 0% 5% / 1%);
     font-family: var(--font-family);
-    font-size: 14px;
+    font-size: 16px;
 }
 
 /* When the text area is focused, theme the border */
-textarea:focus {
+.text__area:focus {
     outline: none;
     border: 2px solid rgb(30, 90, 255);
 }
@@ -312,7 +312,6 @@ textarea:focus {
     align-items: center;
     flex-direction: row;
     display: flex;
-    padding-bottom: .5rem;
     margin: 0;
 }
 
@@ -320,25 +319,27 @@ textarea:focus {
     align-items: center;
     flex-direction: row;
     display: flex;
-    padding-bottom: .5rem;
     margin: 0;
 }
 
 .badExample, .goodExample {
     margin: 0;
     font-size: 14px;
+    padding-bottom: 1rem;
 }
 
 .explanation__cross {
     color: rgba(220, 50, 20, 1);
     font-size: 20px;
     padding-right: .5rem;
+    padding-bottom: 1rem;
 }
 
 .explanation__check {
     color: rgba(100, 185, 35, 1);
     font-size: 20px;
     padding-right: .5rem;
+    padding-bottom: 1rem;
 }
 
 /* Class for adding link to Rocketstart website */
@@ -436,12 +437,12 @@ textarea:focus {
         font-size: 12px;
     }
 
-    textarea {
+    .text__area {
         font-size: 12px;
     }
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 925px) {
     .message {
         padding-left: 0rem;
         padding-right: 0rem;
@@ -466,8 +467,4 @@ textarea:focus {
     .outer__container {
         width: 50%;
     }
-}
-
-@media screen and (max-width: 450px) {
-    
 }

@@ -130,6 +130,10 @@ p {
         margin-left: 4rem;
         margin-right: 4rem;
     }
+
+    .header__content-title {
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 625px) {

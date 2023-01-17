@@ -4,6 +4,11 @@ import headerDemo from '../../assets/header-demo.mp4'
 import { Link } from 'react-router-dom'
 
 const header = () => {
+
+  function buttonClick() {
+    window.umami.trackEvent('Header Button');
+  }
+
   return (
     <div className="header">
       <div className="header__content-container">
@@ -34,14 +39,14 @@ const header = () => {
         </div>
           <div className='button__container'>
             <Link to='/login'>
-              <button className='button'>
+              <button className='button' onClick={buttonClick}>
                 Get started for free
               </button>
             </Link>
           </div>
         </div>
         <div className='right__content' >
-          <video width="100%" height="100%" autoPlay loop muted className='rocketstart__demo'>
+          <video width="100%" height="100%" autoPlay playsInline loop muted className='rocketstart__demo'>
             <source src={headerDemo} type="video/mp4" />
             Your browser does not support the video tag.
           </video>

@@ -2,22 +2,25 @@ import React from 'react'
 import './questions.css'
 import  { Question } from '../../components';
 
+// Replace answer #1:
+    // 'Rocketstart\'s Message Analysis is free. Rocketstart\'s Contact Finder has tiered pricing. See the Pricing section for details.'
+
 const questionData = [
     {
         question: 'Is Rocketstart free?',
-        answer: 'Rocketstart\'s Message Analysis is free. Rocketstart\'s Contact Finder has tiered pricing. See the Pricing section for details.',
+        answer: 'Rocketstart\'s Message Analysis is free. Rocketstart\'s Contact Finder (coming soon) has tiered pricing.',
     },
     {
         question: 'How is Rocketstart data sourced?',
-        answer: 'Rocketstart\'s source data is publicly available and processed transparently. See our Privacy Policy for more.',
+        answer: 'Rocketstart\'s Contact Finder source data is publicly available and processed transparently. See our recent Blog posts for more.',
     },
     {
         question: 'Who should use Rocketstart?',
-        answer: 'Any job seeker or professional looking to expand their network can benefit from Rocketstart.',
+        answer: 'Job seekers, students, and professional looking to expand their network can benefit from Rocketstart.',
     },
     {
         question: 'Is Rocketstart available as a Browser Extension?',
-        answer: 'A Browser Extension for Rocketstart\'s Contact Finder is coming soon. Please sign up for alerts to be the first to know!',
+        answer: 'A Browser Extension for Rocketstart\'s Contact Finder is coming soon.',
     },
 ]
 

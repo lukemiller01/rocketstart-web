@@ -12,7 +12,7 @@ const processData = [
   },
   {
     header: 'Write the perfect message',
-    description: 'Make your LinkedIn invitation count using four message attributes to increase your reply rates.',
+    description: 'Make your LinkedIn invitations count using four message attributes proven to increase reply rates.',
     feature: "Message Analysis",
     icon: "edit_note",
     link: "/product#message-analysis"

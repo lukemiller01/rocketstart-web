@@ -3,11 +3,14 @@ import Navbar2 from '../../components/navbar2/Navbar2';
 import VerbExample from '../../components/verbExample/VerbExample';
 import Verification from '../../modals/verification/Verification';
 import { useUserAuth } from '../../context/AuthProvider';
-// import Footer from '../../containers/footer/Footer'
 import { Helmet } from 'react-helmet';
+import TextareaAutosize from 'react-textarea-autosize';
 import './message.css';
 
 const Message = () => {
+
+    const umami = window.umami
+    umami.trackView('/message');
 
     // Modal state
     const [modalOpen, setModalOpen] = useState(false);
@@ -468,7 +471,7 @@ const Message = () => {
             </div>
             <div className='columns'>
                 <div className='left__column'>
-                    <textarea placeholder='Type your invitation note here' maxLength="300" id='textBox' value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
+                    <TextareaAutosize className='text__area' placeholder='Type your invitation note here' minRows={5} id='textBox' value={message} onChange={(e) => setMessage(e.target.value)}></TextareaAutosize>
                     <div className='left__column-three'>
                         <p className='character__counter'>{300 - message.length} / 300</p>
                         <div className={`copied__container ${copy ? " fade__in" : ""}`} id='copiedContainer'>

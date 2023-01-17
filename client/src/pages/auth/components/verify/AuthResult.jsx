@@ -5,6 +5,10 @@ import { Helmet } from 'react-helmet';
 import './authResult.css';
 
 const AuthResult = ({action, result, message}) => {
+
+  const umami = window.umami
+  umami.trackView('/auth/action');
+
   return (
     <div>
         <Helmet>
@@ -15,7 +19,7 @@ const AuthResult = ({action, result, message}) => {
           <h1 className='auth__header'>{action} {result}</h1>
             <div className='auth__result'>
               <p className='auth__result-paragraph'>{message}</p>
-              <Link className='home__button' to={'/'}>
+              <Link className='home__button' to={'/login'}>
                 Home
               </Link>
             </div>

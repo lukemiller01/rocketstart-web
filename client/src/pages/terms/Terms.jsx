@@ -6,6 +6,9 @@ import { Helmet } from 'react-helmet';
 
 const Terms = () => {
 
+  const umami = window.umami
+  umami.trackView('/terms');
+
     // Setting the navbar based on if the user is logged in
     const { navOne, navTwo, logoURL } = useOutletContext();
 

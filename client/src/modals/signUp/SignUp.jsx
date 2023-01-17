@@ -1,5 +1,6 @@
 import React from 'react';
 import { createUser, resetPassword } from '../../actions/userActions';
+import { Error } from '../../components'
 import { useDispatch } from 'react-redux'
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +23,19 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
   // Ref for focus element:
   const emailRef = useRef(null);
 
+  // Handle modal close
+  function modalClose() {
+    setModalOpen(false);
+    document.body.style.overflow = "auto"
+  }
+
+  // Error handling
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   async function handleFormSubmit(e) {
+
+    setError(false);
 
     if(buttonText === "Sign In") { // Sign in logic
       e.preventDefault();
@@ -31,8 +44,27 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
         await logIn(userData.email, userData.password);
         navigate("/message");
       }
-      catch (e) {
-        console.log(e);
+      catch (error) {
+        if(error.code === "auth/wrong-password") {
+          setErrorMessage('Incorrect password.');
+          setError(true);
+        }
+        else if(error.code === "auth/too-many-requests") {
+          setErrorMessage('Too many attempts. Please try in a few minutes.');
+          setError(true);
+        }
+        else if(error.code === "auth/invalid-email") {
+          setErrorMessage('The email you enteres is invalid.');
+          setError(true);
+        }
+        else if(error.code === "auth/user-not-found") {
+          setErrorMessage('No account exists with this email.');
+          setError(true);
+        }
+        else {
+          setErrorMessage(error.code);
+          setError(true);
+        }
       }
 
     }
@@ -42,9 +74,33 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       try {
         await register(userData.email, userData.password);
         dispatch(createUser({email: userData.email}));
+        window.umami.trackEvent('Sign Up');
         navigate("/message");
-      } catch (e) {
-        console.log(e)
+      } catch (error) {
+        if(error.code === 'auth/email-already-in-use') {
+          setErrorMessage('An account with this email already exists.');
+          setError(true);
+        }
+        else if(error.code === "auth/internal-error") {
+          setErrorMessage('An internal error occured. Please try again.');
+          setError(true);
+        }
+        else if(error.code === "auth/invalid-email") {
+          setErrorMessage('The email you enteres is invalid.');
+          setError(true);
+        }
+        else if(error.code === "auth/too-many-requests") {
+          setErrorMessage('Too many attempts. Please try in a few minutes.');
+          setError(true);
+        }
+        else if(error.code === "auth/weak-password") {
+          setErrorMessage('Your password must be at least 6 characters.');
+          setError(true);
+        }
+        else {
+          setErrorMessage(error.code);
+          setError(true);
+        }
       }
     }
     else if (buttonText === "Reset Password") { // Reset password logic
@@ -61,8 +117,23 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
         if(containerStyle === 'signup__login') {
           setHeaderState('Welcome back!');
         }
-      } catch (e) {
-        console.log(e)
+      } catch (error) {
+        if(error.code === "auth/too-many-requests") {
+          setErrorMessage('Too many attempts. Please try in a few minutes.');
+          setError(true);
+        }
+        else if(error.code === "auth/internal-error") {
+          setErrorMessage('An internal error occured. Please try again.');
+          setError(true);
+        }
+        else if(error.code === "auth/weak-password") {
+          setErrorMessage('Your password must be at least 6 characters.');
+          setError(true);
+        }
+        else {
+          setErrorMessage(error.code);
+          setError(true);
+        }
       }
     }
   }
@@ -70,6 +141,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
   // To handle the modal change between Sign Up and Sign In
   function handleModalSwitch(type) {
     emailRef.current.focus(); // Because element unfocuses on handleModalSwitch
+    setError(false);
     if(type && buttonText === "Sign In") {
       setButtonState("Create Account");
       setBottomTextQState('Have An Account?');
@@ -111,7 +183,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
     <div> 
       <div className={`${background}`}>
         <div className={`${containerStyle}`}>
-          <span className={`material-icons exit__button ${closeButton}`} onClick={() => {setModalOpen(false);}}>close</span>
+          <span className={`material-icons exit__button ${closeButton}`} onClick={modalClose}>close</span>
           {/* <h4 className='signup__header'>Sign Up</h4> */}
         <div className='signup__content'>
           <form className='signup__fields' onSubmit={handleFormSubmit}>
@@ -122,6 +194,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
                   autoComplete='email'
                   name='email'
                   autoFocus
+                  enterKeyHint='next'
                   ref={emailRef}
                   onChange={(e) => setUserData({...userData, email: e.target.value})}
                 />
@@ -154,6 +227,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
               <p className='signup__signin signup__terms-links'>{answer}</p>
             </div>
           </div>
+          {error && <Error message={errorMessage}/>}
         </div>
         </div>
       </div>
