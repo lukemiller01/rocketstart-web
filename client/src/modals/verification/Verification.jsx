@@ -19,7 +19,7 @@ const Verification = ({userEmail}) => {
   // User email state in FE
   const [typedEmail, setTypedEmail] = useState('');
   // Button text change
-  const [buttonText, setButtonText] = useState('Edit Email Address');
+  const [buttonText, setButtonText] = useState('Edit Email or Resend');
   // Input visibility
   const [inputVis, setInputVis] = useState('');
 
@@ -48,20 +48,20 @@ const Verification = ({userEmail}) => {
 
   // When the user clicks confirm
   function handleEmailEdit() {
-    if(buttonText === "Edit Email Address") { // USER STARTS ACTION. Change from "Edit Email Address" to "Cancel"
+    if(buttonText === "Edit Email or Resend") { // USER STARTS ACTION. Change from "Edit Email or Resend" to "Cancel"
       setButtonText('Cancel');
       setInputVis('opened__verification-input')
-      // When button text is cancel or confirm, the email is visibile. When button text is edit email address, email is none.
+      // When button text is cancel or confirm, the email is visibile. When button text is Edit Email or Resend, email is none.
       // TODO: input display flex
     }
-    else if(buttonText === "Cancel"){ // USER CANCELS ACTION. Change from "Cancel" to "Edit email Address"
+    else if(buttonText === "Cancel"){ // USER CANCELS ACTION. Change from "Cancel" to "Edit Email or Resend"
       setInputVis('')
-      setButtonText('Edit Email Address');
+      setButtonText('Edit Email or Resend');
       // TODO: input display none
     }
     else if(buttonText === "Resend Verification Email") { // Handle email change
       setInputVis('')
-      setButtonText('Edit Email Address');
+      setButtonText('Edit Email or Resend');
       setTypedEmail(typedEmail);
       setEmail(typedEmail)
       resendVerificationEmail()

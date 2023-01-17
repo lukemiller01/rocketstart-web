@@ -14,7 +14,7 @@ export const getUser = async (req, res) => {
         res.status(200).json(req.user);
     }
     catch (error) {
-        console.log(error);
+        return res.status(500).json(error);
     }
 };
 
@@ -111,13 +111,21 @@ export const resendVerification = async (req, res) => {
 
         // Update the user in MongoDB
         User.findOne({uid: uid}, function (err, user) {
-            user.email = updatedEmail;
+            if(user) {
+                user.email = updatedEmail;
 
-            user.save(function (err) {
-                if(err) {
-                    console.error('ERROR!');
-                }
-            });
+                user.save(function (err) {
+                    if(err) {
+                        console.error('ERROR!');
+                    }
+                });
+            }
+            else { // If the user isn't in DB, add
+                const newUser = User.create({
+                    email: updatedEmail,
+                    uid: uid,
+                });
+            }
         });
 
         return res.status(200).json({message: "Success!"});

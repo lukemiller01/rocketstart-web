@@ -9,7 +9,7 @@ export const createUser = (user) => async (dispatch) => {
         const {data} = await api.createUser(user);
         dispatch({type: CREATE, payload: data });
     } catch (error) {
-        console.log(error);
+        throw error;
     }
 };
 
@@ -18,7 +18,7 @@ export const resendVerification = (id, updatedEmail) => async (dispatch) => {
         const {data} = await api.resendVerification(id, updatedEmail);
         dispatch({type: UPDATEEMAIL, payload: data});
     } catch (error) {
-        console.log(error);
+        throw error;
     }
 }
 
@@ -27,6 +27,6 @@ export const resetPassword = (email) => async (dispatch) => {
         const {data} = await api.resetPassword(email);
         dispatch({type: RESETPASSWORD, payload: data});
     } catch (error) {
-        console.log(error)
+        throw error;
     }
 }

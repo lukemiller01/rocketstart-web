@@ -63,7 +63,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
           setError(true);
         }
         else {
-          setErrorMessage(error.code);
+          setErrorMessage(error);
           setError(true);
         }
       }
@@ -100,7 +100,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
           setError(true);
         }
         else {
-          setErrorMessage(error.code);
+          setErrorMessage(error);
           setError(true);
         }
       }
@@ -133,7 +133,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
           setError(true);
         }
         else {
-          setErrorMessage(error.code);
+          setErrorMessage(error);
           setError(true);
         }
       }
