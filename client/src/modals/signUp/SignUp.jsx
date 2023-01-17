@@ -42,6 +42,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
 
       try {
         await logIn(userData.email, userData.password);
+        document.body.style.overflow = "auto"
         navigate("/message");
       }
       catch (error) {
@@ -75,6 +76,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
         await register(userData.email, userData.password);
         dispatch(createUser({email: userData.email}));
         window.umami.trackEvent('Sign Up');
+        document.body.style.overflow = "auto"
         navigate("/message");
       } catch (error) {
         if(error.code === 'auth/email-already-in-use') {
