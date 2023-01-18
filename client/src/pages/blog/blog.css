@@ -16,3 +16,36 @@
     align-self: center;
     margin-top: 4rem;
 }
+
+@media screen and (max-width: 800px) {
+    .blog {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+
+    .blog__container {
+        grid-template-columns: repeat(1, 1fr);
+        margin-top: 1rem;
+    }
+
+    .blog__header {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .blog {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .blog {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 1rem;
+    }
+}

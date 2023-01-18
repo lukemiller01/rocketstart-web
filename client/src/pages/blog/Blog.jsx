@@ -5,7 +5,8 @@ import { useOutletContext } from 'react-router-dom';
 import './blog.css';
 import Article from '../../components/article/Article';
 import { Helmet } from 'react-helmet';
-import {map, retro, mac, pen} from './imports';
+import { map, retro } from './imports';
+import { Link } from 'react-router-dom';
 
 const Blog = () => {
 
@@ -21,13 +22,15 @@ const Blog = () => {
       </Helmet>
       <Navbar navOne={navOne} navTwo={navTwo} logoURL={logoURL}/>
       <div className='blog'>
-        <h1>Blog</h1>
-        <p>Discover Rocketstart's posts on making the most out of your job search.</p>
+        <h1 className='blog__header'>Blog</h1>
+        <p className='blog__header'>Discover Rocketstart's posts on making the most out of your job search.</p>
         <div className='blog__container'>
-          <Article image={map} date={"December 23 2022"} title={"LinkedIn Cold Connections: How to Craft a Message"}/>
+          <Link to='/blog/how-I-landed-my-job-at-spacex'>
+            <Article image={map} date={"January 17 2023"} title={"How I Landed My Job at SpaceX with a LinkedIn Message"}/>
+          </Link>
           <Article image={retro} date={"December 23 2022"} title={"Using Your LinkedIn Network to Find a Job"}/>
-          <Article image={mac} date={"December 23 2022"} title={"Land Your Dream Internship: GPA, Year, & Major Requirements Explained"}/>
-          <Article image={pen} date={"December 23 2022"} title={"Why Your LinkedIn Cold Outreach Template Isn't Working"}/>
+          {/* <Article image={mac} date={"December 23 2022"} title={"Land Your Dream Internship: GPA, Year, & Major Requirements Explained"}/> */}
+          {/* <Article image={pen} date={"December 23 2022"} title={"Why Your LinkedIn Cold Outreach Template Isn't Working"}/> */}
         </div>
       </div>
       <div className='grey__bg'>

@@ -11,3 +11,5 @@ export { default as Action } from './auth/Action';
 export { default as NotFound} from './notfound/NotFound';
 export { default as Account } from './account/Account';
 export { default as Terms } from './terms/Terms';
+
+export { default as Article1 } from './articles/How I Landed My Job at SpaceX/Article1'

@@ -436,10 +436,6 @@
     .explanation__text {
         font-size: 12px;
     }
-
-    .text__area {
-        font-size: 12px;
-    }
 }
 
 @media screen and (max-width: 925px) {
@@ -449,7 +445,7 @@
     }
 
     .insight__title {
-        font-size: 13px;
+        font-size: 14px;
     }
 
     .columns {
