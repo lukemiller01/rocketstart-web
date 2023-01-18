@@ -19,7 +19,7 @@ export const getUser = async (req, res) => {
 };
 
 export const createUser = async (req, res) => {
-    const {email: email} = req.body;
+    const {email: email, name: name} = req.body;
 
     try {
         // Include Firebase ID in MongoDB so the user can be updated later
@@ -36,7 +36,8 @@ export const createUser = async (req, res) => {
         const html = fs.readFileSync(path.resolve("../server/public/html/verification.html"),"utf-8");
         var template = Handlebars.compile(html);
         var replacements = {
-            link: link
+            link: link,
+            name: name
        };
        var finalHTML = template(replacements);
 
@@ -51,7 +52,7 @@ export const createUser = async (req, res) => {
                 {
                     "Name": "rocketstart.png",
                     "Content": fs.readFileSync("../server/public/images/rocketstartLogo256.png").toString('base64'),
-                    "ContentType": "image/jpeg",
+                    "ContentType": "image/png",
                     "ContentID": "cid:logo"
                 }
             ]
@@ -59,6 +60,7 @@ export const createUser = async (req, res) => {
 
         // Create user in MongoDB
         const user = await User.create({
+            name,
             email,
             uid,
         });
@@ -72,23 +74,46 @@ export const createUser = async (req, res) => {
 
 export const resendVerification = async (req, res) => {
     const { id: uid } = req.params;
-    const {email: user} = req.body;
+    const {email: email} = req.body;
 
     try {
         // Get new email:
-        var updatedEmail = user;
+        var updatedEmail = email;
+        var name = '';
 
         // Generate verification link
         var link = await firebaseAdmin.firebase.generateEmailVerificationLink(updatedEmail);
+
+        // Update the user in MongoDB
+        const user = await User.findOneAndUpdate({uid: uid}, function (err, user) {
+            if(user) {
+                user.email = updatedEmail;
+
+                user.save(function (err) {
+                    if(err) {
+                        console.error('DB error');
+                    }
+                });
+            }
+            else { // If the user isn't in DB, add
+                const newUser = User.create({
+                    name: '',
+                    email: updatedEmail,
+                    uid: uid,
+                });
+            }
+        });
+        name = user.name;
 
         // Set up postmark client
         var client = new postmark.ServerClient(process.env.POSTMARK_KEY);
 
         // Get the correct HTML file & replace content.
-        const html = fs.readFileSync(path.resolve("../server/public/html/verification.html"),"utf-8");
+        const html = fs.readFileSync(path.resolve("../server/public/html/new-verification.html"),"utf-8");
         var template = Handlebars.compile(html);
         var replacements = {
-            link: link
+            link: link,
+            name: name,
        };
        var finalHTML = template(replacements);
 
@@ -103,30 +128,11 @@ export const resendVerification = async (req, res) => {
                 {
                     "Name": "rocketstart.png",
                     "Content": fs.readFileSync("../server/public/images/rocketstartLogo256.png").toString('base64'),
-                    "ContentType": "image/jpeg",
+                    "ContentType": "image/png",
                     "ContentID": "cid:logo"
                 }
             ]
           });
-
-        // Update the user in MongoDB
-        User.findOne({uid: uid}, function (err, user) {
-            if(user) {
-                user.email = updatedEmail;
-
-                user.save(function (err) {
-                    if(err) {
-                        console.error('ERROR!');
-                    }
-                });
-            }
-            else { // If the user isn't in DB, add
-                const newUser = User.create({
-                    email: updatedEmail,
-                    uid: uid,
-                });
-            }
-        });
 
         return res.status(200).json({message: "Success!"});
     }
@@ -137,15 +143,17 @@ export const resendVerification = async (req, res) => {
 };
 
 export const resetPassword = async (req, res) => {
-    console.log("reset password")
     const {email: email} = req.body;
-    console.log(email);
 
     try {
-        // Get new email:
+        var name = '';
 
         // Generate verification link
         var link = await firebaseAdmin.firebase.generatePasswordResetLink(email);
+
+        // Find the user in MongoDB by email
+        const user = await User.findOne({email: email}).clone();
+        name = user.name;
 
         // Set up postmark client
         var client = new postmark.ServerClient(process.env.POSTMARK_KEY);
@@ -154,7 +162,8 @@ export const resetPassword = async (req, res) => {
         const html = fs.readFileSync(path.resolve("../server/public/html/reset-password.html"),"utf-8");
         var template = Handlebars.compile(html);
         var replacements = {
-            link: link
+            link: link,
+            name: name
        };
        var finalHTML = template(replacements);
 
@@ -169,11 +178,11 @@ export const resetPassword = async (req, res) => {
                 {
                     "Name": "rocketstart.png",
                     "Content": fs.readFileSync("../server/public/images/rocketstartLogo256.png").toString('base64'),
-                    "ContentType": "image/jpeg",
+                    "ContentType": "image/png",
                     "ContentID": "cid:logo"
                 }
             ]
-          });
+        });
 
         return res.status(200).json({message: "Success!"});
     }

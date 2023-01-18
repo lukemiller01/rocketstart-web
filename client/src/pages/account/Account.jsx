@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { resetPassword, resendVerification } from '../../actions/userActions';
-import { Navbar2, Error } from '../../components';
+import { Navbar2, ErrorBox } from '../../components';
 import { useUserAuth } from '../../context/AuthProvider';
 import { Helmet } from 'react-helmet'
 import './account.css';
@@ -197,7 +197,7 @@ const Account = () => {
                     </div>
                 </div>
 
-                {error && <Error message={errorMessage} justify={false}/>}
+                {error && <ErrorBox message={errorMessage} justify={false}/>}
             </div>
 
             <div className='account__buttons-container'>

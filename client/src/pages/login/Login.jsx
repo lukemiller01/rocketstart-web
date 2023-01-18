@@ -17,9 +17,11 @@ const Login = () => {
     const [termsTextState, setTermsTextState] = useState(false);
     const [resetTextState, setResetTextState] = useState(false);
     const [passwordState, setPasswordState] = useState(true);
+    const [nameState, setNameState] = useState(false);
     let terms = termsTextState ? '' : 'signup__no-visibility';
     let reset = resetTextState ? 'signup__no-visibility' : '';
     let password = passwordState ? '' : 'signup__no-visibility';
+    let name = nameState ? '' : 'signup__no-visibility';
 
     // Components needed for the rest of the page:
     const [ headerState, setHeaderState] = useState("Welcome back!");
@@ -46,6 +48,10 @@ const Login = () => {
               setResetTextState={setResetTextState} // To set the reset visibility
               password={password} // Access to password button
               setPasswordState={setPasswordState} // To set password button
+              name={name} // Access to the name buton
+              setNameState={setNameState} // To set the name button
+              emailFocus={true} // To set if the email is focused or not
+              nameFocus={false} // To set if the name is focused or not
               background={"login__bg"} // To remove the absolute positioning
               closeButton={"close__none"} // To remove the close button
               setHeaderState={setHeaderState} // To set the header

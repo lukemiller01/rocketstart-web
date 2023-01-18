@@ -23,6 +23,9 @@ const Navbar = ({navOne, logoURL}) => {
   const [termsTextState, setTermsTextState] = useState('');
   const [resetTextState, setResetTextState] = useState('');
   const [passwordState, setPasswordState] = useState(true);
+  const [nameState, setNameState] = useState(true);
+  const [emailFocus, setEmailFocus] = useState(true);
+  const [nameFocus, setNameFocus] = useState(false);
 
   function handleUserLogin(type) {
     // Opening the modal:
@@ -34,6 +37,9 @@ const Navbar = ({navOne, logoURL}) => {
       setBottomTextAState("Sign In");
       setTermsTextState(true);
       setResetTextState(true);
+      setNameState(true);
+      setEmailFocus(false);
+      setNameFocus(true);
       window.umami.trackEvent('Navbar Button');
     }
     else {
@@ -42,12 +48,16 @@ const Navbar = ({navOne, logoURL}) => {
       setBottomTextAState("Create One");
       setTermsTextState(false);
       setResetTextState(false);
+      setNameState(false);
+      setEmailFocus(true);
+      setNameFocus(false);
     }
   }
 
   let terms = termsTextState ? '' : 'signup__no-visibility';
   let reset = resetTextState ? 'signup__no-visibility' : '';
   let password = passwordState ? '' : 'signup__no-visibility';
+  let name = nameState ? '' : 'signup__no-visibility';
 
   // For collapsed menu navbar media query
   const [ toggleMenu, setToggleMenu ] = useState(false);
@@ -149,6 +159,10 @@ const Navbar = ({navOne, logoURL}) => {
         setResetTextState={setResetTextState} // To set the reset visibility
         password={password} // Access to password button
         setPasswordState={setPasswordState} // To set password button
+        name={name} // Access to the name buton
+        setNameState={setNameState} // To set the name button
+        emailFocus={emailFocus} // To set if the email is focused or not
+        nameFocus={nameFocus} // To set if the name is focused or not
         background={"signup__bg"} // To keep the absolute positioning
         closeButton={"close__show"} // To keep the close button
         containerStyle={'signup'}

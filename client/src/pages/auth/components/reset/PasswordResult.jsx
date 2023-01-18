@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar3, Error } from '../../../../components';
+import { Navbar3, ErrorBox } from '../../../../components';
 import { useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 import { useUserAuth } from '../../../../context/AuthProvider';
@@ -93,7 +93,7 @@ const PasswordResult = ({actionCode}) => {
                 Reset Password
             </button>
         </form>
-        {error && <Error message={errorMessage}/>}
+        {error && <ErrorBox message={errorMessage}/>}
       </div>
     </div>
 </div>

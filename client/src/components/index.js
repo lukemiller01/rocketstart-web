@@ -8,4 +8,4 @@ export { default as ProcessFeature } from './processFeature/ProcessFeature';
 export { default as VerbExample } from "./verbExample/VerbExample";
 export { default as ProductFeature } from './productFeature/ProductFeature';
 export { default as FeatureCards } from './featureCards/FeatureCards';
-export { default as Error } from './error/Error';
+export { default as ErrorBox } from './error/ErrorBox';

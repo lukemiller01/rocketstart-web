@@ -4,8 +4,8 @@ import mongoose from "mongoose";
 const router = express.Router();
 
 const userSchema = mongoose.Schema({
+    name: String,
     email: String,
-    password: String,
     uid: String,
 })
 

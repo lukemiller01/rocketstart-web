@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createUser, resetPassword } from '../../actions/userActions';
-import { Error } from '../../components'
+import { ErrorBox } from '../../components'
 import { useDispatch } from 'react-redux'
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,19 +9,33 @@ import { Link } from 'react-router-dom';
 
 import './signUp.css';
 
-const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, setBottomTextQState, setBottomTextAState, terms, setTermsTextState, reset, setResetTextState, password, setPasswordState, background, closeButton, setHeaderState, containerStyle }) => {
+const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, setBottomTextQState, setBottomTextAState, terms, setTermsTextState, reset, setResetTextState, password, setPasswordState, name, setNameState, emailFocus, nameFocus, background, closeButton, setHeaderState, containerStyle }) => {
 
   // Set Firebase auth and send user data MongoDB
   const navigate = useNavigate();
   // Keeps track of user input
-  const [userData, setUserData] = useState({email: '', password: ''});
+  const [userData, setUserData] = useState({email: '', password: '', name: ''});
+
   // Checks if the password is required for the form to be submitted
   const [passwordRequired, setPasswordRequired] = useState(true);
-  const dispatch = useDispatch();
-  const { register, logIn } = useUserAuth();
+  // Check if the name is required for the form to be submitted
+  const [nameRequired, setNameRequired] = useState(false);
 
-  // Ref for focus element:
+  const dispatch = useDispatch();
+  const { register, logIn, checkEmail } = useUserAuth();
+
+  // Refs for focus element:
   const emailRef = useRef(null);
+  const nameRef = useRef(null);
+
+  useEffect(() => {
+    if(name === '' && buttonText !== 'Reset Password') {
+      nameRef.current.focus(); // Because element unfocuses on handleModalSwitch
+    }
+    else {
+      emailRef.current.focus(); // Because element unfocuses on handleModalSwitch
+    }
+  }, [name, buttonText])
 
   // Handle modal close
   function modalClose() {
@@ -74,7 +88,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
 
       try {
         await register(userData.email, userData.password);
-        dispatch(createUser({email: userData.email}));
+        dispatch(createUser({email: userData.email, name: userData.name}));
         window.umami.trackEvent('Sign Up');
         document.body.style.overflow = "auto"
         navigate("/message");
@@ -109,6 +123,12 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       e.preventDefault();
 
       try {
+        var result = await checkEmail(userData.email);
+        if(result.length === 0) {
+          const error = new Error();
+          error.code = 'not in firebase';
+          throw error;
+        }
         dispatch(resetPassword({email: userData.email}));
         setButtonState("Sign In");
         setBottomTextQState('No Account?');
@@ -122,6 +142,10 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       } catch (error) {
         if(error.code === "auth/too-many-requests") {
           setErrorMessage('Too many attempts. Please try in a few minutes.');
+          setError(true);
+        }
+        else if(error.code === 'not in firebase') {
+          setErrorMessage('This email does not exist in our database.')
           setError(true);
         }
         else if(error.code === "auth/internal-error") {
@@ -142,7 +166,6 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
 
   // To handle the modal change between Sign Up and Sign In
   function handleModalSwitch(type) {
-    emailRef.current.focus(); // Because element unfocuses on handleModalSwitch
     setError(false);
     if(type && buttonText === "Sign In") {
       setButtonState("Create Account");
@@ -151,10 +174,12 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       setTermsTextState(true);
       setResetTextState(true);
       setPasswordState(true);
+      setNameState(true);
       if(containerStyle === 'signup__login') {
         setHeaderState('Create a Free Account');
       }
       setPasswordRequired(true);
+      setNameRequired(true);
     }
     else if ((type && buttonText === "Create Account") || (type && buttonText === "Reset Password")) {
       setButtonState("Sign In");
@@ -163,10 +188,12 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       setTermsTextState(false);
       setResetTextState(false);
       setPasswordState(true);
+      setNameState(false);
       if(containerStyle === 'signup__login') {
         setHeaderState('Welcome back!');
       }
       setPasswordRequired(true);
+      setNameRequired(false);
     }
     else {
       setButtonState("Reset Password");
@@ -174,10 +201,12 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       setBottomTextAState("Cancel");
       setResetTextState(true);
       setPasswordState(false);
+      setNameState(false);
       if(containerStyle === 'signup__login') {
         setHeaderState('Reset Password');
       }
       setPasswordRequired(false);
+      setNameRequired(false);
     }
   }
 
@@ -186,17 +215,27 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       <div className={`${background}`}>
         <div className={`${containerStyle}`}>
           <span className={`material-icons exit__button ${closeButton}`} onClick={modalClose}>close</span>
-          {/* <h4 className='signup__header'>Sign Up</h4> */}
         <div className='signup__content'>
           <form className='signup__fields' onSubmit={handleFormSubmit}>
+                <input
+                  className={`signup__input ${name}`}
+                  required={nameRequired}
+                  type='name'
+                  autoComplete='name'
+                  placeholder="First name"
+                  enterKeyHint='next'
+                  autoFocus={nameFocus}
+                  ref={nameRef}
+                  onChange={(e) => setUserData({...userData, name: e.target.value})}
+                />
                 <input
                   className='signup__input'
                   required
                   placeholder="Email"
                   autoComplete='email'
                   name='email'
-                  autoFocus
                   enterKeyHint='next'
+                  autoFocus={emailFocus}
                   ref={emailRef}
                   onChange={(e) => setUserData({...userData, email: e.target.value})}
                 />
@@ -229,7 +268,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
               <p className='signup__signin signup__terms-links'>{answer}</p>
             </div>
           </div>
-          {error && <Error message={errorMessage} justify={true}/>}
+          {error && <ErrorBox message={errorMessage} justify={true}/>}
         </div>
         </div>
       </div>
