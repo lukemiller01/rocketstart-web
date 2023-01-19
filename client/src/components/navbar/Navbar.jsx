@@ -90,7 +90,7 @@ const Navbar = ({navOne, logoURL}) => {
 
         <div className='navbar__right'>
           <div className='navbar__buttons-not_collapsed'>
-            { navOne
+            { navOne === ''
                 ? 
                 <div>
                   <nav className='navbar__items'>
@@ -123,7 +123,7 @@ const Navbar = ({navOne, logoURL}) => {
                 <div className="navbar__inner-menu">
                   <Menu/>
                   <div className="navbar__inner-menu_signup">
-                    { navOne
+                    { navOne === ''
                         ? 
                         <div className="navbar__inner-menu_signup">
                           <h3 className='navbar__item-focused' onClick={() => {handleUserLogin(false)}}>Sign In</h3>

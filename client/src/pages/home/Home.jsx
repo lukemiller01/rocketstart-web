@@ -1,11 +1,15 @@
 import React from 'react'
 import { Header, Questions, Footer, Process, CallToAction } from '../../containers';
+import { useOutletContext } from 'react-router-dom';
 import { Navbar } from '../../components';
 import { Helmet } from 'react-helmet';
 
-const Home = ({navOne, navTwo, logoURL}) => {
+const Home = () => {
 
   window.umami.trackView('/');
+
+  // Setting the navbar based on if the user is logged in
+  const { navOne, navTwo, logoURL } = useOutletContext();
   
   return (
     <div>

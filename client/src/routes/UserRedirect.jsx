@@ -9,7 +9,7 @@ const UserRedirect = () => {
 
     return typeof user === 'undefined' ? (
       <Loading/> ) :
-      user? ( <Navigate to="/message"/> ) : (<Outlet/>
+      user? ( <Navigate to="/message"/> ) : ( <Outlet context={{ navOne: '', navTwo: 'navbar__hidden', logoURL: "/" }}/>
     )
 }
 

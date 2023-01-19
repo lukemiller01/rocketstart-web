@@ -17,33 +17,3 @@ To-dos:
 8. On FAQ click, change + to -
 9. Can I copyright a website just by typing it out?
 10. Add LinkedIn Premium question to FAQ
-
-
-Process Steps:
-
-1. Send a LinkedIn invitation
-    a. Remember to add a note!
-
-2. Click the Rocketstart icon
-    a. Rocketstart will adjust to your window.
-
-3. Type your message
-    a. Rocketstart will analyze your text.
-
-4. Review your insights
-    a. Use Rocketstart to design the perfect note.
-
-Footer:
-
-Rocketstart
-    Features
-    Blog
-    About
-
-Resources
-    Terms & Conditions
-    Privacy Policy
-
-Support
-    FAQ
-    Contact us

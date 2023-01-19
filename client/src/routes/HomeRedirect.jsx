@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 import Loading from '../components/loading/Loading';
 import { useUserAuth } from '../context/AuthProvider';
 
@@ -9,7 +9,7 @@ const HomeRedirect = () => {
 
     return typeof user === 'undefined' ? (
       <Loading/> ) :
-      user? ( <Outlet/> ) : (<Navigate to="/"/>
+      user? ( <Outlet context={{ navOne: 'navbar__hidden', navTwo: '', logoURL: "/home" }}/> ) : ( <Navigate to="/" context={{ navOne: '', navTwo: 'navbar__hidden', logoURL: "/" }}/>
     )
 }
 

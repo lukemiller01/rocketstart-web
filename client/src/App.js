@@ -25,7 +25,7 @@ const App = () => {
 
               {/* Dashboard Toggle: redirects to /message if user is logged in  */}
               <Route element={<UserRedirect/>}>
-                <Route path='/' element={<Home navOne={true} logoURL={'/'}/>} />
+                <Route path='/' element={<Home/>} />
                 <Route path='/login' element={<Login/>}/>
               </Route>
 
@@ -39,7 +39,7 @@ const App = () => {
 
               {/* Home Toggle: redirects to / if user is not logged in */}
               <Route element={<HomeRedirect/>}>
-                <Route path='/home' element={<Home navOne={false} logoURL={'/home'}/>} />
+                <Route path='/home' element={<Home/>} />
               </Route>
 
               {/* Auxiliary Pages: changes navbar based on user state */}
