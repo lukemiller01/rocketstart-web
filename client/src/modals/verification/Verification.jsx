@@ -30,7 +30,7 @@ const Verification = ({userEmail}) => {
       await changeEmail(typedEmail);
       dispatch(resendVerification(user.uid, {email: typedEmail}));
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   }
 

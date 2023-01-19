@@ -42,21 +42,21 @@ export const createUser = async (req, res) => {
        var finalHTML = template(replacements);
 
         // Send user the verification email
-        // client.sendEmail({
-        //     "From": '"Luke at Rocketstart" <luke@rocketstart.careers>',
-        //     "To": `${email}`,
-        //     "Subject": "[Rocketstart] Please Verify Your Email",
-        //     "HtmlBody": finalHTML,
-        //     "MessageStream": "outbound",
-        //     "Attachments": [
-        //         {
-        //             "Name": "rocketstart.png",
-        //             "Content": fs.readFileSync("../server/public/images/rocketstartLogo256.png").toString('base64'),
-        //             "ContentType": "image/png",
-        //             "ContentID": "cid:logo"
-        //         }
-        //     ]
-        // });
+        client.sendEmail({
+            "From": '"Luke at Rocketstart" <luke@rocketstart.careers>',
+            "To": `${email}`,
+            "Subject": "[Rocketstart] Please Verify Your Email",
+            "HtmlBody": finalHTML,
+            "MessageStream": "outbound",
+            "Attachments": [
+                {
+                    "Name": "rocketstart.png",
+                    "Content": fs.readFileSync("../server/public/images/rocketstartLogo256.png").toString('base64'),
+                    "ContentType": "image/png",
+                    "ContentID": "cid:logo"
+                }
+            ]
+        });
 
         // Create user in MongoDB
         const user = await User.create({
