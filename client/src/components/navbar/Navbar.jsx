@@ -26,6 +26,7 @@ const Navbar = ({navOne, logoURL}) => {
   const [nameState, setNameState] = useState(true);
   const [emailFocus, setEmailFocus] = useState(true);
   const [nameFocus, setNameFocus] = useState(false);
+  const [checkState, setCheckState] = useState(true);
 
   function handleUserLogin(type) {
     // Opening the modal:
@@ -40,6 +41,7 @@ const Navbar = ({navOne, logoURL}) => {
       setNameState(true);
       setEmailFocus(false);
       setNameFocus(true);
+      setCheckState(true);
       window.umami.trackEvent('Navbar Button');
     }
     else {
@@ -51,6 +53,7 @@ const Navbar = ({navOne, logoURL}) => {
       setNameState(false);
       setEmailFocus(true);
       setNameFocus(false);
+      setCheckState(false);
     }
   }
 
@@ -58,6 +61,7 @@ const Navbar = ({navOne, logoURL}) => {
   let reset = resetTextState ? 'signup__no-visibility' : '';
   let password = passwordState ? '' : 'signup__no-visibility';
   let name = nameState ? '' : 'signup__no-visibility';
+  let checkmark = checkState ? 'signup__visibility__flex' : 'signup__no-visibility';
 
   // For collapsed menu navbar media query
   const [ toggleMenu, setToggleMenu ] = useState(false);
@@ -163,6 +167,8 @@ const Navbar = ({navOne, logoURL}) => {
         setNameState={setNameState} // To set the name button
         emailFocus={emailFocus} // To set if the email is focused or not
         nameFocus={nameFocus} // To set if the name is focused or not
+        checkmark={checkmark} // Access to the checkmark
+        setCheckState={setCheckState} // To set the checkmark visibility
         background={"signup__bg"} // To keep the absolute positioning
         closeButton={"close__show"} // To keep the close button
         containerStyle={'signup'}

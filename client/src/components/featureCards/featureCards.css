@@ -24,6 +24,10 @@
     font-weight: 700;
 }
 
+.feature__card-text {
+    margin: 0;
+}
+
 @media screen and (max-width: 1250px) {
     .feature__card-header {
         font-size: 14pt;
@@ -31,7 +35,6 @@
 
     .feature__card {
         width: 22vw;
-        height: 30vh;
     }
 }
 
@@ -43,5 +46,10 @@
 
     .feature__card-header {
         font-size: 20pt;
+        text-align: center;
+    }
+
+    .feature__card-text {
+        text-align: center;
     }
 }

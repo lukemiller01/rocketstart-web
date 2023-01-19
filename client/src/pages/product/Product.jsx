@@ -42,7 +42,7 @@ const Product = () => {
         <div className='product__feature-container'>
           <ProductFeature
             feature={'Contact Finder'}
-            description={"Paste any job application URL into Rocketstart and find the recruiter hiring for the role in one click. Rocketstart searches the web for over 20 parameters, including the role description's key words, active recruiters at the company, and similar posted positions."}
+            description={"Paste any job opening URL into Rocketstart and discover the recruiter hiring for the role. In one click, you have a person to get in touch with about your application."}
             image={'ContactFinder'}
             id={'contact-finder'}
 
@@ -51,7 +51,7 @@ const Product = () => {
             boxTwo={"Transparent Data"}
             boxTwoText={"Rocketstart's data is used ethically. Every contact we distribute has a public source."}
             boxThree={"+80% Accuracy"}
-            boxThreeText={"Contact Finder is accurate and its algorithm is continously improving."}
+            boxThreeText={"Contact Finder provides accurate results and its algorithm is continously improving."}
 
             boxIconOne={'work'}
             boxIconTwo={'database'}
@@ -59,7 +59,7 @@ const Product = () => {
 
           <ProductFeature
             feature={'Message Analysis'}
-            description={"Write a LinkedIn connection invite in Rocketstart and use text insights to craft the perfect message. Rocketstart analyzes your text for four attributes proven to increase reply rates when sending a cold message. When you're done, copy the text and send your message on LinkedIn."}
+            description={"Craft the perfect LinkedIn message using Message Analysis. Rocketstart scans your text for four attributes proven to increase message reply rates. When you're done, copy the text and send your message on LinkedIn."}
             image={'MessageAnalysis'}
             id={'message-analysis'}
 

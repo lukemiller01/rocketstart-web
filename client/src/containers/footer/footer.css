@@ -102,6 +102,7 @@ hr, .footer__bar {
     .footer__menu {
         flex-direction: column;
         gap: 0;
+        padding-top: 1rem;
     }
 
     .column__one, .column__two, .column__three, .column__four {

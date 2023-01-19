@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Home, Blog, Pricing, About, Product, Privacy, Terms, Message, Find, Login, Action, Account, NotFound, Article1 } from './pages';
+import { Home, Blog, About, Product, Privacy, Terms, Message, Find, Login, Action, Account, NotFound, Article1 } from './pages';
 
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './miscellaneous/ScrollToTop';
@@ -46,7 +46,7 @@ const App = () => {
                 <Route path='/blog' element={<Blog/>}/>
                 <Route path='/product' element={<Product/>}/>
                 <Route path='/about' element={<About/>}/>
-                <Route path='/pricing' element={<Pricing/>}/>
+                {/* <Route path='/pricing' element={<Pricing/>}/> */}
                 <Route path='/privacy' element={<Privacy/>}/>
                 <Route path='/terms' element={<Terms/>}/>
 

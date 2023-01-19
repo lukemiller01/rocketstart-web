@@ -139,6 +139,10 @@
     display: block;
 }
 
+.signup__visibility__flex {
+    display: flex;
+}
+
 .signup__question-answer {
     display: flex;
     flex-direction: row;
@@ -147,6 +151,27 @@
 
 .close__none {
     display: none;
+}
+
+.signup__product-update_container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup__product-update_text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup__product-update_text {
+    margin: 0;
+    user-select: none;
+    margin-right: 2rem;
+}
+
+.signup__product-update-checkbox {
+    margin: 1rem;
 }
 
 @media screen and (max-width: 1350px) {
@@ -196,5 +221,13 @@
 @media screen and (max-width: 400px) {
     .signup {
         margin: 5rem 1rem;
+    }
+
+    .signup__product-update_text {
+        margin-right: .5rem;
+    }
+
+    .signup__product-update-checkbox {
+        margin: .75rem;
     }
 }

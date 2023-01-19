@@ -5,12 +5,18 @@
     margin: 5rem 0rem 5rem 0rem;
 }
 
+.login__header {
+    text-align: center;
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+
 @media screen and (max-width: 625px) {
     .signup {
         margin: 5rem 2rem;
     }
     
     .signup__content {
-        padding: 2rem 1rem 2rem 1rem;
+        padding: 2rem 0rem 2rem 0rem;
     }
 }

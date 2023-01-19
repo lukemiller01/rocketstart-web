@@ -134,6 +134,10 @@ p {
     .header__content-title {
         text-align: center;
     }
+
+    .right__content {
+        width: 70vw;
+    }
 }
 
 @media screen and (max-width: 625px) {
@@ -146,6 +150,10 @@ p {
     .right__content {
         width: 75vw;
     }
+
+    .cta__benefit-container {
+        width: 60vw;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -157,11 +165,19 @@ p {
     .header__content-title {
         width: auto;
     }
+
+    .right__content {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 400px) {
     .header {
         margin-left: 1rem;
         margin-right: 1rem;
+    }
+
+    .cta__benefit-container {
+        width: 70vw;
     }
 }

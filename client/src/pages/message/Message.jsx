@@ -384,13 +384,13 @@ const Message = () => {
         <Navbar2/>
         <div className='message'>
             <div className='message__header'>
-                <h2>Message</h2>
                 <div className='help__div'>
+                    <h2>Message</h2>
                     <span className="material-symbols-outlined message__help">help</span>
-                    <p className='help__text'> 
-                        Craft an optimized LinkedIn invitation message using four text insights proven to increase reply rates.
-                    </p>
                 </div>
+                <p className='help__text'> 
+                    Craft an optimized LinkedIn invitation message using four text insights proven to increase reply rates.
+                </p>
             </div>
             <div className="insights">
                 
@@ -520,8 +520,8 @@ const Message = () => {
                             </div>
                         </div>
                         <p className='explanation__text'>
-                        Make your message easy to read.
-                        Messages with short sentences and accessible words receive higher reply rates.
+                        Lower your message's grade level to make it easily readable.
+                        Messages with short sentences and simple words receive higher reply rates.
                         </p>
                         <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
                     </div>
@@ -534,8 +534,8 @@ const Message = () => {
                             </div>
                         </div>
                         <p className='explanation__text'>
-                        Avoid adverbs and empty verbs to save characters and write more.
-                        Any ineffective words will be detected and displayed below.
+                        Avoid adverbs and empty verbs to make your message clear and save characters.
+                        If you wrote any ineffective words, they will be detected and displayed below.
                         </p>
                         <h3 className={`insight__title ${adverbsHeader ? " message__block" : " message__hide"}`}>Please remove adverbs:</h3>
                         <p className={`red italicBold ${adverbsHeader ? " message__block" : " message__hide"}`} id="flaggedAdverbs">{flaggedAdverbs}</p>

@@ -6,7 +6,7 @@ const FeatureCards = ({icon, header, text}) => {
     <div className='feature__card'>
         <span className="material-symbols-outlined feature__card-icon">{icon}</span>
         <h4 className='feature__card-header'>{header}</h4>
-        <p>{text}</p>
+        <p className='feature__card-text'>{text}</p>
     </div>
   )
 }

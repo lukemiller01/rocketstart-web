@@ -391,11 +391,11 @@
 }
 
 /* On hover, change opacity, width, and height  */
-.help__div:hover .help__text {
+/* .help__div:hover .help__text {
     opacity: 1;
     width: auto;
     height: auto;
-}
+} */
 
 /* Question mark icon  */
 .message__help {
@@ -403,6 +403,7 @@
     padding-right: 1rem;
     color: grey;
     font-size: 18px;
+    cursor: pointer;
 }
 
 /* Explanation of the product  */
@@ -413,6 +414,14 @@
     height: 0;
     width: 0;
     overflow: hidden;
+    margin-right: 1rem;
+}
+
+.help__div:hover ~ .help__text{
+    opacity: 1;
+    width: auto;
+    height: auto;
+    line-height: inherit;
 }
 
 .message__flex {
@@ -431,10 +440,6 @@
     .message {
         padding-left: 2rem;
         padding-right: 2rem;
-    }
-
-    .explanation__text {
-        font-size: 12px;
     }
 }
 
@@ -462,5 +467,26 @@
 
     .outer__container {
         width: 50%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .message {
+        padding-top: 2rem;
+    }
+
+    .outer__container {
+        padding: .75rem;
+    }
+
+    .help__text {
+        font-size: 12pt;
+        text-align: center;
+    }
+
+    .message__header {
+        justify-content: center;
+        gap: 1rem;
+        flex-direction: column;
     }
 }

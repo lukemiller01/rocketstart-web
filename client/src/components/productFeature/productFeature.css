@@ -13,6 +13,7 @@
 .product__feature-header {
     color: rgb(30,90,255);
     font-size: 28pt;
+    font-weight: 900;
     margin-bottom: 1rem;
 }
 
@@ -73,5 +74,11 @@
 @media screen and (max-width: 750px) {
     .product__feature-image {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .product__feature-header {
+        text-align: center;
     }
 }

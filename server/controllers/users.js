@@ -19,7 +19,7 @@ export const getUser = async (req, res) => {
 };
 
 export const createUser = async (req, res) => {
-    const {email: email, name: name} = req.body;
+    const {email: email, name: name, broadcast: broadcast} = req.body;
 
     try {
         // Include Firebase ID in MongoDB so the user can be updated later
@@ -42,27 +42,28 @@ export const createUser = async (req, res) => {
        var finalHTML = template(replacements);
 
         // Send user the verification email
-        client.sendEmail({
-            "From": '"Luke at Rocketstart" <luke@rocketstart.careers>',
-            "To": `${email}`,
-            "Subject": "[Rocketstart] Please Verify Your Email",
-            "HtmlBody": finalHTML,
-            "MessageStream": "outbound",
-            "Attachments": [
-                {
-                    "Name": "rocketstart.png",
-                    "Content": fs.readFileSync("../server/public/images/rocketstartLogo256.png").toString('base64'),
-                    "ContentType": "image/png",
-                    "ContentID": "cid:logo"
-                }
-            ]
-          });
+        // client.sendEmail({
+        //     "From": '"Luke at Rocketstart" <luke@rocketstart.careers>',
+        //     "To": `${email}`,
+        //     "Subject": "[Rocketstart] Please Verify Your Email",
+        //     "HtmlBody": finalHTML,
+        //     "MessageStream": "outbound",
+        //     "Attachments": [
+        //         {
+        //             "Name": "rocketstart.png",
+        //             "Content": fs.readFileSync("../server/public/images/rocketstartLogo256.png").toString('base64'),
+        //             "ContentType": "image/png",
+        //             "ContentID": "cid:logo"
+        //         }
+        //     ]
+        // });
 
         // Create user in MongoDB
         const user = await User.create({
             name,
             email,
             uid,
+            broadcast,
         });
         return res.status(200).json({message: "Success!"});
     }

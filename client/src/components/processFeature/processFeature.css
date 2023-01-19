@@ -75,4 +75,9 @@
     .process__feature-icon {
         font-size: 20px;
     }
+
+    .process__steps-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 }

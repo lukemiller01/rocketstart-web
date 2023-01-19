@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 import './signUp.css';
 
-const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, setBottomTextQState, setBottomTextAState, terms, setTermsTextState, reset, setResetTextState, password, setPasswordState, name, setNameState, emailFocus, nameFocus, background, closeButton, setHeaderState, containerStyle }) => {
+const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, setBottomTextQState, setBottomTextAState, terms, setTermsTextState, reset, setResetTextState, password, setPasswordState, name, setNameState, emailFocus, nameFocus, checkmark, setCheckState, background, closeButton, setHeaderState, containerStyle }) => {
 
   // Set Firebase auth and send user data MongoDB
   const navigate = useNavigate();
@@ -20,6 +20,9 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
   const [passwordRequired, setPasswordRequired] = useState(true);
   // Check if the name is required for the form to be submitted
   const [nameRequired, setNameRequired] = useState(false);
+
+  // User opt in to product broadcast
+  const [checked, setChecked] = useState(false);
 
   const dispatch = useDispatch();
   const { register, logIn, checkEmail } = useUserAuth();
@@ -55,7 +58,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       e.preventDefault();
 
       try {
-        await logIn(userData.email, userData.password);
+        await logIn(userData.email.trim(), userData.password);
         document.body.style.overflow = "auto"
         navigate("/message");
       }
@@ -87,10 +90,10 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       e.preventDefault();
 
       try {
-        await register(userData.email, userData.password);
-        dispatch(createUser({email: userData.email, name: userData.name}));
+        await register(userData.email.trim(), userData.password);
+        dispatch(createUser({email: userData.email.trim(), name: userData.name.trim(), broadcast: checked}));
         window.umami.trackEvent('Sign Up');
-        document.body.style.overflow = "auto"
+        document.body.style.overflow = "auto";
         navigate("/message");
       } catch (error) {
         if(error.code === 'auth/email-already-in-use') {
@@ -123,13 +126,13 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       e.preventDefault();
 
       try {
-        var result = await checkEmail(userData.email);
+        var result = await checkEmail(userData.email.trim());
         if(result.length === 0) {
           const error = new Error();
           error.code = 'not in firebase';
           throw error;
         }
-        dispatch(resetPassword({email: userData.email}));
+        dispatch(resetPassword({email: userData.email.trim()}));
         setButtonState("Sign In");
         setBottomTextQState('No Account?');
         setBottomTextAState("Create One");
@@ -180,6 +183,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       }
       setPasswordRequired(true);
       setNameRequired(true);
+      setCheckState(true);
     }
     else if ((type && buttonText === "Create Account") || (type && buttonText === "Reset Password")) {
       setButtonState("Sign In");
@@ -194,6 +198,7 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       }
       setPasswordRequired(true);
       setNameRequired(false);
+      setCheckState(false);
     }
     else {
       setButtonState("Reset Password");
@@ -207,7 +212,13 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
       }
       setPasswordRequired(false);
       setNameRequired(false);
+      setCheckState(false);
     }
+  }
+
+  // User opt-in for product updates
+  function handleCheckChange() {
+    setChecked(!checked);
   }
 
   return (
@@ -245,8 +256,13 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
                   type='password'
                   autoComplete='new-password'
                   placeholder="Password"
+                  enterKeyHint='next'
                   onChange={(e) => setUserData({...userData, password: e.target.value})}
                 />
+                <label className={`signup__product-update_container ${checkmark}`} enterKeyHint='next'>
+                  <input type="checkbox" onChange={() => {handleCheckChange()}} className='signup__product-update-checkbox'/>
+                    <p className='signup__product-update_text'>Notify me about new features</p>
+                </label>
                 {/*disabled={loading}> */}
                 <button type="submit" className='signup__button'>
                   {buttonText}

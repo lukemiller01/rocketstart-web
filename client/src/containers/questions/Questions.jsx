@@ -11,16 +11,20 @@ const questionData = [
         answer: 'Rocketstart\'s Message Analysis is free. Rocketstart\'s Contact Finder (coming soon) has tiered pricing.',
     },
     {
+        question: 'How does Contact Finder differ from competitors?',
+        answer: 'Other products are contact databases. Rocketstart provides job seekers with the contact hiring for their role.',
+    },
+    {
         question: 'How is Rocketstart data sourced?',
-        answer: 'Rocketstart\'s Contact Finder source data is publicly available and processed transparently. See our recent Blog posts for more.',
+        answer: 'Rocketstart\'s source data is public and processed ethically. Check back for new Blog posts on this topic.',
     },
     {
         question: 'Who should use Rocketstart?',
-        answer: 'Job seekers, students, and professional looking to expand their network can benefit from Rocketstart.',
+        answer: 'Job seekers, students, and professionals looking to expand their network can benefit from Rocketstart.',
     },
     {
         question: 'Is Rocketstart available as a Browser Extension?',
-        answer: 'A Browser Extension for Rocketstart\'s Contact Finder is coming soon.',
+        answer: 'Rocketstart\'s Contact Finder extension is coming soon. Please sign up for product updates to get notified.',
     },
 ]
 
