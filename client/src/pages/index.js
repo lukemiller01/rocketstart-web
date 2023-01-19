@@ -5,6 +5,7 @@ export { default as Blog } from './blog/Blog';
 export { default as About } from './about/About';
 export { default as Privacy } from './privacy/Privacy';
 export { default as Message } from './message/Message';
+export { default as Contact } from './contact/Contact';
 export { default as Find } from './find/Find';
 export { default as Login } from './login/Login';
 export { default as Action } from './auth/Action';

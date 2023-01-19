@@ -24,6 +24,8 @@ const Menu = () => {
 
   return (
     <>
+      <h3><Link to='/contact'>Contact</Link></h3>
+      <h3><Link to='/message'>Message</Link></h3>
       <h3><Link to='/account'>Account</Link></h3>
       <h3><Link to="/home" className='navbar__item-focused'>Home</Link></h3>
       <h3 onClick={handleLogOut}>Log Out</h3>
@@ -71,18 +73,21 @@ const Navbar2 = () => {
             </h3>
           </li>
 
+          <li className='menu__item navbar__item-focused'>
+            <h3>
+              <NavLink to='/contact' className={({ isActive }) => isActive ? 'active__menu' : ''} style={{display: 'flex'}}>
+                <h3>Contact</h3>
+                <span className="material-symbols-outlined navbar__account-icon_two">contact_mail</span>
+              </NavLink>
+            </h3>
+          </li>
+
           <li className='navbar__item-focused' onClick={handleModalOpen} onMouseEnter={() => {setCommunicateState(false)}} onMouseLeave={() => {setCommunicateState(true)}} >
               <NavLink className={split[1] === "account" ? "active__menu" : ""} style={{display: 'flex'}}>
                 <h3>Account</h3>
                 <span className="material-symbols-outlined navbar__account-icon">{icon}</span>
               </NavLink>
           </li>
-
-          {/* <li className='menu__item'>
-            <h3><NavLink to='/find' className={({ isActive }) =>
-                isActive ? 'active__menu' : ''
-            }>Search</NavLink></h3>
-          </li> */}
           
         </ul>
 

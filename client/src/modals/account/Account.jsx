@@ -32,7 +32,7 @@ const Account = ({setModalOpen, setAccountIconState, communicateState}) => {
     <div className='account__bg'>
         <div className='account__modal' ref={ref}>
 
-            <p className='account__modal-header'>Monthly Usage:</p>
+            {/* <p className='account__modal-header'>Monthly Usage:</p>
             <div className='account__modal-search_container'>
                 <p className='account__modal-text'>Searches</p>
                 <p className='account__modal-text'>2/3</p>
@@ -48,7 +48,7 @@ const Account = ({setModalOpen, setAccountIconState, communicateState}) => {
                 <Link to='/profile'>
                     <button className='upgrade__button'>Upgrade</button>
                 </Link>
-            </div>
+            </div> */}
 
             <div className='account__nav-container'>
 

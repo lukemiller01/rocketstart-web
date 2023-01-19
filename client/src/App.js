@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Home, Blog, About, Product, Privacy, Terms, Message, Find, Login, Action, Account, NotFound, Article1 } from './pages';
+import { Home, Blog, About, Product, Privacy, Terms, Message, Contact, Login, Action, Account, NotFound, Article1 } from './pages';
 
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './miscellaneous/ScrollToTop';
@@ -32,7 +32,8 @@ const App = () => {
               {/* Private Pages: redirects to /login if user is not logged in */}
               <Route element={<LogInRequired/>}>
                 <Route path='/message' element={<Message/>}/>
-                <Route path='/find' element={<Find/>}/>
+                <Route path='/contact' element={<Contact/>}/>
+                {/* <Route path='/find' element={<Find/>}/> */}
                 <Route path='/account' element={<Account/>}/>
               </Route>
 

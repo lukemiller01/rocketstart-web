@@ -1,6 +1,6 @@
 .account__modal {
     position: absolute;
-    width: 225px;
+    /* width: 225px; */
     right: 6rem;
     top: 48px;
     border: 2px solid lightgrey;
@@ -81,7 +81,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin: 1rem 0rem 1rem 0rem;
+    /* margin: 1rem 0rem 1rem 0rem; */
 }
 
 .account__nav-options {
@@ -90,7 +90,7 @@
     display: flex;
     margin: 0;
     width: 100%;
-    padding: 0.5rem 1rem 0.5rem 1rem;
+    padding: 0.5rem 2rem 0.5rem 2rem;
 }
 
 .account__nav-options:hover {

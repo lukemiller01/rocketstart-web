@@ -11,8 +11,8 @@ const questionData = [
         answer: 'Rocketstart\'s Message Analysis is free. Rocketstart\'s Contact Finder (coming soon) has tiered pricing.',
     },
     {
-        question: 'How does Contact Finder differ from competitors?',
-        answer: 'Other products are contact databases. Rocketstart provides job seekers with the contact hiring for their role.',
+        question: 'How does Rocketstart differ from competitors?',
+        answer: 'Comparable products are contact databases. Rocketstart provides job seekers with the contact hiring for any role online.',
     },
     {
         question: 'How is Rocketstart data sourced?',
