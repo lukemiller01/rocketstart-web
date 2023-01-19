@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import Navbar from '../../components/navbar/Navbar';
 import PriceTier from '../../components/priceTier/PriceTier';
@@ -49,7 +49,9 @@ const pricingData = [
 
 const Pricing = () => {
 
-  window.umami.trackView('/pricing');
+  useEffect(() => {
+    window.umami.trackView('/pricing');
+  }, []);
 
   // Button for currency conversion
   const [btnState, setBtnState ] = useState(false);

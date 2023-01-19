@@ -1,13 +1,15 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SignUp } from '../../modals'
 import { Navbar3 } from '../../components'
 import { Helmet } from 'react-helmet';
 import './login.css';
 
 const Login = () => {
-
-  window.umami.trackView('/login');
+  
+  useEffect(() => {
+    window.umami.trackView('/login');
+  }, []);
 
     // Parameters needed for the SignUp component:
     let modalOpen = true;

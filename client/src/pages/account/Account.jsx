@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { resetPassword, resendVerification } from '../../actions/userActions';
@@ -9,7 +9,9 @@ import './account.css';
 
 const Account = () => {
 
-    window.umami.trackView('/account');
+    useEffect(() => {
+        window.umami.trackView('/account');
+    }, []);
 
     const navigate = useNavigate();
 

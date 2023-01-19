@@ -5,7 +5,7 @@ import { useOutletContext } from 'react-router-dom';
 import './blog.css';
 import Article from '../../components/article/Article';
 import { Helmet } from 'react-helmet';
-import { map, retro } from './imports';
+import { map, pen } from './imports';
 import { Link } from 'react-router-dom';
 
 const Blog = () => {
@@ -28,7 +28,9 @@ const Blog = () => {
           <Link to='/blog/how-I-landed-my-job-at-spacex'>
             <Article image={map} date={"January 17 2023"} title={"How I Landed My Job at SpaceX with a LinkedIn Message"}/>
           </Link>
-          <Article image={retro} date={"December 23 2022"} title={"Using Your LinkedIn Network to Find a Job"}/>
+          <Link to='/blog/why-I-built-rocketstart'>
+            <Article image={pen} date={"January 19 2022"} title={"Why I Built Rocketstart"}/>
+          </Link>
           {/* <Article image={mac} date={"December 23 2022"} title={"Land Your Dream Internship: GPA, Year, & Major Requirements Explained"}/> */}
           {/* <Article image={pen} date={"December 23 2022"} title={"Why Your LinkedIn Cold Outreach Template Isn't Working"}/> */}
         </div>

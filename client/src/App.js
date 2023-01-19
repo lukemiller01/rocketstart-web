@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Home, Blog, About, Product, Privacy, Terms, Message, Contact, Login, Action, Account, NotFound, Article1 } from './pages';
+import { Home, Blog, About, Product, Privacy, Terms, Message, Contact, Login, Action, Account, NotFound, Article1, Article2 } from './pages';
 
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './miscellaneous/ScrollToTop';
@@ -51,7 +51,8 @@ const App = () => {
                 <Route path='/privacy' element={<Privacy/>}/>
                 <Route path='/terms' element={<Terms/>}/>
 
-                <Route path='blog/how-I-landed-my-job-at-spacex' element={<Article1/>}/>
+                <Route path='/blog/how-I-landed-my-job-at-spacex' element={<Article1/>}/>
+                <Route path='/blog/why-I-built-rocketstart' element={<Article2/>}/>
               </Route>
 
               {/* If the typed URL doesn't exist  */}

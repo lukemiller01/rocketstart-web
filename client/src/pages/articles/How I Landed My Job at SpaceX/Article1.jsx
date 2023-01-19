@@ -19,7 +19,7 @@ const Article1 = () => {
     // Setting the navbar based on if the user is logged in
     const { navOne, navTwo, logoURL } = useOutletContext();
 
-    window.umami.trackView('/how-I-landed-my-job-at-spacex');
+    window.umami.trackView('/blog/how-I-landed-my-job-at-spacex');
 
   return (
     <div>

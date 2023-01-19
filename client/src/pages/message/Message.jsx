@@ -9,8 +9,6 @@ import './message.css';
 
 const Message = () => {
 
-    window.umami.trackView('/message');
-
     // Modal state
     const [modalOpen, setModalOpen] = useState(false);
     const { user } = useUserAuth();
@@ -22,6 +20,10 @@ const Message = () => {
             setModalOpen(true);
         }
       }, [user]);
+
+    useEffect(() => {
+        window.umami.trackView('/message');
+    }, []);
 
     // ------------------------------------------
 
