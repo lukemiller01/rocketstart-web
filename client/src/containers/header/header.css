@@ -39,6 +39,11 @@ p {
     transform: scale(1.015);
 }
 
+.header__check {
+    font-size: 24px;
+    color: rgba(100, 185, 35, 1);
+}
+
 /* Gif aspect ratio */
 .rocketstart__demo {
     width: 100%;

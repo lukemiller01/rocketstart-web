@@ -110,6 +110,8 @@
 
 /* Check marks */
 .insight__icon {
+    font-size: 24px;
+
     padding: 0rem .5rem;
 
     color: rgba(100, 185, 35, 1);
@@ -119,6 +121,8 @@
 
 /* Wording warning mark */
 .insight__warning {
+    font-size: 24px;
+
     padding: 0rem .5rem;
 
     color: rgba(247, 152, 36, 1);
@@ -258,6 +262,7 @@
 
 /* Check for copied text  */
 .copied__check {
+    font-size: 24px;
     color: rgba(100, 185, 35, 1);
 }
 
@@ -378,6 +383,7 @@
 }
 
 .aim__icon {
+    font-size: 24px;
     color: rgba(100, 185, 35, 1);
 }
 
