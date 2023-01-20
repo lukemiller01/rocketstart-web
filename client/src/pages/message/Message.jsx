@@ -6,6 +6,7 @@ import { useUserAuth } from '../../context/AuthProvider';
 import { Helmet } from 'react-helmet';
 import TextareaAutosize from 'react-textarea-autosize';
 import './message.css';
+import { HashLink } from 'react-router-hash-link';
 
 const Message = () => {
 
@@ -497,7 +498,9 @@ const Message = () => {
                         <p className='explanation__text'>
                         Break your message into three components: a greeting, message body, and a farewell.
                         </p>
-                        <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
+                        <HashLink to="/blog/how-I-landed-my-job-at-spacex#paragraphs" target="_blank" rel="noopener">
+                            <p className="learn__more">Learn More</p>
+                        </HashLink>
                     </div>
                     <div className={`explanation__container ${questionExplanation ? " message__block" : " message__hide"}`} id="question__explanation">
                         <div className='modified__explanation'>
@@ -511,7 +514,9 @@ const Message = () => {
                         Include a call to action (CTA) for your recipient.
                         Messages with a question or CTA receive higher reply rates.
                         </p>
-                        <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
+                        <HashLink to="/blog/how-I-landed-my-job-at-spacex#cta" target="_blank" rel="noopener">
+                            <p className="learn__more">Learn More</p>
+                        </HashLink>
                     </div>
                     <div className={`explanation__container ${gradingExplanation ? " message__block" : " message__hide"}`} id="grade__explanation">
                         <div className='modified__explanation'>
@@ -525,7 +530,9 @@ const Message = () => {
                         Lower your message's grade level to make it easily readable.
                         Messages with short sentences and simple words receive higher reply rates.
                         </p>
-                        <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
+                        <HashLink to="/blog/how-I-landed-my-job-at-spacex#grade" target="_blank" rel="noopener">
+                            <p className="learn__more">Learn More</p>
+                        </HashLink>
                     </div>
                     <div className={`explanation__container ${wordingExplanation ? " message__block" : " message__hide"}`} id="wording__explanation">
                         <div className='modified__explanation'>
@@ -549,7 +556,9 @@ const Message = () => {
                                 <VerbExample key={i} goodExample={item.goodExample} badExample={item.badExample}/>
                             )}
                         </div>
-                        <p className="learn__more"><a target="_blank" rel="noopener noreferrer" href="https://rocketstart.careers/blog">Learn more</a></p>
+                        <HashLink to="/blog/how-I-landed-my-job-at-spacex#wording" target="_blank" rel="noopener">
+                            <p className="learn__more">Learn More</p>
+                        </HashLink>
                     </div>
                 </div>
 

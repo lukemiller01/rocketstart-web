@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { Navbar } from '../../../components';
 import { useOutletContext } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
@@ -13,6 +14,7 @@ import messageAnalysis from '../../../assets/MessageAnalysis.png'
 
 import { Link } from 'react-router-dom';
 import { CallToAction, Footer } from '../../../containers';
+import { useLocation } from 'react-router-dom';
 
 const Article1 = () => {
     
@@ -20,6 +22,26 @@ const Article1 = () => {
     const { navOne, navTwo, logoURL } = useOutletContext();
 
     window.umami.trackView('/blog/how-I-landed-my-job-at-spacex');
+    
+    const { pathname, hash, key } = useLocation();
+
+    useEffect(() => {
+        // if not a hash link, scroll to top
+        if (hash === '') {
+          window.scrollTo(0, 0);
+        }
+        // else scroll to id
+        else {
+          setTimeout(() => { // Push onto callback queue so it runs after the DOM is updated
+            const id = hash.replace('#', '');
+            const element = document.getElementById(id);
+            if (element) {
+              element.scrollIntoView({behavior: 'smooth'});
+            }
+          }, 1);
+        }
+      }, [pathname, hash, key]); // do this on route change
+    
 
   return (
     <div>
@@ -36,6 +58,14 @@ const Article1 = () => {
 
             <div className='article__content-container'>
                 <div className='article__content'>
+
+                    <h4 className='article__content-subheader'>TL;DR</h4>
+                    <p className='article__paragraph'>
+                        Networking on LinkedIn will convert more applications into interviews and job offers. I built a <Link to='/' className='bold__link'>Message Analysis</Link> tool that scans your text for the four key attributes needed to write a perfect LinkedIn message. The best part? It's 100% free.
+                    </p>
+                    <img src={messageAnalysis} alt='Message Analysis' className='article__image'></img>
+
+                    
 
                     <h4 className='article__content-subheader'>Introduction</h4>
                     <p className='article__paragraph'>
@@ -55,7 +85,6 @@ const Article1 = () => {
 
 
 
-
                     <h4 className='article__content-subheader'>Include a Call to Action</h4>
                     <p className='article__paragraph'>
                         It's September 2020. Applications for SpaceX's Internship Program open up. I have one more opportunity to join as an intern before entering into the scary job market.
@@ -63,7 +92,7 @@ const Article1 = () => {
                     <p className='article__paragraph'>
                         I start to doubt myself. I have relevant experience. I have strong interview skills. Why haven't I broken through?
                     </p>
-                    <p className='article__paragraph'>
+                    <p className='article__paragraph' id='cta'>
                         Finding a job is tough. The stress builds as time passes. The responses that do come in are rejections. Let's see if I can get in touch with <font className='italic'>at least one</font> SpaceX employee.
                     </p>
                     <img src={falconHeavy} alt='LinkedIn message with call to action' className='article__image'></img>
@@ -95,7 +124,7 @@ const Article1 = () => {
                     <p className='article__paragraph'>
                         This one sentence invitation is already a strong start to crafting an optimal message. Get creative with your call to action! They don't need to be in the form of a question. However, questions are the most efficient way to prompt a response.
                     </p>
-                    <p className='article__paragraph'>
+                    <p className='article__paragraph' id='grade'>
                         So far, I gave my recipient some context and asked him for a chat. Let's learn how to add more content to the message while keeping the attention of the reader.
                     </p>
 
@@ -115,7 +144,7 @@ const Article1 = () => {
                     <p className='article__paragraph'>
                         Flesch-Kincaid scores this message's reading level at 7th grade. This means a person with a 7th grade education can easily read the text. My recipient now has more information about why I'm a strong fit. This message is on its way to being optimal to send to a recruiter or hiring manager!
                     </p>
-                    <p className='article__paragraph'>
+                    <p className='article__paragraph' id='paragraphs'>
                         The content of the message is coming together, but it doesn't look great. Let's structure the message to look attractive to the human eye.
                     </p>
 
@@ -133,7 +162,7 @@ const Article1 = () => {
                     </p>
                     <img src={stepThree} alt='LinkedIn message with rule of three' className='article__image'></img>
                     <p className='article__paragraph'>Compared to a message without structure, this LinkedIn invitation looks stronger. The rule of three can be applied to any other part of your message. For example, you can provide three reasons why you're a great fit for a job. You can provide three times you're free to chat. Using the rule of three may not produce drastic results like including a call to action. More than anything, it's good practice to have a beginning, middle, and end to your message. </p>
-                    <p className='article__paragraph'>Our message is almost complete. Let's take a look at the last text attribute to take advantage of.</p>
+                    <p className='article__paragraph' id='wording'>Our message is almost complete. Let's take a look at the last text attribute to take advantage of.</p>
 
 
 
@@ -166,7 +195,7 @@ const Article1 = () => {
 
 
                     <h4 className='article__content-subheader'>What Next?</h4>
-                    <p className='article__paragraph'>I built a <Link to='/' className='bold__link'>Message Analysis</Link> tool to help you write the best LinkedIn message possible. It tracks all four insights I highlighted here. The best part? It's 100% free.</p>
+                    <p className='article__paragraph'>I built a <Link to='/' className='bold__link'>Message Analysis</Link> tool to help you write the best LinkedIn message possible. It tracks all four insights I highlighted here. It's also free to use, forever.</p>
                     <img src={messageAnalysis} alt='Message Analysis' className='article__image'></img>
                     <p className='article__paragraph'>My mission with Rocketstart is to help you land your dream job. Sign up today, stay up to date with our product improvements, and <a target="_blank" rel="noopener noreferrer" href="mailto:luke@rocketstart.careers" className='bold__link'>shoot me a message</a> if you have anything on your mind. I wish you the very best in your job hunt.</p>
                     <p className='article__paragraph'>Watch SpaceX's Falcon Heavy launch (and land) <a target="_blank" rel="noopener noreferrer" href="https://youtu.be/A0FZIwabctw" className='bold__link'>here</a>.</p>
