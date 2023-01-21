@@ -7,6 +7,7 @@ import { SignUp } from '../../modals';
 
 const Menu = () => (
   <>
+  <h3><Link to='/'>Home</Link></h3>
   <h3><Link to='/product'>Product</Link></h3>
   <h3><Link to="/blog" className='navbar__item-focused'>Blog</Link></h3>
   <h3><Link to="/about">About</Link></h3>
