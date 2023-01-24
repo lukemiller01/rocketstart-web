@@ -17,3 +17,8 @@ To-dos:
 8. On FAQ click, change + to -
 9. Can I copyright a website just by typing it out?
 10. Add LinkedIn Premium question to FAQ
+
+Update 1/23/2023:
+
+Once users are accessing Contact Finder data, the API route needs to be protected so only logged in users with searches can call the API.
+To get started on the logged in part, see: https://dev.to/emeka/securing-your-express-node-js-api-with-firebase-auth-4b5f

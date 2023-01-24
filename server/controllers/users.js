@@ -9,15 +9,6 @@ import path from "path";
 
 dotenv.config();
 
-export const getUser = async (req, res) => {
-    try {
-        res.status(200).json(req.user);
-    }
-    catch (error) {
-        return res.status(500).json(error);
-    }
-};
-
 export const createUser = async (req, res) => {
     const {email: email, name: name, broadcast: broadcast} = req.body;
 

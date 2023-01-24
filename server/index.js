@@ -14,12 +14,12 @@ app.use(bodyParser.json({limit: "30mb", extended: true})); // Sending images, wh
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true})); // Setting up body parser to send requests
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-app.use('/users', userRoutes); // Every route is going to start with users, using the imported users.js router
+app.use('/user', userRoutes); // Every route is going to start with users, using the imported users.js router
 
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    res.send('Hello Rocketstart!');
+    res.sendStatus(200);
 })
 
 const PORT = process.env.PORT || 5001;
