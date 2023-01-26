@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import bodyParser from "body-parser";
 
 import userRoutes from './routes/user.js'
+import stripeRoutes from './routes/stripe.js'
 
 dotenv.config();
 const app = express();
@@ -14,7 +15,8 @@ app.use(bodyParser.json({limit: "30mb", extended: true})); // Sending images, wh
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true})); // Setting up body parser to send requests
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-app.use('/user', userRoutes); // Every route is going to start with users, using the imported users.js router
+app.use('/user', userRoutes); // Every user route is going to start with /user, using the imported users.js router
+app.use('/checkout', stripeRoutes) // Every stripe route is goign to start with /checkout, using the imported stripe.js router
 
 app.use(express.static('public'));
 

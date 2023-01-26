@@ -19,6 +19,7 @@
     "handlebars": "^4.7.7",
     "mongoose": "^6.8.2",
     "nodemon": "^2.0.20",
-    "postmark": "^3.0.15"
+    "postmark": "^3.0.15",
+    "stripe": "^11.7.0"
   }
 }

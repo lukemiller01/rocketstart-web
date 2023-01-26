@@ -12,6 +12,8 @@ export { default as Action } from './auth/Action';
 export { default as NotFound} from './notfound/NotFound';
 export { default as Account } from './account/Account';
 export { default as Terms } from './terms/Terms';
+export { default as Thanks } from './transactions/thanks/ThankYou';
+export { default as Error } from './transactions/error/Error';
 
 export { default as Article1 } from './articles/How I Landed My Job at SpaceX/Article1'
 export { default as Article2 } from './articles/Why I Built Rocketstart/Article2';

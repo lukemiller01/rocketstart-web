@@ -89,10 +89,10 @@ const SignUp = ({ setModalOpen, buttonText, setButtonState, question, answer, se
     else if (buttonText === "Create Account" ) { // Sign up logic
       e.preventDefault();
 
+      window.umami.trackEvent('Sign Up');
       try {
         await register(userData.email.trim(), userData.password);
         dispatch(createUser({email: userData.email.trim(), name: userData.name.trim(), broadcast: checked}));
-        window.umami.trackEvent('Sign Up');
         document.body.style.overflow = "auto";
         navigate("/message");
       } catch (error) {

@@ -1,10 +1,39 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import { createCheckout } from '../../actions/stripeActions';
 import './priceTier.css';
 
-const PriceTierHeader = ({name, price, currency, description, search, extension, second, bulk, templates, reply, popular}) => {
+const PriceTierHeader = ({name, price, currency, description, search, extension, second, bulk, templates, reply, popular, planState, setSpinner}) => {
+
+  const dispatch = useDispatch();
+
+  async function handleCheckout(e) {
+    setSpinner(true);
+    var priceID = ''
+    if(planState && name === 'The Job Seeker') { // 1 month plan 1
+      priceID = 'price_1MUJgcCrFeMLxUJzLgbBiM9U';
+    }
+    else if (!planState && name === 'The Job Seeker') { // 3 month plan 1
+      priceID = 'price_1MUJgcCrFeMLxUJz9tUVx1dW';
+    }
+    else if (planState && name === 'The Career Builder') { // 1 month plan 2
+      priceID = 'price_1MUJhyCrFeMLxUJzetCNH38b';
+    }
+    else if (!planState && name === 'The Career Builder') { // 3 months plan 2
+      priceID = 'price_1MUJhyCrFeMLxUJz3xejmLY9';
+    }
+    // ! development priceID
+    priceID = 'price_1MUJwNCrFeMLxUJz2Synvyfm'
+    dispatch(createCheckout({priceID: priceID})).then((body) => {
+      window.location.href = body.payload.url;
+    });
+
+    // const body = await res.json()
+    // window.location.href = body.url
+  }
 
   return (
+    <>
     <div className={`pricing__tier ${popular + "__margin"}`}>
 
       <div className={`pricing__tier-highlight ${popular}`}>
@@ -22,11 +51,9 @@ const PriceTierHeader = ({name, price, currency, description, search, extension,
         </div>
 
         <div className='button__container pricing__button'>
-          <Link to='/message'>
-            <button className='button'>
-              Get Started
-            </button>
-          </Link>
+          <button className='button' onClick={() => {handleCheckout()}}>
+            Get Started
+          </button>
         </div>
 
         <div className='pricing__benefit-container'>
@@ -61,8 +88,8 @@ const PriceTierHeader = ({name, price, currency, description, search, extension,
         </div>
 
       </div>
-
     </div>
+    </>
   )
 }
 

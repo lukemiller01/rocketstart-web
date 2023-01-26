@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Home, Blog, About, Product, Privacy, Terms, Message, Contact, Login, Action, Account, NotFound, Article1, Article2 } from './pages';
+import { Home, Blog, About, Product, Pricing, Privacy, Terms, Message, Contact, Login, Action, Account, NotFound, Thanks, Error, Article1, Article2 } from './pages';
 
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './miscellaneous/ScrollToTop';
@@ -12,6 +12,7 @@ import LogInRequired from './routes/LogInRequired';
 import UserRedirect from './routes/UserRedirect';
 import HomeRedirect from './routes/HomeRedirect';
 import AuxiliaryRedirect from './routes/AuxiliaryRedirect';
+import TransactionRedirect from './routes/TransactionRedirect';
 
 const App = () => {
   return (
@@ -53,6 +54,11 @@ const App = () => {
 
                 <Route path='/blog/how-I-landed-my-job-at-spacex' element={<Article1/>}/>
                 <Route path='/blog/why-I-built-rocketstart' element={<Article2/>}/>
+              </Route>
+
+              <Route element={<TransactionRedirect/>}>
+                <Route path='/thank-you' element={<Thanks/>}/>
+                <Route path='/error' element={<Error/>}/>
               </Route>
 
               {/* If the typed URL doesn't exist  */}
