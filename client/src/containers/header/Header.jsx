@@ -50,7 +50,7 @@ const Header = () => {
             </Link>
           </AnimationOnScroll>
         </div>
-        <AnimationOnScroll animateOnce={true} animateIn='fadeInRight' duration={1} className='right__content' >
+        <AnimationOnScroll animateOnce={true} offset={1000} animateIn='fadeInRight' duration={1} className='right__content' >
           <video width="100%" height="100%" playsInline loop muted autoPlay className='rocketstart__demo'>
             <source src={headerDemo} type="video/mp4" />
             Your browser does not support the video tag.
