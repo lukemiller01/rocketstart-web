@@ -15,7 +15,7 @@ Docuclimb is a text analysis tool for LinkedIn connection requests.
 
 This project is a MERN (MongoDB, Express, Node, React) application. Due to the simplicity of the product, a rendering framework was not used and Rocketstart is a SPA (single-page application).
 
-This project is also built on [Firebase Authentication](https://firebase.google.com/). Firebase Authentication provides a set of authentication tools to seamlessly log into a web or mobile app. Firebase is used client-side to protect routes in the client-side (authorization) and server-side to perform authentication actions.
+This project is also built on [Firebase Authentication](https://firebase.google.com/). Firebase Authentication provides a set of authentication tools to seamlessly log in to a web or mobile app. Firebase is used client-side to protect routes (authorization) and server-side to perform authentication actions.
 
 This project is hosted on a [Render](https://render.com/) server.
 
@@ -26,7 +26,7 @@ The application is styled in vanilla CSS.
 - [Redux](https://redux.js.org/) is a library for managing state in a React app.
 - [Umami Analytics](https://umami.is/) is a privacy-focused Google Analytics alternative.
 - [Netlify](https://www.netlify.com/) is used to deploy the client-side application.
-- [MJML](https://mjml.io/) is a markdown language used to create responsive emails.
+- [MJML](https://mjml.io/) is a markdown language used to create responsive HTML emails.
 - [Postmark](https://postmarkapp.com/) is used for transactional authentication emails.
 
 ## Notes
@@ -37,7 +37,7 @@ The purpose of this project was to master the React Library, React Components, a
 
 #### Why did I choose Firebase for Authentication? Why didn't I choose Firebase to store data?
 
-Firebase Authentication fits the needs of the project and is scalable. Firebase Authentication also supports major providers past email/password auth (Google/Facebook/Apple/Microsoft), which is a feature I plan to implement.
+Firebase Authentication fits the needs of the project and is scalable. Firebase Authentication also supports major providers past email/password authentication: Google/Facebook/Apple/Microsoft. This is a feature I plan to implement.
 
 This project is built off of a simple MERN application without authentication. While Firestore might have been simpler to implement with Firebase Authentication, I wanted to stay true to the MERN stack.
 
