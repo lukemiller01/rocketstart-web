@@ -1,10 +1,10 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
-import Navbar from '../../components/navbar/Navbar';
-import PriceTier from '../../components/priceTier/PriceTier';
-import Loading from '../../components/loading/Loading'
-import './pricing.css';
+import React from "react";
+import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
+import Navbar from "../../components/navbar/Navbar";
+import PriceTier from "../../components/priceTier/PriceTier";
+import Loading from "../../components/loading/Loading";
+import "./pricing.css";
 
 const pricingData = [
   {
@@ -37,7 +37,8 @@ const pricingData = [
     name: "The Career Builder",
     price: "60",
     currency: "$",
-    description: "Search 1st, 2nd, and 3rd degree contacts for all your applications in one click.",
+    description:
+      "Search 1st, 2nd, and 3rd degree contacts for all your applications in one click.",
     search: "120",
     extension: true,
     second: true,
@@ -46,18 +47,17 @@ const pricingData = [
     reply: true,
     popular: false,
   },
-]
+];
 
 const Pricing = () => {
-
   useEffect(() => {
-    window.umami.trackView('/pricing');
+    window.umami.trackView("/pricing");
   }, []);
 
   // Button for currency conversion
-  const [btnState, setBtnState ] = useState(false);
+  const [btnState, setBtnState] = useState(false);
   // Icon for currency conversion
-  const [iconState, setIconState ] = useState(false);
+  const [iconState, setIconState] = useState(false);
   // Currency sign
   const [currencyState, setCurrencyState] = useState("USD ($)");
   // Plan state
@@ -71,59 +71,54 @@ const Pricing = () => {
   // Loading spinner
   const [spinner, setSpinner] = useState(false);
 
-  let monthly = monthlyState ? '' : 'pricing__period-color';
-  let quarterly = quarterlyState ? 'pricing__period-color' : '';
+  let monthly = monthlyState ? "" : "pricing__period-color";
+  let quarterly = quarterlyState ? "pricing__period-color" : "";
 
   function handleClick() {
-    setBtnState(btnState => !btnState);
-    setIconState(iconState => !iconState);
+    setBtnState((btnState) => !btnState);
+    setIconState((iconState) => !iconState);
   }
 
   function currencyChange(currency) {
-    setCurrencyState(currency)
-    setBtnState(btnState => !btnState);
+    setCurrencyState(currency);
+    setBtnState((btnState) => !btnState);
 
     // Currency conversion:
-    if(currency === "USD ($)") {
+    if (currency === "USD ($)") {
       pricingData[2]["currency"] = "$";
       pricingData[1]["currency"] = "$";
       pricingData[0]["currency"] = "$";
-      if(planState) {
+      if (planState) {
         pricingData[2]["price"] = "60";
         pricingData[1]["price"] = "29";
         pricingData[0]["price"] = "0";
-      }
-      else {
+      } else {
         pricingData[2]["price"] = "48";
         pricingData[1]["price"] = "23";
         pricingData[0]["price"] = "0";
       }
-    }
-    else if (currency === "EUR (€)") {
+    } else if (currency === "EUR (€)") {
       pricingData[2]["currency"] = "€";
       pricingData[1]["currency"] = "€";
       pricingData[0]["currency"] = "€";
-      if(planState) {
+      if (planState) {
         pricingData[2]["price"] = "57";
         pricingData[1]["price"] = "28";
         pricingData[0]["price"] = "0";
-      }
-      else {
+      } else {
         pricingData[2]["price"] = "46";
         pricingData[1]["price"] = "22";
         pricingData[0]["price"] = "0";
       }
-    }
-    else if (currency === "INR (₹)") {
+    } else if (currency === "INR (₹)") {
       pricingData[2]["currency"] = "₹";
       pricingData[1]["currency"] = "₹";
       pricingData[0]["currency"] = "₹";
-      if(planState) {
+      if (planState) {
         pricingData[2]["price"] = "5000";
         pricingData[1]["price"] = "2400";
         pricingData[0]["price"] = "0";
-      }
-      else {
+      } else {
         pricingData[2]["price"] = "4000";
         pricingData[1]["price"] = "2000";
         pricingData[0]["price"] = "0";
@@ -132,40 +127,37 @@ const Pricing = () => {
   }
 
   function planChange(plan) {
-    setMonthlyState(monthlyState => !monthlyState);
-    setQuarterlyState(quarterlyState => !quarterlyState);
+    setMonthlyState((monthlyState) => !monthlyState);
+    setQuarterlyState((quarterlyState) => !quarterlyState);
 
-    if(plan) { // 1 month
+    if (plan) {
+      // 1 month
       setPlanState(true);
-      if(currencyState === "USD ($)") {
+      if (currencyState === "USD ($)") {
         pricingData[2]["price"] = "60";
         pricingData[1]["price"] = "29";
         pricingData[0]["price"] = "0";
-      }
-      else if (currencyState === "EUR (€)") {
+      } else if (currencyState === "EUR (€)") {
         pricingData[2]["price"] = "57";
         pricingData[1]["price"] = "28";
         pricingData[0]["price"] = "0";
-      }
-      else if (currencyState === "INR (₹)") {
+      } else if (currencyState === "INR (₹)") {
         pricingData[2]["price"] = "5000";
         pricingData[1]["price"] = "2400";
         pricingData[0]["price"] = "0";
       }
-    }
-    else { // 3 months
+    } else {
+      // 3 months
       setPlanState(false);
-      if(currencyState === "USD ($)") {
+      if (currencyState === "USD ($)") {
         pricingData[2]["price"] = "48";
         pricingData[1]["price"] = "23";
         pricingData[0]["price"] = "0";
-      }
-      else if (currencyState === "EUR (€)") {
+      } else if (currencyState === "EUR (€)") {
         pricingData[2]["price"] = "46";
         pricingData[1]["price"] = "22";
         pricingData[0]["price"] = "0";
-      }
-      else if (currencyState === "INR (₹)") {
+      } else if (currencyState === "INR (₹)") {
         pricingData[2]["price"] = "4000";
         pricingData[1]["price"] = "2000";
         pricingData[0]["price"] = "0";
@@ -173,26 +165,27 @@ const Pricing = () => {
     }
   }
 
-  let toggleClass = btnState ? ' pricing__visible' : ' pricing__hidden';
-  let accordion = iconState ? 'expand_less' : 'expand_more';
+  let toggleClass = btnState ? " pricing__visible" : " pricing__hidden";
+  let accordion = iconState ? "expand_less" : "expand_more";
 
   return (
     <div>
       <Helmet>
         <title>Pricing · Rocketstart</title>
       </Helmet>
-      {
-        spinner ? <Loading/> :
+      {spinner ? (
+        <Loading />
+      ) : (
         <>
-          <Navbar/>
-          <div className='pricing'>
+          <Navbar />
+          <div className="pricing">
             <h1>
               Land Your
-              <font className='color__change'> Dream Job </font>
+              <font className="color__change"> Dream Job </font>
             </h1>
-            <div className='pricing__tiers'>
+            <div className="pricing__tiers">
               {pricingData.map((item, index) => (
-                  <PriceTier
+                <PriceTier
                   name={item.name}
                   price={item.price}
                   currency={item.currency}
@@ -206,35 +199,61 @@ const Pricing = () => {
                   popular={item.popular}
                   planState={planState}
                   setSpinner={setSpinner}
-                  key={index}/>
-                  ))}
+                  key={index}
+                />
+              ))}
             </div>
 
-            <div className='pricing__options'>
+            <div className="pricing__options">
               <div>
-                <button className='pricing__button-container' onClick={handleClick}>
+                <button
+                  className="pricing__button-container"
+                  onClick={handleClick}
+                >
                   {currencyState}
                   <span className="material-symbols-outlined">{accordion}</span>
                 </button>
                 <div className={`pricing__currency-options ${toggleClass}`}>
-                  <p className='pricing__currency pricing__currencies-border' onClick={() => currencyChange("USD ($)")}>USD ($)</p>
-                  <p className='pricing__currency pricing__currencies-border' onClick={() => currencyChange("EUR (€)")}>EUR (€)</p>
-                  <p className='pricing__currency' onClick={() => currencyChange("INR (₹)")}>INR (₹)</p>
+                  <p
+                    className="pricing__currency pricing__currencies-border"
+                    onClick={() => currencyChange("USD ($)")}
+                  >
+                    USD ($)
+                  </p>
+                  <p
+                    className="pricing__currency pricing__currencies-border"
+                    onClick={() => currencyChange("EUR (€)")}
+                  >
+                    EUR (€)
+                  </p>
+                  <p
+                    className="pricing__currency"
+                    onClick={() => currencyChange("INR (₹)")}
+                  >
+                    INR (₹)
+                  </p>
                 </div>
               </div>
-              <div className='pricing__plans'>
-                <button className={`pricing__plan-options ${monthly}`} onClick={() => planChange(true)}>1 month</button>
-                <button className={`pricing__plan-options ${quarterly}`}  onClick={() => planChange(false)}>
+              <div className="pricing__plans">
+                <button
+                  className={`pricing__plan-options ${monthly}`}
+                  onClick={() => planChange(true)}
+                >
+                  1 month
+                </button>
+                <button
+                  className={`pricing__plan-options ${quarterly}`}
+                  onClick={() => planChange(false)}
+                >
                   3 months
                 </button>
               </div>
             </div>
-
           </div>
         </>
-      }
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Pricing
+export default Pricing;

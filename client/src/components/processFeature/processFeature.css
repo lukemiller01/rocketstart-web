@@ -32,20 +32,23 @@
     flex-direction: row;
     color: rgb(30, 90, 255);
     position: relative;
-    /* width: 251px; */
     height: auto;
     margin-left: 1rem;
     text-align: center;
+    gap: .5rem;
 }
 
 .process__explore-text {
     cursor: pointer;
     white-space: nowrap;
+    margin-bottom: 0;
 }
 
 .process__feature-icon {
     margin-left: 0rem;
     transition: all .25s ease;
+    display: flex;
+    align-items: center;
 }
 
 .process__explore-container:hover .process__feature-icon{

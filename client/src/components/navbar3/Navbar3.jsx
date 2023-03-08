@@ -1,18 +1,21 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import RocketstartLogo from '../../assets/rocketstartLogo.svg';
+import React from "react";
+import { Link } from "react-router-dom";
+import RocketstartLogo from "../../assets/rocketstartLogo.svg";
 
+// Navbar 3 is used during login and transactional authentication pages (reset password, verify email, etc...)
 const Navbar3 = () => {
   return (
-    <div className='navbar__container'>
-      <div className='inner__navbar'>
-        <div className='navbar__logo'>
-          <Link to="/" className='navbar__logo'><img src={RocketstartLogo} alt="logo" className='image__logo'></img></Link>
+    <div className="navbar__container">
+      <div className="inner__navbar">
+        <div className="navbar__logo">
+          <Link to="/" className="navbar__logo">
+            <img src={RocketstartLogo} alt="logo" className="image__logo"></img>
+          </Link>
           <h2>Rocketstart</h2>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar3
+export default Navbar3;

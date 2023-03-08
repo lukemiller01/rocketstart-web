@@ -1,6 +1,6 @@
 # Rocketstart
 
-Docuclimb is a text analysis tool for LinkedIn connection requests.
+Rocketstart is a text analysis tool for LinkedIn connection requests.
 
 ## Demo
 
@@ -10,6 +10,12 @@ Docuclimb is a text analysis tool for LinkedIn connection requests.
 
 - Text analysis tool for writing strong LinkedIn connection messages.
 - Authentication (Register/Login/Logout/Change Email || Password)
+- Authorization (routes protected with [React Router V6](https://reactrouter.com/en/main))
+
+## Roadmap
+
+- Modify modals to React Portals
+- Refactor to leverage Redux Store (if adding new feature) or remove Redux store (if not adding new feature)
 
 ## Tech Stack
 
@@ -30,6 +36,10 @@ The application is styled in vanilla CSS.
 - [Postmark](https://postmarkapp.com/) is used for transactional authentication emails.
 
 ## Notes
+
+#### Why does this project use Redux/Thunk if the client doesn't need a store?
+
+At the time of architecting the app, another feature was in the roadmap that would have used the store. The feature was not developed. I decided to keep the traditional actions/reducers/containers/components structure on the client and the controllers/models/routes structure on the server.
 
 #### Why did I choose not to use a rendering framework?
 
