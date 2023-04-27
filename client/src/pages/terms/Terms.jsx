@@ -5,7 +5,7 @@ import { Footer, TermsConditions } from "../../containers";
 import { Helmet } from "react-helmet";
 
 const Terms = () => {
-  window.umami.trackView("/terms");
+  // window.umami.trackView("/terms");
 
   // Setting the navbar based on if the user is logged in
   const { navOne, navTwo, logoURL } = useOutletContext();

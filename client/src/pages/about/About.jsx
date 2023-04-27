@@ -6,7 +6,7 @@ import headshot from "../../assets/square.jpg";
 import "./about.css";
 
 const About = () => {
-  window.umami.trackView("/about");
+  // window.umami.trackView("/about");
 
   // Setting the navbar based on if the user is logged in
   const { navOne, navTwo, logoURL } = useOutletContext();

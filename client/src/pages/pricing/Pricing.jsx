@@ -51,7 +51,7 @@ const pricingData = [
 
 const Pricing = () => {
   useEffect(() => {
-    window.umami.trackView("/pricing");
+    // window.umami.trackView("/pricing");
   }, []);
 
   // Button for currency conversion

@@ -109,7 +109,7 @@ const SignUp = ({
       // Sign up logic
       e.preventDefault();
 
-      window.umami.trackEvent("Sign Up");
+      // window.umami.trackEvent("Sign Up");
       try {
         await register(userData.email.trim(), userData.password);
         dispatch(

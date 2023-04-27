@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import "./authResult.css";
 
 const AuthResult = ({ action, result, message }) => {
-  window.umami.trackView("/auth/action");
+  // window.umami.trackView("/auth/action");
 
   return (
     <div>

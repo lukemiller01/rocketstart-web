@@ -11,7 +11,7 @@ import { Navbar } from "../../components";
 import { Helmet } from "react-helmet";
 
 const Home = () => {
-  window.umami.trackView("/");
+  // window.umami.trackView("/");
 
   // Setting the navbar based on if the user is logged in
   const { navOne, navTwo, logoURL } = useOutletContext();

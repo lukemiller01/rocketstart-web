@@ -22,7 +22,7 @@ const Message = () => {
   }, [user]);
 
   useEffect(() => {
-    window.umami.trackView("/message");
+    // window.umami.trackView("/message");
   }, []);
 
   // ------------------------------------------
@@ -385,12 +385,10 @@ const Message = () => {
       <Navbar2 />
       <div className="message">
         <div className="message__header">
-          <div className="help__div">
-            <h2>Message</h2>
-            <span className="material-symbols-outlined message__help">
-              help
-            </span>
-          </div>
+          <h2>Message</h2>
+          <span className="material-symbols-outlined message__help">
+            help
+          </span>
           <p className="help__text">
             Craft an optimized LinkedIn invitation message using four text
             insights proven to increase reply rates.

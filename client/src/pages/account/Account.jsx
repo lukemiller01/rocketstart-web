@@ -9,7 +9,7 @@ import "./account.css";
 
 const Account = () => {
   useEffect(() => {
-    window.umami.trackView("/account");
+    // window.umami.trackView("/account");
   }, []);
 
   const navigate = useNavigate();

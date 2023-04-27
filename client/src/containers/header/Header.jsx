@@ -7,7 +7,7 @@ import { AnimationOnScroll } from "react-animation-on-scroll";
 // Landing page header
 const Header = () => {
   function buttonClick() {
-    window.umami.trackEvent("Header Button");
+    // window.umami.trackEvent("Header Button");
   }
 
   return (

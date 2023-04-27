@@ -9,7 +9,7 @@ import { map, pen } from "./imports";
 import { Link } from "react-router-dom";
 
 const Blog = () => {
-  window.umami.trackView("/blog");
+  // window.umami.trackView("/blog");
 
   // Setting the navbar based on if the user is logged in
   const { navOne, navTwo, logoURL } = useOutletContext();

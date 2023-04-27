@@ -3,7 +3,7 @@ import { Navbar2 } from "../../components";
 import "./contact.css";
 
 const Contact = () => {
-  window.umami.trackView("/contact");
+  // window.umami.trackView("/contact");
 
   return (
     <div>

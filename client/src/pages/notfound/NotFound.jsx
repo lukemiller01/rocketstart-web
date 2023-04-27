@@ -4,7 +4,7 @@ import { Navbar3 } from "../../components";
 import { Helmet } from "react-helmet";
 
 const NotFound = () => {
-  window.umami.trackView("/*");
+  // window.umami.trackView("/*");
 
   return (
     <div>

@@ -15,6 +15,12 @@ app.use(bodyParser.json({limit: "30mb", extended: true})); // Sending images, wh
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true})); // Setting up body parser to send requests
 app.use(express.urlencoded({ extended: false }));
 app.use(cors()); // TODO: add origin.
+// Like:
+// app.use(
+//     cors({
+//         origin: 'URL'
+//     })
+// );
 app.use('/user', userRoutes); // Every user route is going to start with /user, using the imported users.js router
 app.use('/checkout', stripeRoutes) // Every stripe route is goign to start with /checkout, using the imported stripe.js router
 

@@ -51,7 +51,7 @@ const Navbar = ({ navOne, logoURL }) => {
       setEmailFocus(false);
       setNameFocus(true);
       setCheckState(true);
-      window.umami.trackEvent("Navbar Button");
+      // window.umami.trackEvent("Navbar Button");
     } else {
       // The user clicked "Sign In"
       setButtonState("Sign In");

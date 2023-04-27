@@ -9,7 +9,7 @@ import ProductFeature from "../../components/productFeature/ProductFeature";
 import "./product.css";
 
 const Product = () => {
-  window.umami.trackView("/product");
+  // window.umami.trackView("/product");
 
   // Setting the navbar based on if the user is logged in
   const { navOne, navTwo, logoURL } = useOutletContext();

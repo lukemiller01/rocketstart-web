@@ -14,7 +14,7 @@ const Article2 = () => {
   // Setting the navbar based on if the user is logged in
   const { navOne, navTwo, logoURL } = useOutletContext();
 
-  window.umami.trackView("/blog/why-I-built-rocketstart");
+  // window.umami.trackView("/blog/why-I-built-rocketstart");
 
   return (
     <div>

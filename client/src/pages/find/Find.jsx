@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import "./find.css";
 
 const Find = () => {
-  window.umami.trackView("/find");
+  // window.umami.trackView("/find");
 
   const handleSearch = () => {
     document.getElementById("find-button").classList.add("button--loading");

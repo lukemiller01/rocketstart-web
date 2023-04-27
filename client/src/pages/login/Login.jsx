@@ -7,7 +7,7 @@ import "./login.css";
 
 const Login = () => {
   useEffect(() => {
-    window.umami.trackView("/login");
+    // window.umami.trackView("/login");
   }, []);
 
   // Parameters needed for the SignUp component:
