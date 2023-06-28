@@ -1,0 +1,52 @@
+/* Adding margin above the explanation container */
+.explanation__container {
+    margin-bottom: 1.5rem;
+
+    background-color: white;
+    border-style: solid;
+    border-color: lightgray;
+
+    box-shadow: 0 0.5em 1em -0.5em hsl(0deg 0% 5% / 10%), 0 0 0 1px hsl(0deg 0% 5% / 1%);
+
+    padding: .5rem;
+}
+
+.message__flex {
+    display: flex;
+}
+
+.message__block {
+    display: block;
+}
+
+.message__hide {
+    display: none;
+}
+
+.modified__explanation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.explanation__aim {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.aim__icon {
+    font-size: 24px;
+    color: rgba(100, 185, 35, 1);
+}
+
+.explanation__text {
+    padding: 1rem;
+    font-size: 14px;
+    line-height: 2;
+    margin: 0;
+}
+
+.verb__examples-heading {
+    padding: .5rem;
+}

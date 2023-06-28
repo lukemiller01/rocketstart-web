@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Navbar2 from "../../components/navbar2/Navbar2";
-import VerbExample from "../../components/verbExample/VerbExample";
 import Verification from "../../modals/verification/Verification";
 import { useUserAuth } from "../../context/AuthProvider";
 import { Helmet } from "react-helmet";
 import TextareaAutosize from "react-textarea-autosize";
 import "./message.css";
-import { HashLink } from "react-router-hash-link";
+import { Insight, Explanation } from "../../components";
 
 const Message = () => {
   // Modal state
@@ -37,12 +36,6 @@ const Message = () => {
   const [check4, setCheck4] = useState(false);
   const [warning1, setWarning1] = useState(false);
 
-  // Insight explanations
-  const [paragraphExplanation, setParagraphExplanation] = useState(true);
-  const [questionExplanation, setQuestionExplanation] = useState(false);
-  const [gradingExplanation, setGradingExplanation] = useState(false);
-  const [wordingExplanation, setWordingExplanation] = useState(false);
-
   // Sliders
   const [paragraphSlider, setParagraphSlider] = useState("");
   const [questionSlider, setQuestionSlider] = useState("");
@@ -60,6 +53,9 @@ const Message = () => {
   const [question, setQuestion] = useState("0");
   const [grade, setGrade] = useState("0");
   const [wording, setWording] = useState("0");
+
+  // Set if explanation is active or not:
+  const [explanation, setExplanation] = useState("Paragraphs");
 
   // Verb prop:
   const [verbProp, setVerbProp] = useState([]);
@@ -343,31 +339,6 @@ const Message = () => {
     return () => clearTimeout(delayFunction);
   }, [message]);
 
-  // Handling insight clicks
-  const handleExplanation = (one, two, three, four) => {
-    if (one) {
-      setParagraphExplanation(true);
-      setQuestionExplanation(false);
-      setGradingExplanation(false);
-      setWordingExplanation(false);
-    } else if (two) {
-      setParagraphExplanation(false);
-      setQuestionExplanation(true);
-      setGradingExplanation(false);
-      setWordingExplanation(false);
-    } else if (three) {
-      setParagraphExplanation(false);
-      setQuestionExplanation(false);
-      setGradingExplanation(true);
-      setWordingExplanation(false);
-    } else if (four) {
-      setParagraphExplanation(false);
-      setQuestionExplanation(false);
-      setGradingExplanation(false);
-      setWordingExplanation(true);
-    }
-  };
-
   // Copied to clipboard animation
   const handleCopy = () => {
     navigator.clipboard.writeText(message);
@@ -395,161 +366,10 @@ const Message = () => {
           </p>
         </div>
         <div className="insights">
-          <div className="outer__container">
-            <div
-              className={`insight__container ${
-                paragraphExplanation ? " active__rs" : ""
-              }`}
-              id="paragraph__container"
-              onClick={() => handleExplanation(true, false, false, false)}
-            >
-              <div className="insight">
-                <h3 className="insight__title">Paragraphs</h3>
-                <div className="insight__metrics">
-                  <span
-                    className={`material-icons insight__icon ${
-                      check1 ? " message__flex" : " message__hide"
-                    }`}
-                    id="check1"
-                  >
-                    done
-                  </span>
-                  <h3 className="insight__number" id="paragraphs">
-                    {paragraph}
-                  </h3>
-                </div>
-              </div>
-              <div>
-                <div className="insight__slider">
-                  <div
-                    className="slider__rectangle"
-                    style={{ left: paragraphSlider }}
-                    id="paragraph__slider"
-                  ></div>
-                </div>
-              </div>
-              <div className="slider__gradient paragraph__gradient"></div>
-            </div>
-          </div>
-
-          <div className="outer__container">
-            <div
-              className={`insight__container ${
-                questionExplanation ? " active__rs" : ""
-              }`}
-              id="question__container"
-              onClick={() => handleExplanation(false, true, false, false)}
-            >
-              <div className="insight">
-                <h3 className="insight__title">Questions</h3>
-                <div className="insight__metrics">
-                  <span
-                    className={`material-icons insight__icon ${
-                      check2 ? " message__flex" : " message__hide"
-                    }`}
-                    id="check2"
-                  >
-                    done
-                  </span>
-                  <h3 className="insight__number" id="questions">
-                    {question}
-                  </h3>
-                </div>
-              </div>
-              <div>
-                <div className="insight__slider">
-                  <div
-                    className="slider__rectangle"
-                    style={{ left: questionSlider }}
-                    id="question__slider"
-                  ></div>
-                </div>
-              </div>
-              <div className="slider__gradient question__gradient"></div>
-            </div>
-          </div>
-
-          <div className="outer__container">
-            <div
-              className={`insight__container ${
-                gradingExplanation ? " active__rs" : ""
-              }`}
-              id="grade__container"
-              onClick={() => handleExplanation(false, false, true, false)}
-            >
-              <div className="insight">
-                <h3 className="insight__title">Grade</h3>
-                <div className="insight__metrics">
-                  <span
-                    className={`material-icons insight__icon ${
-                      check3 ? " message__flex" : " message__hide"
-                    }`}
-                    id="check3"
-                  >
-                    done
-                  </span>
-                  <h3 className="insight__number" id="grade">
-                    {grade}
-                  </h3>
-                </div>
-              </div>
-              <div>
-                <div className="insight__slider">
-                  <div
-                    className="slider__rectangle"
-                    style={{ left: gradingSlider }}
-                    id="grade__slider"
-                  ></div>
-                </div>
-              </div>
-              <div className="slider__gradient grade__gradient"></div>
-            </div>
-          </div>
-
-          <div className="outer__container">
-            <div
-              className={`insight__container ${
-                wordingExplanation ? " active__rs" : ""
-              }`}
-              id="wording__container"
-              onClick={() => handleExplanation(false, false, false, true)}
-            >
-              <div className="insight">
-                <h3 className="insight__title">Wording</h3>
-                <div className="insight__metrics">
-                  <span
-                    className={`material-icons insight__icon ${
-                      check4 ? " message__flex" : " message__hide"
-                    }`}
-                    id="check4"
-                  >
-                    done
-                  </span>
-                  <span
-                    className={`material-symbols-outlined insight__warning ${
-                      warning1 ? " message__flex" : " message__hide"
-                    }`}
-                    id="warning"
-                  >
-                    warning
-                  </span>
-                  <h3 className="insight__number" id="words">
-                    {wording}
-                  </h3>
-                </div>
-              </div>
-              <div>
-                <div className="insight__slider">
-                  <div
-                    className="slider__rectangle"
-                    style={{ left: wordingSlider }}
-                    id="word__slider"
-                  ></div>
-                </div>
-              </div>
-              <div className="slider__gradient word__gradient"></div>
-            </div>
-          </div>
+          <Insight name={"Paragraphs"} active={explanation === "Paragraphs"} setExplanation={setExplanation} slider={paragraphSlider} check={check1} number={paragraph} />
+          <Insight name={"Questions"} active={explanation === "Questions"} setExplanation={setExplanation} slider={questionSlider} check={check2} number={question} />
+          <Insight name={"Grade"} active={explanation === "Grade"} setExplanation={setExplanation} slider={gradingSlider} check={check3} number={grade} />
+          <Insight name={"Wording"} active={explanation === "Wording"} setExplanation={setExplanation} slider={wordingSlider} check={check4} number={wording} warning={warning1} />
         </div>
         <div className="columns">
           <div className="left__column">
@@ -580,161 +400,10 @@ const Message = () => {
           </div>
           <div className="right__column">
             <div className="insights__explanation">
-              <div
-                className={`explanation__container ${
-                  paragraphExplanation ? " message__block" : " message__hide"
-                }`}
-                id="paragraph__explanation"
-              >
-                <div className="modified__explanation">
-                  <h3 className="insight__title">Paragraphs</h3>
-                  <div className="explanation__aim">
-                    <span className="material-icons aim__icon">done</span>
-                    <h3 className="insight__title">3-4</h3>
-                  </div>
-                </div>
-                <p className="explanation__text">
-                  Break your message into three components: a greeting, message
-                  body, and a farewell.
-                </p>
-                <HashLink
-                  to="/blog/how-I-landed-my-job-at-spacex#paragraphs"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <p className="learn__more">Learn More</p>
-                </HashLink>
-              </div>
-              <div
-                className={`explanation__container ${
-                  questionExplanation ? " message__block" : " message__hide"
-                }`}
-                id="question__explanation"
-              >
-                <div className="modified__explanation">
-                  <h3 className="insight__title">Questions</h3>
-                  <div className="explanation__aim">
-                    <span className="material-icons aim__icon">done</span>
-                    <h3 className="insight__title">1-2</h3>
-                  </div>
-                </div>
-                <p className="explanation__text">
-                  Include a call to action (CTA) for your recipient. Messages
-                  with a question or CTA receive higher reply rates.
-                </p>
-                <HashLink
-                  to="/blog/how-I-landed-my-job-at-spacex#cta"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <p className="learn__more">Learn More</p>
-                </HashLink>
-              </div>
-              <div
-                className={`explanation__container ${
-                  gradingExplanation ? " message__block" : " message__hide"
-                }`}
-                id="grade__explanation"
-              >
-                <div className="modified__explanation">
-                  <h3 className="insight__title">Grade</h3>
-                  <div className="explanation__aim">
-                    <span className="material-icons aim__icon">done</span>
-                    <h3 className="insight__title">2-7</h3>
-                  </div>
-                </div>
-                <p className="explanation__text">
-                  Lower your message's grade level to make it easily readable.
-                  Messages with short sentences and simple words receive higher
-                  reply rates.
-                </p>
-                <HashLink
-                  to="/blog/how-I-landed-my-job-at-spacex#grade"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <p className="learn__more">Learn More</p>
-                </HashLink>
-              </div>
-              <div
-                className={`explanation__container ${
-                  wordingExplanation ? " message__block" : " message__hide"
-                }`}
-                id="wording__explanation"
-              >
-                <div className="modified__explanation">
-                  <h3 className="insight__title">Wording</h3>
-                  <div className="explanation__aim">
-                    <span className="material-icons aim__icon">done</span>
-                    <h3 className="insight__title">0</h3>
-                  </div>
-                </div>
-                <p className="explanation__text">
-                  Avoid adverbs and empty verbs to make your message clear and
-                  save characters. If you wrote any ineffective words, they will
-                  be detected and displayed below.
-                </p>
-                <h3
-                  className={`insight__title ${
-                    adverbsHeader ? " message__block" : " message__hide"
-                  }`}
-                >
-                  Please remove adverbs:
-                </h3>
-                <p
-                  className={`red italicBold ${
-                    adverbsHeader ? " message__block" : " message__hide"
-                  }`}
-                  id="flaggedAdverbs"
-                >
-                  {flaggedAdverbs}
-                </p>
-                <h3
-                  className={`insight__title ${
-                    verbsHeader ? " message__block" : " message__hide"
-                  }`}
-                  id="verbsHeader"
-                >
-                  Please remove weak verbs:
-                </h3>
-                <p
-                  className={`red italicBold ${
-                    verbsHeader ? " message__block" : " message__hide"
-                  }`}
-                  id="flaggedVerbs"
-                >
-                  {flaggedVerbs}
-                </p>
-                <h3
-                  className={`verb__examples-heading ${
-                    verbsHeader ? " message__block" : " message__hide"
-                  }`}
-                  id="verbExamplesHeading"
-                >
-                  Example:
-                </h3>
-                <div
-                  id="verbExamples"
-                  className={`verb__examples-heading ${
-                    verbsHeader ? " message__block" : " message__hide"
-                  }`}
-                >
-                  {verbProp.map((item, i) => (
-                    <VerbExample
-                      key={i}
-                      goodExample={item.goodExample}
-                      badExample={item.badExample}
-                    />
-                  ))}
-                </div>
-                <HashLink
-                  to="/blog/how-I-landed-my-job-at-spacex#wording"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <p className="learn__more">Learn More</p>
-                </HashLink>
-              </div>
+              <Explanation visible={explanation === 'Paragraphs'} name={"Paragraphs"} hash={'paragraphs'} target={'3-4'} message={'Break your message into three components: a greeting, message body, and a farewell.'}/>
+              <Explanation visible={explanation === 'Questions'} name={"Questions"} hash={'cta'} target={'1-2'} message={'Include a call to action (CTA) for your recipient. Messages with a question or CTA receive higher reply rates.'}/>
+              <Explanation visible={explanation === 'Grade'} name={"Grade"} hash={'grade'} target={'2-7'} message={'Lower your message\'s grade level to make it easily readable. Messages with short sentences and simple words receive higher reply rates.'}/>
+              <Explanation visible={explanation === 'Wording'} name={"Wording"} hash={'wording'} target={'0'} message={'Avoid adverbs and empty verbs to make your message clear and save characters. If you wrote any ineffective words, they will be detected and displayed below.'} adverbsHeader={adverbsHeader} verbsHeader={verbsHeader} flaggedAdverbs={flaggedAdverbs} flaggedVerbs={flaggedVerbs} verbProp={verbProp}/>
             </div>
           </div>
         </div>

@@ -9,3 +9,5 @@ export { default as VerbExample } from "./verbExample/VerbExample";
 export { default as ProductFeature } from './productFeature/ProductFeature';
 export { default as FeatureCards } from './featureCards/FeatureCards';
 export { default as ErrorBox } from './error/ErrorBox';
+export { default as Insight } from './insight/Insight';
+export { default as Explanation } from './explanation/Explanation';

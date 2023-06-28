@@ -1,0 +1,104 @@
+.outer__container {
+    display: flex;
+    width: 25%;
+    padding: 1rem;
+}
+
+/* Container for individual insight */
+.insight__container {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    background-color: white;
+    border-style: solid;
+    border-color: lightgray;
+
+    /* margin-bottom: 1.5rem; */
+    transition: all .33s ease-out;
+
+    box-shadow: 0 0.5em 1em -0.5em hsl(0deg 0% 5% / 10%), 0 0 0 1px hsl(0deg 0% 5% / 1%);
+
+    cursor: pointer;
+}
+
+/* If the item is being hovered over, or is clicked, scale */
+.insight__container:hover, .active__rs {
+    transform: scale(1.05);
+    box-shadow: 5px 5px 10px gray;
+}
+
+/* Individual insight structure (not including slider) */
+.insight {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.insight__metrics {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Check marks */
+.insight__icon {
+    font-size: 24px;
+
+    padding: 0rem .5rem;
+
+    color: rgba(100, 185, 35, 1);
+    
+    display: none;
+}
+
+/* Wording warning mark */
+.insight__warning {
+    font-size: 24px;
+
+    padding: 0rem .5rem;
+
+    color: rgba(247, 152, 36, 1);
+
+    display: none;
+}
+
+.message__flex {
+    display: flex;
+}
+
+.message__block {
+    display: block;
+}
+
+.message__hide {
+    display: none;
+}
+
+/* Slider color gradient structure */
+.slider__gradient {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    margin-top: -8px;
+    height: 8px;
+}
+
+/* Slider color gradients */
+/* Must be capital because of the string literal style in Insight component className */
+.Paragraphs__gradient {
+    background:linear-gradient(90deg, rgba(220, 50, 20, 1) 0%, rgba(220, 50, 20, 1) 20%, rgba(255, 225, 35, 1) 40%, rgba(100, 185, 35, 1) 59%, rgba(255, 225, 35, 1) 80%, rgba(220, 50, 20, 1) 100%);
+}
+.Questions__gradient {
+    background:linear-gradient(90deg, rgba(220, 50, 20, 1) 0%, rgba(255, 225, 35, 1) 12.5%, rgba(100, 185, 35, 1) 25%, rgba(100, 185, 35, 1) 50%, rgba(255, 225, 35, 1) 62.5%, rgba(220, 50, 20, 1) 80%, rgba(220, 50, 20, 1) 100%);
+}
+.Grade__gradient {
+    background:linear-gradient(90deg, rgba(100, 185, 35, 1) 0%, rgba(100, 185, 35, 1) 25%, rgba(255, 225, 35, 1) 50%, rgba(255, 225, 35, 1) 65%, rgba(220, 50, 20, 1) 85%, rgba(220, 50, 20, 1) 100%);
+}
+.Wording__gradient {
+    background:linear-gradient(90deg, rgba(100, 185, 35, 1) 0%, rgba(100, 185, 35, 1) 12.5%, rgba(255, 225, 35, 1) 25%, rgba(220, 50, 20, 1) 50%, rgba(220, 50, 20, 1) 100%);
+}
