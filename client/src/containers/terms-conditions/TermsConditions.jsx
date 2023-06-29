@@ -8,7 +8,7 @@ const TermsConditions = () => {
         <h5 className="last__updated">Last updated January 13 2022</h5>
 
         <h2 className="privacy__header">OVERVIEW</h2>
-        <p>
+        <p aria-label="summary">
           This website is operated by Rocketstart. Throughout the site, the
           terms “we”, “us” and “our” refer to Rocketstart. Rocketstart offers
           this website, including all information, tools and Services available

@@ -27,7 +27,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest --coverage --verbose --watchAll",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -49,6 +49,29 @@
     ]
   },
   "devDependencies": {
-    "dotenv": "^16.0.3"
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
+    "@types/testing-library__jest-dom": "^5.14.6",
+    "babel-jest": "^29.5.0",
+    "dotenv": "^16.0.3",
+    "jest": "^27.5.1",
+    "jest-svg-transformer": "^1.0.0",
+    "react-test-renderer": "^18.2.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css)$": "/Users/miller/Documents/rocketstart-web/client/config/cssMock.js",
+      "^.+\\.(svg)$": "jest-svg-transformer",
+      "^.+\\.(mp4|png)$": "/Users/miller/Documents/rocketstart-web/client/config/fileMock.js"
+    },
+    "transformIgnorePatterns": [
+      "/Users/miller/Documents/rocketstart-web/node_modules/(?!(axios)/)"
+    ],
+    "testPathIgnorePatterns": ["/Users/miller/Documents/rocketstart-web/client/src/containers/testimonials"],
+    "coveragePathIgnorePatterns": ["/Users/miller/Documents/rocketstart-web/client/src/containers/testimonials","/Users/miller/Documents/rocketstart-web/client/src/components/testimonial", "/Users/miller/Documents/rocketstart-web/client/src/actions/stripeActions.js", "/Users/miller/Documents/rocketstart-web/client/src/components/priceTier"],
+    "testEnvironment": "jsdom",
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
   }
 }

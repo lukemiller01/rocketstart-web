@@ -8,7 +8,7 @@ const PrivacyPolicy = () => {
         <h1>Privacy Policy</h1>
         <h5 className="last__updated">Last updated January 13 2022</h5>
 
-        <p>
+        <p aria-label="summary">
           This Privacy Policy describes how your personal information is
           collected, used, and shared when you visit or make a purchase from
           www.rocketstart.careers (the “Site”).

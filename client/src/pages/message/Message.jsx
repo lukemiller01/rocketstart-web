@@ -221,7 +221,7 @@ const Message = () => {
         }
 
         // Questions, where one or more question marks in a row means one question
-        var questions = text.split(/\?{1,}/).length - 1;
+        var questions = ((text || '').match(/\?{1,}/g) || []).length;
 
         // Grade Level, characterized by Flesch-Kincaid
         // # of words
@@ -380,6 +380,7 @@ const Message = () => {
               id="textBox"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+              aria-label="textbox"
             ></TextareaAutosize>
             <div className="left__column-three">
               <p className="character__counter">{300 - message.length} / 300</p>
@@ -393,6 +394,7 @@ const Message = () => {
               <button
                 className="navbar__button copy__button"
                 onClick={() => handleCopy()}
+                aria-label="copy-button"
               >
                 Copy
               </button>

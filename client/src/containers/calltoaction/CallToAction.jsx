@@ -15,7 +15,7 @@ const CallToAction = ({ page }) => {
         <font className="color__change"> Dream Job? </font>
       </h4>
       <Link to="/login">
-        <button className="button" onClick={buttonClick}>
+        <button className="button" onClick={buttonClick} aria-label="get-started">
           Get started for free
         </button>
       </Link>

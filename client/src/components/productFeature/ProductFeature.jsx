@@ -24,7 +24,7 @@ const ProductFeature = ({
       <div className="product__feature" id={id}>
         <div className="product__feature-text_content">
           <h4 className="product__feature-header">{feature}</h4>
-          <p>{description}</p>
+          <p aria-label="feature">{description}</p>
         </div>
 
         <div className="product__feature-image_content">

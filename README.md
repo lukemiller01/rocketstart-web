@@ -14,6 +14,7 @@ Rocketstart is a text analysis tool for LinkedIn connection requests.
 
 ## Roadmap
 
+- Add simple data validation before adding to DB
 - Add unit tests
 - Modify modals to React Portals
 - Refactor to leverage Redux Store (if adding new feature) or remove Redux store (if not adding new feature)

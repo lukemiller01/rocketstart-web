@@ -10,7 +10,7 @@ const ProcessFeature = ({ header, description, feature, icon, link }) => {
       <span className="material-symbols-outlined process__icon">{icon}</span>
       <h4 className="process__feature-header">{header}</h4>
       <p className="process__para">{description}</p>
-      <HashLink to={link}>
+      <HashLink to={link} aria-label="explore">
         <div className="process__explore-container">
           <h5 className="process__explore-text">Explore {feature}</h5>
           <span className="material-symbols-outlined process__feature-icon">

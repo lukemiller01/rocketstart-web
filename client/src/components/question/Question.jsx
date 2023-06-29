@@ -25,6 +25,7 @@ const Question = ({ question, answer }) => {
         <span
           className="material-symbols-outlined question__add"
           onClick={handleClick}
+          aria-label="expand-question"
         >
           {accordion}
         </span>

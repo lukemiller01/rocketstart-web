@@ -1,3 +1,4 @@
+import React from 'react';
 import './insight.css'
 
 const Insight = ({
@@ -14,6 +15,7 @@ const Insight = ({
       <div
         className={`insight__container ${active ? " active__rs" : ""}`}
         onClick={() => setExplanation(name)}
+        aria-label={`${name}__insight`}
       >
         <div className="insight">
           <h3 className="insight__title">{name}</h3>
@@ -22,7 +24,7 @@ const Insight = ({
               className={`material-icons insight__icon ${
                 check ? " message__flex" : " message__hide"
               }`}
-              id="check1"
+              aria-label='checkmark'
             >
               done
             </span>
@@ -34,7 +36,7 @@ const Insight = ({
             >
               warning
             </span>
-            <h3 className="insight__number" id="paragraphs">
+            <h3 className="insight__number" aria-label={`${name}`}>
               {number}
             </h3>
           </div>

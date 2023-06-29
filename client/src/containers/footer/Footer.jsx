@@ -37,6 +37,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               href="mailto:luke@rocketstart.careers"
+              aria-label="contact-us"
             >
               Contact Us
             </a>

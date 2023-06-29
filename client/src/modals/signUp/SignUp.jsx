@@ -250,7 +250,7 @@ const SignUp = ({
             close
           </span>
           <div className="signup__content">
-            <form className="signup__fields" onSubmit={handleFormSubmit}>
+            <form className="signup__fields" onSubmit={handleFormSubmit} aria-label="signup-signin">
               <input
                 className={`signup__input ${name}`}
                 required={nameRequired}
@@ -260,6 +260,7 @@ const SignUp = ({
                 enterKeyHint="next"
                 autoFocus={nameFocus}
                 ref={nameRef}
+                aria-label="name"
                 onChange={(e) =>
                   setUserData({ ...userData, name: e.target.value })
                 }
@@ -273,6 +274,7 @@ const SignUp = ({
                 enterKeyHint="next"
                 autoFocus={emailFocus}
                 ref={emailRef}
+                aria-label="email"
                 onChange={(e) =>
                   setUserData({ ...userData, email: e.target.value })
                 }
@@ -284,6 +286,7 @@ const SignUp = ({
                 autoComplete="new-password"
                 placeholder="Password"
                 enterKeyHint="next"
+                aria-label="password"
                 onChange={(e) =>
                   setUserData({ ...userData, password: e.target.value })
                 }
@@ -298,13 +301,14 @@ const SignUp = ({
                     handleCheckChange();
                   }}
                   className="signup__product-update-checkbox"
+                  aria-label="product-updates-checkbox"
                 />
                 <p className="signup__product-update_text">
                   Notify me about new features
                 </p>
               </label>
               {/*disabled={loading}> */}
-              <button type="submit" className="signup__button">
+              <button type="submit" className="signup__button" aria-label="action-button">
                 {buttonText}
               </button>
             </form>
@@ -323,6 +327,7 @@ const SignUp = ({
               onClick={() => {
                 handleModalSwitch(false);
               }}
+              aria-label="reset-pass-text"
             >
               Reset Password
             </p>
@@ -333,7 +338,7 @@ const SignUp = ({
                   handleModalSwitch(true);
                 }}
               >
-                <p className="signup__signin signup__terms-links">{answer}</p>
+                <p className="signup__signin signup__terms-links" aria-label="question">{answer}</p>
               </div>
             </div>
             {error && <ErrorBox message={errorMessage} justify={true} />}

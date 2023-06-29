@@ -101,12 +101,14 @@ const Verification = ({ userEmail }) => {
           name="email"
           ref={emailRef}
           onChange={(e) => editingEmail(e.target.value)}
+          aria-label="email-input"
         ></input>
 
         <button
           type="submit"
           className="verification__button"
           onClick={handleEmailEdit}
+          aria-label="action"
         >
           {buttonText}
         </button>

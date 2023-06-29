@@ -72,7 +72,7 @@ const Header = () => {
             className="button__container"
           >
             <Link to="/login">
-              <button className="button" onClick={buttonClick}>
+              <button className="button" onClick={buttonClick} aria-label="get-started">
                 Get started for free
               </button>
             </Link>
