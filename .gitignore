@@ -10,7 +10,7 @@
 **/mjml
 
 # testing
-/coverage
+**/coverage
 
 # production
 /build

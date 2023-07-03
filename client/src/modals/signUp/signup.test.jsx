@@ -9,11 +9,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import reducers from "../../reducers";
 
-import * as router from 'react-router'
-
 // Mocking Firebase functions from the Firebase configuration file.
 jest.mock("firebase/app");
 jest.mock("firebase/auth");
+
+// Mocking Auth functions:
+const register = jest.fn();
+const login = jest.fn();
+const checkEmail = jest.fn();
 
 // User with verified email:
 const user1 = {
@@ -21,12 +24,32 @@ const user1 = {
   emailVerified: true,
 };
 
+// Redux Provider & Store
 const ReduxProvider = ({ children, reduxStore }) => (
   <Provider store={reduxStore}>{children}</Provider>
 );
 const store = configureStore({ reducer: reducers, middleware: [thunk] });
 
+// useNavigate Mock
+const mockedUsedNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockedUsedNavigate, // Return an empty jest function to test whether it was called or not.
+}));
+
+// useDispatch Mock
+const mockedUseDispatch = jest.fn();
+jest.mock("react-redux", () => ({
+  ...jest.requireActual("react-redux"),
+  useDispatch: () => mockedUseDispatch, // Return an empty jest function to test whether it was called or not.
+}));
+
 describe("Signup", () => {
+  // Reset the useNavigate mock so a call from an earlier test isn't counted in a later test
+  beforeEach(() => {
+    mockedUsedNavigate.mockReset();
+  });
+
   it("Renders page", () => {
     render(
       <ReduxProvider reduxStore={store}>
@@ -50,6 +73,7 @@ describe("Signup", () => {
   const setPasswordState = jest.fn();
   const setNameState = jest.fn();
   const setCheckState = jest.fn();
+  const setHeaderState = jest.fn();
 
   it("Removes focus from name when 'Reset Password' is clicked", () => {
     render(
@@ -133,9 +157,171 @@ describe("Signup", () => {
     expect(screen.getByLabelText("password").value).toBe("123");
   });
 
-  jest.mock('react-router-dom', () => {
-    return {
-      Navigate: jest.fn(({ to }) => `navigate to ${to}`),
-    };
+  it("Handles Sign In form submit", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, logIn: login }}>
+            <SignUp buttonText={"Sign In"}/>
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    fireEvent.change(screen.getByLabelText("email"), {
+      target: { value: "x@rocketstart.careers" },
+    });
+
+    fireEvent.change(screen.getByLabelText("password"), {
+      target: { value: "123" },
+    });
+
+    const button = screen.getByLabelText("action-button");
+    fireEvent.click(button);
+
+    await waitFor(() => expect(mockedUsedNavigate).toHaveBeenCalledTimes(1));
+  });
+
+  it("Handles Sign Up form submit", async () => {
+
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, register: register }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              buttonText={"Create Account"}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const signUpButton = screen.getByLabelText("question");
+    userEvent.click(signUpButton);
+
+    fireEvent.change(screen.getByLabelText("email"), {
+      target: { value: "x@rocketstart.careers" },
+    });
+
+    fireEvent.change(screen.getByLabelText("name"), {
+      target: { value: "x" },
+    });
+
+    fireEvent.change(screen.getByLabelText("password"), {
+      target: { value: "123" },
+    });
+
+    const actionButton = screen.getByLabelText("action-button");
+    fireEvent.click(actionButton);
+
+    await waitFor(() => expect(mockedUsedNavigate).toHaveBeenCalledTimes(1));
+  });
+
+  it("Handles Reset Password form submit", async () => {
+
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, checkEmail: checkEmail }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              buttonText={"Reset Password"}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const signUpButton = screen.getByLabelText("question");
+    userEvent.click(signUpButton);
+
+    fireEvent.change(screen.getByLabelText("email"), {
+      target: { value: "x@rocketstart.careers" },
+    });
+
+    const actionButton = screen.getByLabelText("action-button");
+    fireEvent.click(actionButton);
+
+    await waitFor(() => expect(mockedUseDispatch).toHaveBeenCalledTimes(1));
+  });
+
+  it("Renders Container Style 1 (Reset Password)", async () => {
+
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, checkEmail: checkEmail }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("reset-pass-text");
+    userEvent.click(button);
+  });
+
+  it("Renders Container Style 2 (Sign Up)", async () => {
+
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, checkEmail: checkEmail }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Sign In"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("question");
+    userEvent.click(button);
   });
 });

@@ -77,6 +77,7 @@ const SignUp = ({
   const [errorMessage, setErrorMessage] = useState("");
 
   async function handleFormSubmit(e) {
+    e.preventDefault();
     setError(false);
 
     if (buttonText === "Sign In") {

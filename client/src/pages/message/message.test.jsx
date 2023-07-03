@@ -70,7 +70,7 @@ describe("Message", () => {
     expect(screen.getByLabelText("textbox").value).toBe("testing");
   });
 
-  test("Updates insights after 1 second", () => {
+  test("Updates insights after 1.5s", () => {
     jest.useFakeTimers();
     render(
       <BrowserRouter>
