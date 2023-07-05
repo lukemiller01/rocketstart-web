@@ -73,17 +73,16 @@ const SignUp = ({
   }
 
   // Error handling
-  const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   async function handleFormSubmit(e) {
     e.preventDefault();
-    setError(false);
 
     if (buttonText === "Sign In") {
       // Sign in logic
       e.preventDefault();
 
+      // TODO: add network request failed
       try {
         await logIn(userData.email.trim(), userData.password);
         document.body.style.overflow = "auto";
@@ -91,19 +90,14 @@ const SignUp = ({
       } catch (error) {
         if (error.code === "auth/wrong-password") {
           setErrorMessage("Incorrect password.");
-          setError(true);
         } else if (error.code === "auth/too-many-requests") {
           setErrorMessage("Too many attempts. Please try in a few minutes.");
-          setError(true);
         } else if (error.code === "auth/invalid-email") {
-          setErrorMessage("The email you enteres is invalid.");
-          setError(true);
+          setErrorMessage("The email you entered is invalid.");
         } else if (error.code === "auth/user-not-found") {
           setErrorMessage("No account exists with this email.");
-          setError(true);
         } else {
-          setErrorMessage(error);
-          setError(true);
+          setErrorMessage("Error. Please try again.");
         }
       }
     } else if (buttonText === "Create Account") {
@@ -125,22 +119,16 @@ const SignUp = ({
       } catch (error) {
         if (error.code === "auth/email-already-in-use") {
           setErrorMessage("An account with this email already exists.");
-          setError(true);
         } else if (error.code === "auth/internal-error") {
           setErrorMessage("An internal error occured. Please try again.");
-          setError(true);
         } else if (error.code === "auth/invalid-email") {
           setErrorMessage("The email you entered is invalid.");
-          setError(true);
         } else if (error.code === "auth/too-many-requests") {
           setErrorMessage("Too many attempts. Please try in a few minutes.");
-          setError(true);
         } else if (error.code === "auth/weak-password") {
           setErrorMessage("Your password must be at least 6 characters.");
-          setError(true);
         } else {
-          setErrorMessage(error);
-          setError(true);
+          setErrorMessage("Error. Please try again.");
         }
       }
     } else if (buttonText === "Reset Password") {
@@ -149,9 +137,9 @@ const SignUp = ({
 
       try {
         var result = await checkEmail(userData.email.trim());
-        if (result.length === 0) {
+        if (result && result.length === 0) {
           const error = new Error();
-          error.code = "not in firebase";
+          error.code = "auth/user-not-found";
           throw error;
         }
         dispatch(resetPassword({ email: userData.email.trim() }));
@@ -167,19 +155,14 @@ const SignUp = ({
       } catch (error) {
         if (error.code === "auth/too-many-requests") {
           setErrorMessage("Too many attempts. Please try in a few minutes.");
-          setError(true);
-        } else if (error.code === "not in firebase") {
-          setErrorMessage("This email does not exist in our database.");
-          setError(true);
+        } else if (error.code === "auth/user-not-found") {
+          setErrorMessage("No account exists with this email.");
         } else if (error.code === "auth/internal-error") {
           setErrorMessage("An internal error occured. Please try again.");
-          setError(true);
         } else if (error.code === "auth/weak-password") {
           setErrorMessage("Your password must be at least 6 characters.");
-          setError(true);
         } else {
-          setErrorMessage(error);
-          setError(true);
+          setErrorMessage("Error. Please try again.");
         }
       }
     }
@@ -187,7 +170,6 @@ const SignUp = ({
 
   // To handle the modal change between Sign Up and Sign In
   function handleModalSwitch(type) {
-    setError(false);
     if (type && buttonText === "Sign In") {
       setButtonState("Create Account");
       setBottomTextQState("Have An Account?");
@@ -342,7 +324,8 @@ const SignUp = ({
                 <p className="signup__signin signup__terms-links" aria-label="question">{answer}</p>
               </div>
             </div>
-            {error && <ErrorBox message={errorMessage} justify={true} />}
+            {/* {<ErrorBox message={errorMessage} justify={true} />} */}
+            {errorMessage !== "" && <ErrorBox message={errorMessage} justify={true} />}
           </div>
         </div>
       </div>

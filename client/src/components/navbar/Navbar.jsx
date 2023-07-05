@@ -121,6 +121,7 @@ const Navbar = ({ navOne, logoURL }) => {
               <div>
                 <nav className="navbar__items">
                   <h3
+                    aria-label="sign-in"
                     className="navbar__item-focused"
                     onClick={() => {
                       handleUserLogin(false);
@@ -131,6 +132,7 @@ const Navbar = ({ navOne, logoURL }) => {
 
                   <div className="button__container">
                     <button
+                      aria-label="sign-up"
                       className="navbar__button"
                       onClick={() => {
                         handleUserLogin(true);
@@ -156,6 +158,7 @@ const Navbar = ({ navOne, logoURL }) => {
           <div className="collapsed__menu">
             {toggleMenu ? (
               <span
+                aria-label="close-menu"
                 className="material-symbols-outlined collapsed__menu-icons"
                 onClick={() => setToggleMenu(false)}
               >
@@ -163,6 +166,7 @@ const Navbar = ({ navOne, logoURL }) => {
               </span>
             ) : (
               <span
+                aria-label="open-menu"
                 className="material-symbols-outlined collapsed__menu-icons"
                 onClick={() => setToggleMenu(true)}
               >
@@ -178,6 +182,7 @@ const Navbar = ({ navOne, logoURL }) => {
                       <div className="navbar__inner-menu_signup">
                         <h3
                           className="navbar__item-focused"
+                          aria-label="sign-in-from-menu"
                           onClick={() => {
                             handleUserLogin(false);
                           }}
@@ -186,6 +191,7 @@ const Navbar = ({ navOne, logoURL }) => {
                         </h3>
                         <div className="button__container">
                           <button
+                            aria-label="sign-up-from-menu"
                             className="navbar__button"
                             onClick={() => {
                               handleUserLogin(true);

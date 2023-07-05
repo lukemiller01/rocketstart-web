@@ -41,7 +41,7 @@ const Account = ({ setModalOpen, setAccountIconState, communicateState }) => {
             <span className="material-icons account__icons">home</span>
             <p className="account__modal-text_nav">Home Page</p>
           </Link>
-          <div className="account__nav-options" onClick={handleLogOut}>
+          <div className="account__nav-options" onClick={handleLogOut} aria-label="logout">
             <span className="material-icons account__icons">logout</span>
             <p className="account__modal-text_nav">Log Out</p>
           </div>

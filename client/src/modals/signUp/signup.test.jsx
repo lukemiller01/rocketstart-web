@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import reducers from "../../reducers";
+import { FirebaseError } from "firebase/app";
 
 // Mocking Firebase functions from the Firebase configuration file.
 jest.mock("firebase/app");
@@ -17,6 +18,19 @@ jest.mock("firebase/auth");
 const register = jest.fn();
 const login = jest.fn();
 const checkEmail = jest.fn();
+
+// Mocking auth function errors:
+const incorrectPassword = jest.fn().mockRejectedValue({code: "auth/wrong-password"});
+const tooManyRequests = jest.fn().mockRejectedValue({code: "auth/too-many-requests"});
+const invalidEmail = jest.fn().mockRejectedValue({code: "auth/invalid-email"});
+const userNotFound = jest.fn().mockRejectedValue({code: "auth/user-not-found"});
+const unknownError = jest.fn().mockRejectedValue(new FirebaseError("auth/wrong-password"));
+
+const emailInUse = jest.fn().mockRejectedValue({code: "auth/email-already-in-use"});
+const internalError = jest.fn().mockRejectedValue({code: "auth/internal-error"});
+const tooManyAttempts = jest.fn().mockRejectedValue({code: "auth/too-many-requests"});
+const weakPassword = jest.fn().mockRejectedValue({code: "auth/weak-password"});
+
 
 // User with verified email:
 const user1 = {
@@ -162,7 +176,7 @@ describe("Signup", () => {
       <ReduxProvider reduxStore={store}>
         <BrowserRouter>
           <AuthContext.Provider value={{ user: user1, logIn: login }}>
-            <SignUp buttonText={"Sign In"}/>
+            <SignUp buttonText={"Sign In"} />
           </AuthContext.Provider>
         </BrowserRouter>
       </ReduxProvider>
@@ -183,7 +197,6 @@ describe("Signup", () => {
   });
 
   it("Handles Sign Up form submit", async () => {
-
     render(
       <ReduxProvider reduxStore={store}>
         <BrowserRouter>
@@ -228,7 +241,6 @@ describe("Signup", () => {
   });
 
   it("Handles Reset Password form submit", async () => {
-
     render(
       <ReduxProvider reduxStore={store}>
         <BrowserRouter>
@@ -261,11 +273,11 @@ describe("Signup", () => {
     const actionButton = screen.getByLabelText("action-button");
     fireEvent.click(actionButton);
 
+    // await waitFor(() => expect(checkEmail).toHaveBeenCalledTimes(1));
     await waitFor(() => expect(mockedUseDispatch).toHaveBeenCalledTimes(1));
   });
 
-  it("Renders Container Style 1 (Reset Password)", async () => {
-
+  it("Renders Container Style 1 (Reset Password)", () => {
     render(
       <ReduxProvider reduxStore={store}>
         <BrowserRouter>
@@ -295,7 +307,6 @@ describe("Signup", () => {
   });
 
   it("Renders Container Style 2 (Sign Up)", async () => {
-
     render(
       <ReduxProvider reduxStore={store}>
         <BrowserRouter>
@@ -323,5 +334,547 @@ describe("Signup", () => {
 
     const button = screen.getByLabelText("question");
     userEvent.click(button);
+  });
+
+  it("Renders Container Style 3 (Welcome back!)", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, checkEmail: checkEmail }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Create Account"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("question");
+    userEvent.click(button);
+  });
+
+  it("Shows incorrect password error", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, logIn: incorrectPassword }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Sign In"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("action-button");
+    fireEvent.click(button);
+
+    return expect((await screen.findByText("Incorrect password.")).textContent);
+  });
+
+  it("Shows too many requests error", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, logIn: tooManyRequests }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Sign In"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("action-button");
+    fireEvent.click(button);
+
+    return expect((await screen.findByText("Too many attempts. Please try in a few minutes.")).textContent);
+  });
+
+  it("Shows invalid email error", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, logIn: invalidEmail }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Sign In"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("action-button");
+    fireEvent.click(button);
+
+    return expect((await screen.findByText("The email you entered is invalid.")).textContent);
+  });
+
+  it("Shows user not found error", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, logIn: userNotFound }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Sign In"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("action-button");
+    fireEvent.click(button);
+
+    return expect((await screen.findByText("No account exists with this email.")).textContent);
+  });
+
+  it("Shows unknown error", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, logIn: unknownError }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Sign In"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("action-button");
+    fireEvent.click(button);
+
+    return expect((await screen.findByText("Error. Please try again.")).textContent);
+  });
+
+  it("Shows email already in use error", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, register: emailInUse }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Create Account"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("action-button");
+    fireEvent.click(button);
+
+    return expect((await screen.findByText("An account with this email already exists.")).textContent);
+  });
+
+  it("Shows internal error", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, register: internalError }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Create Account"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("action-button");
+    fireEvent.click(button);
+
+    return expect((await screen.findByText("An internal error occured. Please try again.")).textContent);
+  });
+
+  it("Shows invalid email error (sign up)", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, register: invalidEmail }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Create Account"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("action-button");
+    fireEvent.click(button);
+
+    return expect((await screen.findByText("The email you entered is invalid.")).textContent);
+  });
+
+  it("Shows too many attempts error", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, register: tooManyAttempts }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Create Account"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("action-button");
+    fireEvent.click(button);
+
+    return expect((await screen.findByText("Too many attempts. Please try in a few minutes.")).textContent);
+  });
+
+  it("Shows weak password error", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, register: weakPassword }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Create Account"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("action-button");
+    fireEvent.click(button);
+
+    return expect((await screen.findByText("Your password must be at least 6 characters.")).textContent);
+  });
+
+  it("Shows unknown error (sign up)", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, register: unknownError }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Create Account"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("action-button");
+    fireEvent.click(button);
+
+    return expect((await screen.findByText("Error. Please try again.")).textContent);
+  });
+
+  it("Shows weak password error (reset)", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, checkEmail: weakPassword }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Reset Password"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("action-button");
+    fireEvent.click(button);
+
+    return expect((await screen.findByText("Your password must be at least 6 characters.")).textContent);
+  });
+
+  it("Shows internal error (reset)", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, checkEmail: internalError }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Reset Password"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("action-button");
+    fireEvent.click(button);
+
+    return expect((await screen.findByText("An internal error occured. Please try again.")).textContent);
+  });
+
+  it("Shows user not found error (reset)", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, checkEmail: userNotFound }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Reset Password"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("action-button");
+    fireEvent.click(button);
+
+    return expect((await screen.findByText("No account exists with this email.")).textContent);
+  });
+
+  it("Shows too many requests error (reset)", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, checkEmail: tooManyRequests }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Reset Password"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("action-button");
+    fireEvent.click(button);
+
+    return expect((await screen.findByText("Too many attempts. Please try in a few minutes.")).textContent);
+  });
+
+  it("Shows unknown error (reset)", async () => {
+    render(
+      <ReduxProvider reduxStore={store}>
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user: user1, checkEmail: unknownError }}>
+            <SignUp
+              setButtonState={setButtonState}
+              setBottomTextAState={setBottomTextAState}
+              setBottomTextQState={setBottomTextQState}
+              setTermsTextState={setTermsTextState}
+              setResetTextState={setResetTextState}
+              setEmailFocus={setEmailFocus}
+              setNameFocus={setNameFocus}
+              setPasswordState={setPasswordState}
+              setNameState={setNameState}
+              setCheckState={setCheckState}
+              setHeaderState={setHeaderState}
+              containerStyle={"signup__login"}
+              buttonText={"Reset Password"}
+              type={true}
+            />
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </ReduxProvider>
+    );
+
+    const button = screen.getByLabelText("action-button");
+    fireEvent.click(button);
+
+    return expect((await screen.findByText("Error. Please try again.")).textContent);
   });
 });

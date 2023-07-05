@@ -34,7 +34,7 @@ const Menu = () => {
       <h3>
         <Link to="/home" className="navbar__item-focused">Home</Link>
       </h3>
-      <h3 onClick={handleLogOut}>Log Out</h3>
+      <h3 onClick={handleLogOut} aria-label="logout">Log Out</h3>
     </>
   );
 };
@@ -64,7 +64,7 @@ const Navbar2 = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
 
   return (
-    <div className="navbar__container">
+    <div className="navbar__container" aria-label="navbar-container">
       <div className="inner__navbar2">
         <div className="navbar__logo">
           <Link to="/" className="navbar__logo">
@@ -77,6 +77,7 @@ const Navbar2 = () => {
             <li className="menu__item navbar__item-focused">
               <h3>
                 <NavLink
+                  aria-label="message"
                   to="/message"
                   className={({ isActive }) => (isActive ? "active__menu" : "")}
                   style={{ display: "flex" }}
@@ -117,6 +118,7 @@ const Navbar2 = () => {
               <NavLink
                 className={split[1] === "account" ? "active__menu" : ""}
                 style={{ display: "flex" }}
+                aria-label="account"
               >
                 <h3>Account</h3>
                 <span className="material-symbols-outlined navbar__account-icon">
@@ -129,6 +131,7 @@ const Navbar2 = () => {
           <div className="collapsed__menu-nav_two">
             {toggleMenu ? (
               <span
+                aria-label="menu-close"
                 className="material-symbols-outlined collapsed__menu-icons"
                 onClick={() => setToggleMenu(false)}
               >
@@ -136,6 +139,7 @@ const Navbar2 = () => {
               </span>
             ) : (
               <span
+                aria-label="menu-open"
                 className="material-symbols-outlined collapsed__menu-icons"
                 onClick={() => setToggleMenu(true)}
               >

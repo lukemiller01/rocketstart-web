@@ -84,7 +84,7 @@ describe("Message", () => {
     fireEvent.change(screen.getByLabelText("textbox"), {
       target: {
         value:
-          "to be??\n\nnew test?\n\nnew test.\n\nto be.\n\nto have.\n\nthere is. was. ",
+          "to be??\n\nvery test?\n\nnew test.\n\nto be.\n\nto have.\n\nthere is. was.",
       },
     });
 
@@ -93,8 +93,21 @@ describe("Message", () => {
     });
     expect(screen.getByLabelText("Paragraphs").textContent).toEqual("6");
     expect(screen.getByLabelText("Questions").textContent).toEqual("2");
-    expect(screen.getByLabelText("Grade").textContent).toEqual("2");
-    expect(screen.getByLabelText("Wording").textContent).toEqual("4");
+    expect(screen.getByLabelText("Grade").textContent).toEqual("3");
+    expect(screen.getByLabelText("Wording").textContent).toEqual("5");
+
+    // No text:
+    fireEvent.change(screen.getByLabelText("textbox"), {
+      target: {
+        value: "",
+      },
+    });
+
+    act(() => {
+      jest.advanceTimersByTime(1500);
+    });
+
+    expect(screen.getByLabelText("Paragraphs").textContent).toEqual("0");
   });
 
   // Mocking navigator with write to clipboard function
@@ -113,20 +126,20 @@ describe("Message", () => {
         </AuthContext.Provider>
       </BrowserRouter>
     );
-    
+
     // Adding text to box
     fireEvent.change(screen.getByLabelText("textbox"), {
       target: {
         value: "test",
       },
     });
-    
+
     // Clicking the button
     const button = screen.getByLabelText("copy-button");
     userEvent.click(button);
 
     // Checking to see if the correct text was copied to clipboard
-    expect(window.navigator.clipboard.writeText).toHaveBeenCalledWith('test');
+    expect(window.navigator.clipboard.writeText).toHaveBeenCalledWith("test");
   });
 
   test("Grades Switch Statements Correctly", async () => {
@@ -137,12 +150,11 @@ describe("Message", () => {
         </AuthContext.Provider>
       </BrowserRouter>
     );
-    
+
     // 12
     fireEvent.change(screen.getByLabelText("textbox"), {
       target: {
-        value:
-          "testing.",
+        value: "testing.",
       },
     });
     act(() => {
@@ -153,8 +165,7 @@ describe("Message", () => {
     // 11
     fireEvent.change(screen.getByLabelText("textbox"), {
       target: {
-        value:
-          "testing new testing testing.",
+        value: "testing new testing testing.",
       },
     });
     act(() => {
@@ -165,8 +176,7 @@ describe("Message", () => {
     // 10
     fireEvent.change(screen.getByLabelText("textbox"), {
       target: {
-        value:
-          "testing new new testing testing testing.",
+        value: "testing \n\nnew new \n\ntesting testing testing.",
       },
     });
     act(() => {
@@ -177,8 +187,7 @@ describe("Message", () => {
     // 9
     fireEvent.change(screen.getByLabelText("textbox"), {
       target: {
-        value:
-          "new testing testing.",
+        value: "new testing testing.",
       },
     });
     act(() => {
@@ -189,8 +198,7 @@ describe("Message", () => {
     // 8
     fireEvent.change(screen.getByLabelText("textbox"), {
       target: {
-        value:
-          "new new testing testing testing.",
+        value: "new new testing testing testing.",
       },
     });
     act(() => {
@@ -201,8 +209,7 @@ describe("Message", () => {
     // 7
     fireEvent.change(screen.getByLabelText("textbox"), {
       target: {
-        value:
-          "new new testing testing.",
+        value: "new new testing testing.",
       },
     });
     act(() => {
@@ -213,8 +220,7 @@ describe("Message", () => {
     // 6
     fireEvent.change(screen.getByLabelText("textbox"), {
       target: {
-        value:
-          "new new new testing testing.",
+        value: "new new new testing testing.",
       },
     });
     act(() => {
@@ -225,8 +231,7 @@ describe("Message", () => {
     // 5
     fireEvent.change(screen.getByLabelText("textbox"), {
       target: {
-        value:
-          "new new testing.",
+        value: "new new testing.",
       },
     });
     act(() => {
@@ -237,8 +242,7 @@ describe("Message", () => {
     // 4
     fireEvent.change(screen.getByLabelText("textbox"), {
       target: {
-        value:
-          "new new new new testing.",
+        value: "new new new new testing.",
       },
     });
     act(() => {
@@ -246,16 +250,16 @@ describe("Message", () => {
     });
     expect(screen.getByLabelText("Grade").textContent).toEqual("4");
 
-    // 3
+    // 2
     fireEvent.change(screen.getByLabelText("textbox"), {
       target: {
         value:
-          "new new new.",
+          "to be??\n\ntest test?\n\nnew test.\n\nto be.\n\nto have.\n\nthere is. was.",
       },
     });
     act(() => {
       jest.advanceTimersByTime(1500);
     });
-    expect(screen.getByLabelText("Grade").textContent).toEqual("3");
+    expect(screen.getByLabelText("Grade").textContent).toEqual("2");
   });
 });

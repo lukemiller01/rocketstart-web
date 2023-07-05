@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import Verification from "./Verification";
-import { render, fireEvent, screen, waitFor } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
 import { AuthContext } from "../../context/AuthProvider";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
